@@ -1,10 +1,24 @@
-.navbar {
-  position: fixed;
+.navbar_basic {
   overflow: hidden;
+  position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
+  min-height: 50px;
+  // vertical-align: middle;
+
   border-bottom: 1px solid #7a7a7a;
   box-shadow: 0 0 5px 0 gray;
   background-color: #f9faff;
+}
+
+.navbar_row {
+  // vertical-align: middle;
+}
+
+.navbar_column {
+  // vertical-align: middle;
+  text-align: center;
+  font-size: 1.2em;
 }
