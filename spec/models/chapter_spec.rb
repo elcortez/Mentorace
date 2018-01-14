@@ -15,5 +15,4 @@ RSpec.describe Chapter, type: :model do
       expect(chapter.save).to be true
     end
   end
-
 end
