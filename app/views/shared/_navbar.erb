@@ -1,0 +1,24 @@
+<div class='container navbar_basic'>
+  <div class="row navbar_row">
+
+    <div class="col-xs-6 col-sm-3 navbar_column">
+      LOGO
+    </div>
+
+    <div class="col-xs-6 col-sm-3 navbar_column">
+      Maths for CS
+    </div>
+
+    <div class="col-xs-6 col-sm-3 navbar_column">
+      <%= link_to('About Us', about_path) %>
+    </div>
+
+    <div class="col-xs-6 col-sm-3 navbar_column">
+      <% if user_signed_in? %>
+        <%= link_to('My Account', user_path(current_user)) %>
+      <% else %>
+        <%= link_to('Log In / Sign Up', new_user_session_path) %>
+      <% end %>
+    </div>
+  </div>
+</div>
