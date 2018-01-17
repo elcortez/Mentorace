@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/about/' => 'pages#about', as: :about
 
   resources :users, only: :show
+  resources :courses, only: :index
 end
