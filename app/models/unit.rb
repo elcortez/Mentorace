@@ -3,4 +3,5 @@ class Unit < ApplicationRecord
   validates_presence_of :title
   has_many :unit_lessons
   has_many :unit_examples
+  has_many :unit_exercises
 end
