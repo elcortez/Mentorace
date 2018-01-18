@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180118195415) do
+ActiveRecord::Schema.define(version: 20180118195958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position_in_course"
     t.index ["course_id"], name: "index_chapters_on_course_id"
   end
 
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position_in_chapter"
   end
 
   create_table "exercise_attempts", force: :cascade do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.string "attempted_answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "attempt_successful"
     t.index ["unit_exercise_id"], name: "index_exercise_attempts_on_unit_exercise_id"
     t.index ["user_id"], name: "index_exercise_attempts_on_user_id"
   end
@@ -47,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.integer "unit_position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_examples_on_unit_id"
   end
 
@@ -56,6 +60,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_exercises_on_unit_id"
   end
 
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180118195415) do
     t.integer "unit_position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_lessons_on_unit_id"
   end
 
