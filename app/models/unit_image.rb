@@ -1,0 +1,2 @@
+class UnitImage < ApplicationRecord
+end
