@@ -4,6 +4,7 @@ class CreateExerciseAttempts < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :unit_exercise, foreign_key: true
       t.string :attempted_answer
+      t.boolean :attempt_successful
 
       t.timestamps
     end

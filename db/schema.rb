@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20180120115850) do
     t.bigint "course_id"
     t.string "title"
     t.string "description"
+    t.integer "position_in_course"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_course"
     t.index ["course_id"], name: "index_chapters_on_course_id"
   end
 
@@ -30,16 +30,15 @@ ActiveRecord::Schema.define(version: 20180120115850) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_chapter"
   end
 
   create_table "exercise_attempts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "unit_exercise_id"
     t.string "attempted_answer"
+    t.boolean "attempt_successful"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "attempt_successful"
     t.index ["unit_exercise_id"], name: "index_exercise_attempts_on_unit_exercise_id"
     t.index ["user_id"], name: "index_exercise_attempts_on_user_id"
   end
@@ -47,10 +46,9 @@ ActiveRecord::Schema.define(version: 20180120115850) do
   create_table "unit_examples", force: :cascade do |t|
     t.bigint "unit_id"
     t.text "content"
-    t.integer "unit_position"
+    t.integer "position_in_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_examples_on_unit_id"
   end
 
@@ -58,14 +56,15 @@ ActiveRecord::Schema.define(version: 20180120115850) do
     t.bigint "unit_id"
     t.text "question"
     t.string "answer"
+    t.integer "position_in_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_exercises_on_unit_id"
   end
 
   create_table "unit_images", force: :cascade do |t|
     t.string "img_url"
+    t.integer "unit_id"
     t.integer "position_in_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,19 +73,18 @@ ActiveRecord::Schema.define(version: 20180120115850) do
   create_table "unit_lessons", force: :cascade do |t|
     t.bigint "unit_id"
     t.text "content"
-    t.integer "unit_position"
+    t.integer "position_in_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_unit"
     t.index ["unit_id"], name: "index_unit_lessons_on_unit_id"
   end
 
   create_table "units", force: :cascade do |t|
     t.bigint "chapter_id"
     t.string "title"
+    t.integer "position_in_chapter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position_in_chapter"
     t.index ["chapter_id"], name: "index_units_on_chapter_id"
   end
 

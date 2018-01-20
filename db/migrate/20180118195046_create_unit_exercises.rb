@@ -4,6 +4,7 @@ class CreateUnitExercises < ActiveRecord::Migration[5.1]
       t.references :unit, foreign_key: true
       t.text :question
       t.string :answer
+      t.integer :position_in_unit
 
       t.timestamps
     end
