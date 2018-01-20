@@ -1,7 +1,6 @@
 class UnitExample < ApplicationRecord
   belongs_to :unit
   validates_presence_of :content
-  validates_presence_of :position_in_unit
   validate :unique_position_in_unit
 
   def unique_position_in_unit
