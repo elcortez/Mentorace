@@ -1,10 +1,8 @@
 class UnitExample < ApplicationRecord
-  belongs_to :unit
-  validates_presence_of :content
-  validate :unique_position_in_unit
+  include LearningElementConcern
 
-  def unique_position_in_unit
-    return unless self.unit.unit_learning_elements.pluck(:position_in_unit).include?(self.position_in_unit)
-    errors.add(:position_in_unit, 'already taken')
-  end
+  belongs_to :unit
+
+  validate :unique_position_in_unit
+  validates_presence_of :content
 end
