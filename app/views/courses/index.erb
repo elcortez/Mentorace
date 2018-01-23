@@ -1,5 +1,4 @@
 <h1>Here are all our awesome courses</h1>
 <% Course.find_each do |course| %>
-  <%= course.title %>
-  <%= course.description %>
+  <%= render partial: 'course_display', locals: { course: course } %>
 <% end %>

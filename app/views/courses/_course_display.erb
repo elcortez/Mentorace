@@ -1,0 +1,6 @@
+<div class='container'>
+  <h2> <%= course.title %></h2>
+  <% course.chapters.order(:position_in_course).each do |chapter| %>
+    <%= render partial: 'chapter_display', locals: { chapter: chapter } %>
+  <% end %>
+</div>
