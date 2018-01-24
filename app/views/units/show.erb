@@ -1,0 +1,3 @@
+<% @unit.learning_elements.each do |learning_element| %>
+  <%= render partial: learning_element.class.to_s.underscore, locals: { learning_element: learning_element } %>
+<% end %>

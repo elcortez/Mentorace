@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
-  describe '.unit_learning_elements' do
+  describe '.learning_elements' do
     let!(:course) { create(:course, title: 'awesome title') }
     let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
     let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
@@ -9,9 +9,9 @@ RSpec.describe Unit, type: :model do
     let!(:unit_image) { create(:unit_image, unit: unit, position_in_unit: 2, img_url: 'url') }
     let!(:unit_lesson) { create(:unit_lesson, unit: unit, position_in_unit: 3, content: 'content') }
 
-    it 'can find its unit_learning_elements' do
+    it 'can find its learning_elements' do
       unit.reload
-      expect(unit.unit_learning_elements.map(&:id)).to eql([
+      expect(unit.learning_elements.map(&:id)).to eql([
         unit_example.id, unit_image.id, unit_lesson.id
       ])
     end

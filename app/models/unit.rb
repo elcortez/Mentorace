@@ -7,7 +7,7 @@ class Unit < ApplicationRecord
   has_many :unit_exercises
   validate :unique_position_in_chapter
 
-  def unit_learning_elements
+  def learning_elements
     (self.unit_lessons.to_a << self.unit_examples.to_a <<  self.unit_images.to_a)
       .compact
       .flatten

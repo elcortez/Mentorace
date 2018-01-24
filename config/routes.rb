@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: :show
 
   resources :courses, only: :index do
-    resources :chapter, only: [] do
-      resources :unit, only: :show
+    resources :chapters, only: [] do
+      resources :units, only: :show
     end
   end
 end
