@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   resources :courses, only: :index do
     resources :chapters, only: [] do
-      resources :units, only: :show
+      resources :units, only: :show do
+        resources :unit_exercises, only: :show
+      end
     end
   end
 end
