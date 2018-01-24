@@ -1,4 +1,19 @@
 <h1>Here are all our awesome courses</h1>
 <% Course.find_each do |course| %>
-  <%= render partial: 'course_display', locals: { course: course } %>
+
+  <h2> <%= course.title %></h2>
+  <% course.chapters.order(:position_in_course).each do |chapter| %>
+
+    <h4><%= chapter.title %></h4>
+    <h6><%= chapter.description %></h6>
+    <% chapter.units.order(:position_in_chapter).each do |unit| %>
+      <p>
+        <%= link_to(unit.title, course_chapter_unit_path(
+          course_id: unit.chapter.course_id,
+          chapter_id: unit.chapter_id,
+          id: unit.id)
+        ) %>
+      </p>
+    <% end %>
+  <% end %>
 <% end %>
