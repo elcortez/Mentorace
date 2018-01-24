@@ -1,3 +1,18 @@
-<% @unit.learning_elements.each do |learning_element| %>
-  <%= render partial: learning_element.class.to_s.underscore, locals: { learning_element: learning_element } %>
-<% end %>
+
+<div class="container">
+  <% @unit.learning_elements.each do |learning_element| %>
+    <%= render partial: learning_element.class.to_s.underscore, locals: { learning_element: learning_element } %>
+  <% end %>
+
+  <p>
+    <%= link_to(
+      "I am ready to get challenged on this unit",
+      course_chapter_unit_unit_exercise_path(
+        course_id: @unit.chapter.course_id,
+        chapter_id: @unit.chapter_id,
+        unit_id: @unit.id,
+        id: @unit.unit_exercises.first.id
+      )
+    ) %>
+  </p>
+</div>
