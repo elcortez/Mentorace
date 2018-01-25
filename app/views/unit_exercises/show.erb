@@ -6,4 +6,4 @@
   <%= @unit_exercise.question %>
 </p>
 
-<%= render 'exercise_attempts/new' %>
+<%= render 'exercise_attempts/new', locals: { unit_exercise: @unit_exercise } %>

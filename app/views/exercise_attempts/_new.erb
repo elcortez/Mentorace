@@ -1,1 +1,5 @@
-hello there !
+<% p '--------------------------' %>
+<% p @exercise_attempt %>
+<%= simple_form_for @exercise_attempt do |f| %>
+  <%= f.input :attempted_answer %>
+<% end %>
