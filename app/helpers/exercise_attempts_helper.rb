@@ -1,0 +1,2 @@
+module ExerciseAttemptsHelper
+end
