@@ -1,0 +1,11 @@
+<p>
+  Unit Exercise N°<%= @unit_exercise.position_in_unit %>
+</p>
+
+<p>
+  <%= @unit_exercise.question %>
+</p>
+
+<%= simple_form_for [:course, :chapter, :unit, @unit_exercise, @exercise_attempt] do |f| %>
+  <%= f.input :attempted_answer %>
+<% end %>
