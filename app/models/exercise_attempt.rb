@@ -4,6 +4,6 @@ class ExerciseAttempt < ApplicationRecord
   before_validation :set_successful
 
   def set_successful
-    self.attempt_successful = self.attempted_answer == self.unit_exercise.answer
+    self.attempt_successful = self.attempted_answer.present? && self.attempted_answer == self.unit_exercise.answer
   end
 end
