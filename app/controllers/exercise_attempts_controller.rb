@@ -13,13 +13,6 @@ class ExerciseAttemptsController < ApplicationController
       unit_exercise_id: @unit.unit_exercises.first.id
     }
 
-    p params
-    # ExerciseAttempt.create!(
-    #   unit_exercise_id: @unit_exercise.id,
-    #   user_id: current_user.id,
-    #   attempted_answer: params['exercise_attempt']['attempted_answer']
-    # )
-
     redirect_back fallback_location: new_course_chapter_unit_unit_exercise_exercise_attempt_path(fallback_params)
   end
 
