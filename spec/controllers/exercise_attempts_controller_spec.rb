@@ -16,12 +16,15 @@ RSpec.describe ExerciseAttemptsController, type: :controller do
     end
 
     it 'will always redirect to the first unit exercise that has not yet been validated' do
+
       response = get :new, params: {
         course_id: course.id,
         chapter_id: chapter.id,
         unit_id: unit.id,
         unit_exercise_id: unit_exercise_2.id
       }
+
+      p response
 
       # Parameters: {"course_id"=>"1", "chapter_id"=>"1", "unit_id"=>"2", "unit_exercise_id"=>"4"}
 

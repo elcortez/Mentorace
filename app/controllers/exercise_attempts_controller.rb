@@ -3,6 +3,7 @@ class ExerciseAttemptsController < ApplicationController
   before_action :find_unit_exercise
 
   def new
+    @exercise_attempt = ExerciseAttempt.new
   end
 
   def create
