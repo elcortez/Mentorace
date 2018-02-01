@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121180738) do
+ActiveRecord::Schema.define(version: 20180201204332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 20180121180738) do
     t.datetime "updated_at", null: false
     t.index ["unit_exercise_id"], name: "index_exercise_attempts_on_unit_exercise_id"
     t.index ["user_id"], name: "index_exercise_attempts_on_user_id"
+  end
+
+  create_table "learning_statuses", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.bigint "chapter_id"
+    t.bigint "unit_id"
+    t.bigint "unit_exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_learning_statuses_on_chapter_id"
+    t.index ["course_id"], name: "index_learning_statuses_on_course_id"
+    t.index ["unit_exercise_id"], name: "index_learning_statuses_on_unit_exercise_id"
+    t.index ["unit_id"], name: "index_learning_statuses_on_unit_id"
+    t.index ["user_id"], name: "index_learning_statuses_on_user_id"
   end
 
   create_table "unit_examples", force: :cascade do |t|
@@ -111,6 +126,11 @@ ActiveRecord::Schema.define(version: 20180121180738) do
   add_foreign_key "chapters", "courses"
   add_foreign_key "exercise_attempts", "unit_exercises"
   add_foreign_key "exercise_attempts", "users"
+  add_foreign_key "learning_statuses", "chapters"
+  add_foreign_key "learning_statuses", "courses"
+  add_foreign_key "learning_statuses", "unit_exercises"
+  add_foreign_key "learning_statuses", "units"
+  add_foreign_key "learning_statuses", "users"
   add_foreign_key "unit_examples", "units"
   add_foreign_key "unit_exercises", "units"
   add_foreign_key "unit_lessons", "units"

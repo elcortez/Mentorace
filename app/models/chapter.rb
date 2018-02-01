@@ -1,6 +1,7 @@
 class Chapter < ApplicationRecord
   belongs_to :course
   has_many :units
+  has_one :learning_status
   validates_presence_of :title
   validate :unique_position_in_course
 

@@ -5,6 +5,7 @@ class Unit < ApplicationRecord
   has_many :unit_examples
   has_many :unit_images
   has_many :unit_exercises
+  has_one :learning_status
   validate :unique_position_in_chapter
 
   def learning_elements
