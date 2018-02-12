@@ -8,7 +8,6 @@ class ExerciseAttempt < ApplicationRecord
     self.attempt_successful = self.attempted_answer.present? && self.attempted_answer == self.unit_exercise.answer
   end
 
-  def update_learning_status
-    
+  def update_learning_status    
   end
 end
