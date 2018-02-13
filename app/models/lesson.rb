@@ -1,4 +1,4 @@
-class UnitExample < ApplicationRecord
+class Lesson < ApplicationRecord
   include LearningElementConcern
 
   belongs_to :unit

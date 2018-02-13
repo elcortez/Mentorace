@@ -20,7 +20,7 @@ unit = Unit.create(
   position_in_chapter: 1
 )
 
-unit_lesson = UnitLesson.create(
+lesson = Lesson.create(
   unit: unit,
   content: 'this is your lesson; enjoy it !',
   position_in_unit: 1
@@ -32,13 +32,13 @@ unit_image = UnitImage.create(
   position_in_unit: 2
 )
 
-unit_example = UnitExample.create(
+example = Example.create(
   unit: unit,
   content: 'This example should explain everything to you',
   position_in_unit: 3
 )
 
-unit_example_2 = UnitExample.create(
+example_2 = Example.create(
   unit: unit,
   content: 'This example should explain everything to you',
   position_in_unit: 4
@@ -75,7 +75,7 @@ unit_2 = Unit.create(
   position_in_chapter: 2
 )
 
-unit_lesson = UnitLesson.create(
+lesson = Lesson.create(
   unit: unit_2,
   content: 'this is your lesson; enjoy it !',
   position_in_unit: 1
@@ -87,13 +87,13 @@ unit_image = UnitImage.create(
   position_in_unit: 2
 )
 
-unit_example = UnitExample.create(
+example = Example.create(
   unit: unit_2,
   content: 'This example should explain everything to you',
   position_in_unit: 3
 )
 
-unit_example_2 = UnitExample.create(
+example_2 = Example.create(
   unit: unit_2,
   content: 'This example should explain everything to you',
   position_in_unit: 4
@@ -133,7 +133,7 @@ unit_3 = Unit.create(
   position_in_chapter: 3
 )
 
-unit_lesson = UnitLesson.create(
+lesson = Lesson.create(
   unit: unit_3,
   content: 'this is your lesson; enjoy it !',
   position_in_unit: 1
@@ -145,13 +145,13 @@ unit_image = UnitImage.create(
   position_in_unit: 2
 )
 
-unit_example = UnitExample.create(
+example = Example.create(
   unit: unit_3,
   content: 'This example should explain everything to you',
   position_in_unit: 3
 )
 
-unit_example_2 = UnitExample.create(
+example_2 = Example.create(
   unit: unit_3,
   content: 'This example should explain everything to you',
   position_in_unit: 4

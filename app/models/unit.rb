@@ -3,8 +3,8 @@ class Unit < ApplicationRecord
   validates_presence_of :title
   validate :unique_position_in_chapter
 
-  has_many :unit_lessons
-  has_many :unit_examples
+  has_many :lessons
+  has_many :examples
   has_many :unit_images
   has_many :exercises
   has_one :learning_status
@@ -25,7 +25,7 @@ class Unit < ApplicationRecord
 
 
   def learning_elements
-    (self.unit_lessons.to_a << self.unit_examples.to_a <<  self.unit_images.to_a)
+    (self.lessons.to_a << self.examples.to_a <<  self.unit_images.to_a)
       .compact
       .flatten
       .sort_by { |e| e.position_in_unit }

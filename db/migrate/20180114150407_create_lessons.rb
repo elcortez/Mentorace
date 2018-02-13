@@ -1,6 +1,6 @@
-class CreateUnitLessons < ActiveRecord::Migration[5.1]
+class CreateLessons < ActiveRecord::Migration[5.1]
   def change
-    create_table :unit_lessons do |t|
+    create_table :lessons do |t|
       t.references :unit, foreign_key: true
       t.text :content
       t.integer :position_in_unit

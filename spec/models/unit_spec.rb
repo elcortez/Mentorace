@@ -5,14 +5,14 @@ RSpec.describe Unit, type: :model do
     let!(:course) { create(:course, title: 'awesome title') }
     let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
     let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
-    let!(:unit_example) { create(:unit_example, unit: unit, position_in_unit: 1, content: 'content') }
+    let!(:example) { create(:example, unit: unit, position_in_unit: 1, content: 'content') }
     let!(:unit_image) { create(:unit_image, unit: unit, position_in_unit: 2, img_url: 'url') }
-    let!(:unit_lesson) { create(:unit_lesson, unit: unit, position_in_unit: 3, content: 'content') }
+    let!(:lesson) { create(:lesson, unit: unit, position_in_unit: 3, content: 'content') }
 
     it 'can find its learning_elements' do
       unit.reload
       expect(unit.learning_elements.map(&:id)).to eql([
-        unit_example.id, unit_image.id, unit_lesson.id
+        example.id, unit_image.id, lesson.id
       ])
     end
   end
