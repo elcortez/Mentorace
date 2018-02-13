@@ -6,13 +6,13 @@ RSpec.describe Unit, type: :model do
     let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
     let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
     let!(:example) { create(:example, unit: unit, position_in_unit: 1, content: 'content') }
-    let!(:unit_image) { create(:unit_image, unit: unit, position_in_unit: 2, img_url: 'url') }
+    let!(:image) { create(:image, unit: unit, position_in_unit: 2, img_url: 'url') }
     let!(:lesson) { create(:lesson, unit: unit, position_in_unit: 3, content: 'content') }
 
     it 'can find its learning_elements' do
       unit.reload
       expect(unit.learning_elements.map(&:id)).to eql([
-        example.id, unit_image.id, lesson.id
+        example.id, image.id, lesson.id
       ])
     end
   end

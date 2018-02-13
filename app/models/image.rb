@@ -1,4 +1,4 @@
-class UnitImage < ApplicationRecord
+class Image < ApplicationRecord
   include LearningElementConcern
 
   belongs_to :unit

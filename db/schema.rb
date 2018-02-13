@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.index ["unit_id"], name: "index_examples_on_unit_id"
   end
 
-  create_table "unit_images", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.string "img_url"
     t.integer "unit_id"
     t.integer "position_in_unit"

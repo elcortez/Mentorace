@@ -26,7 +26,7 @@ lesson = Lesson.create(
   position_in_unit: 1
 )
 
-unit_image = UnitImage.create(
+image = Image.create(
   unit: unit,
   img_url: 'https://picsum.photos/200/300',
   position_in_unit: 2
@@ -81,7 +81,7 @@ lesson = Lesson.create(
   position_in_unit: 1
 )
 
-unit_image = UnitImage.create(
+image = Image.create(
   unit: unit_2,
   img_url: 'https://picsum.photos/200/300',
   position_in_unit: 2
@@ -139,7 +139,7 @@ lesson = Lesson.create(
   position_in_unit: 1
 )
 
-unit_image = UnitImage.create(
+image = Image.create(
   unit: unit_3,
   img_url: 'https://picsum.photos/200/300',
   position_in_unit: 2
