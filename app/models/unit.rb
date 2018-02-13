@@ -1,12 +1,28 @@
 class Unit < ApplicationRecord
   belongs_to :chapter
   validates_presence_of :title
+  validate :unique_position_in_chapter
+
   has_many :unit_lessons
   has_many :unit_examples
   has_many :unit_images
   has_many :unit_exercises
   has_one :learning_status
-  validate :unique_position_in_chapter
+
+  has_one :next_unit_in_chapter, -> (unit) {
+    where(
+      position_in_chapter: unit.position_in_chapter + 1,
+      chapter_id: unit.chapter_id
+    ).limit(1)
+  }, through: :chapter, source: :units
+
+  has_one :previous_unit_in_chapter, -> (unit) {
+    where(
+      position_in_chapter: unit.position_in_chapter - 1,
+      chapter_id: unit.chapter_id
+    ).limit(1)
+  }, through: :chapter, source: :units
+
 
   def learning_elements
     (self.unit_lessons.to_a << self.unit_examples.to_a <<  self.unit_images.to_a)
