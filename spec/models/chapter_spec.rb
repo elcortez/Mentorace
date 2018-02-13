@@ -7,16 +7,16 @@ RSpec.describe Chapter, type: :model do
     let!(:chapter_2) { create(:chapter, course: course, position_in_course: 2) }
     let!(:chapter_3) { create(:chapter, course: course, position_in_course: 3) }
 
-    it 'has_one :next_chapter' do
-      expect(chapter.next_chapter.id).to eql(chapter_2.id)
-      expect(chapter_2.next_chapter.id).to eql(chapter_3.id)
-      expect(chapter_3.next_chapter).to eql(nil)
+    it 'has_one :next_chapter_in_course' do
+      expect(chapter.next_chapter_in_course.id).to eql(chapter_2.id)
+      expect(chapter_2.next_chapter_in_course.id).to eql(chapter_3.id)
+      expect(chapter_3.next_chapter_in_course).to eql(nil)
     end
 
-    it 'has_one :previous_chapter' do
-      expect(chapter.previous_chapter).to eql(nil)
-      expect(chapter_2.previous_chapter.id).to eql(chapter.id)
-      expect(chapter_3.previous_chapter.id).to eql(chapter_2.id)
+    it 'has_one :previous_chapter_in_course' do
+      expect(chapter.previous_chapter_in_course).to eql(nil)
+      expect(chapter_2.previous_chapter_in_course.id).to eql(chapter.id)
+      expect(chapter_3.previous_chapter_in_course.id).to eql(chapter_2.id)
     end
 
     it 'will refuse validation if no title' do

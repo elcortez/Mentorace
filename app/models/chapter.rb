@@ -5,14 +5,14 @@ class Chapter < ApplicationRecord
   validates_presence_of :title
   validate :unique_position_in_course
 
-  has_one :next_chapter, -> (chapter) {
+  has_one :next_chapter_in_course, -> (chapter) {
     where(
       position_in_course: chapter.position_in_course + 1,
       course_id: chapter.course_id
     ).limit(1)
   }, through: :course, source: :chapters
 
-  has_one :previous_chapter, -> (chapter) {
+  has_one :previous_chapter_in_course, -> (chapter) {
     where(
       position_in_course: chapter.position_in_course - 1,
       course_id: chapter.course_id
