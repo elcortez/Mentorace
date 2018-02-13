@@ -23,7 +23,6 @@ class Unit < ApplicationRecord
     ).limit(1)
   }, through: :chapter, source: :units
 
-
   def learning_elements
     (self.lessons.to_a << self.examples.to_a <<  self.images.to_a)
       .compact

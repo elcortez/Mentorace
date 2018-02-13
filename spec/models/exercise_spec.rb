@@ -17,10 +17,14 @@ RSpec.describe Exercise, type: :model do
     let!(:exercise_5) { create(:exercise, unit: unit_3, position_in_unit: 1) }
     let!(:exercise_6) { create(:exercise, unit: unit_3, position_in_unit: 2) }
 
-    it 'has_one :next_exercise' do
+    it 'has_one :next_exercise_in_unit' do
+      expect(exercise_1.next_exercise_in_unit.id).to eql(exercise_2.id)
+      expect(exercise_2.next_exercise_in_unit).to eql(nil)
     end
 
-    it 'has_one :previous_exercise' do
+    it 'has_one :previous_exercise_in_unit' do
+      expect(exercise_1.previous_exercise_in_unit).to eql(nil)
+      expect(exercise_2.previous_exercise_in_unit.id).to eql(exercise_1.id)
     end
 
     it '#unique_exercise_position_in_unit' do
