@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ExerciseAttempt, type: :model do
+RSpec.describe Attempt, type: :model do
   describe '#set_successful' do
     let!(:exercise) { create(:exercise,
       question: double('question'),
@@ -9,10 +9,10 @@ RSpec.describe ExerciseAttempt, type: :model do
     ) }
 
     let!(:user) { create(:user) }
-    let!(:successful_attempt) { create(:exercise_attempt,
+    let!(:successful_attempt) { create(:attempt,
       exercise: exercise, attempted_answer: '123', user: user) }
 
-    let!(:failed_attempt) { create(:exercise_attempt,
+    let!(:failed_attempt) { create(:attempt,
       exercise: exercise, attempted_answer: '1234', user: user) }
 
     it 'sets successful and failure on create' do
@@ -43,7 +43,7 @@ RSpec.describe ExerciseAttempt, type: :model do
         )
       )
 
-      create(:exercise_attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+      create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
       user.reload
 
       expect(user.learning_statuses.first.attributes

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :exercise_attempts
+  has_many :attempts
   has_many :learning_statuses
 
   after_create :create_learning_statuses

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :chapters, only: [] do
       resources :units, only: :show do
         resources :exercises, only: [] do
-          resources :exercise_attempts, only: [:new, :create]
+          resources :attempts, only: [:new, :create]
         end
       end
     end

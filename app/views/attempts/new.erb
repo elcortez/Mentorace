@@ -6,7 +6,7 @@
   <%= @exercise.question %>
 </p>
 
-<%= simple_form_for [:course, :chapter, :unit, @exercise, @exercise_attempt] do |f| %>
+<%= simple_form_for [:course, :chapter, :unit, @exercise, @attempt] do |f| %>
   <%= f.input :attempted_answer %>
   <%= f.button :submit %>
 <% end %>

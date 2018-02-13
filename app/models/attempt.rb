@@ -1,4 +1,4 @@
-class ExerciseAttempt < ApplicationRecord
+class Attempt < ApplicationRecord
   belongs_to :user
   belongs_to :exercise
   before_validation :set_successful

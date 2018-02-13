@@ -1,9 +1,9 @@
-class ExerciseAttemptsController < ApplicationController
+class AttemptsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_exercise
 
   def new
-    @exercise_attempt = ExerciseAttempt.new
+    @attempt = Attempt.new
   end
 
   def create
@@ -14,7 +14,7 @@ class ExerciseAttemptsController < ApplicationController
       exercise_id: @unit.exercises.first.id
     }
 
-    redirect_back fallback_location: new_course_chapter_unit_exercise_exercise_attempt_path(fallback_params)
+    redirect_back fallback_location: new_course_chapter_unit_exercise_attempt_path(fallback_params)
   end
 
   private

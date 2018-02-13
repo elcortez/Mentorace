@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ExerciseAttemptsController, type: :controller do
+RSpec.describe AttemptsController, type: :controller do
   describe 'new / create' do
     let!(:user) { create(:user) }
     let!(:course) { create(:course) }
@@ -29,7 +29,7 @@ RSpec.describe ExerciseAttemptsController, type: :controller do
       # Parameters: {"course_id"=>"1", "chapter_id"=>"1", "unit_id"=>"2", "exercise_id"=>"4"}
 
       # expect(response).to redirect_to(:back)
-      expect(response).to redirect_to new_course_chapter_unit_exercise_exercise_attempt_path(
+      expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
         course_id: course.id,
         chapter_id: chapter.id,
         unit_id: unit.id,

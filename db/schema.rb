@@ -32,15 +32,24 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "exercise_attempts", force: :cascade do |t|
+  create_table "examples", force: :cascade do |t|
+    t.bigint "unit_id"
+    t.text "content"
+    t.integer "position_in_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_examples_on_unit_id"
+  end
+
+  create_table "attempts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "exercise_id"
     t.string "attempted_answer"
     t.boolean "attempt_successful"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_exercise_attempts_on_exercise_id"
-    t.index ["user_id"], name: "index_exercise_attempts_on_user_id"
+    t.index ["exercise_id"], name: "index_attempts_on_exercise_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -51,6 +60,14 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_exercises_on_unit_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "img_url"
+    t.integer "unit_id"
+    t.integer "position_in_unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "learning_statuses", force: :cascade do |t|
@@ -75,23 +92,6 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_lessons_on_unit_id"
-  end
-
-  create_table "examples", force: :cascade do |t|
-    t.bigint "unit_id"
-    t.text "content"
-    t.integer "position_in_unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["unit_id"], name: "index_examples_on_unit_id"
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "img_url"
-    t.integer "unit_id"
-    t.integer "position_in_unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "units", force: :cascade do |t|
@@ -124,8 +124,9 @@ ActiveRecord::Schema.define(version: 20180201204332) do
   end
 
   add_foreign_key "chapters", "courses"
-  add_foreign_key "exercise_attempts", "exercises"
-  add_foreign_key "exercise_attempts", "users"
+  add_foreign_key "examples", "units"
+  add_foreign_key "attempts", "exercises"
+  add_foreign_key "attempts", "users"
   add_foreign_key "exercises", "units"
   add_foreign_key "learning_statuses", "chapters"
   add_foreign_key "learning_statuses", "courses"
@@ -133,6 +134,5 @@ ActiveRecord::Schema.define(version: 20180201204332) do
   add_foreign_key "learning_statuses", "units"
   add_foreign_key "learning_statuses", "users"
   add_foreign_key "lessons", "units"
-  add_foreign_key "examples", "units"
   add_foreign_key "units", "chapters"
 end
