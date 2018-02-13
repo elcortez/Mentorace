@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
     let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:unit_exercise) { create(:unit_exercise, unit: unit, position_in_unit: 1) }
+    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
 
     it 'will automaticallly create a learning_status for each course' do
       user = create(:user)
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
         'course_id' => course.id,
         'chapter_id' => chapter.id,
         'unit_id' => unit.id,
-        'unit_exercise_id' => unit_exercise.id
+        'exercise_id' => exercise.id
       )
     end
   end

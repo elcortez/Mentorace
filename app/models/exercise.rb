@@ -1,4 +1,4 @@
-class UnitExercise < ApplicationRecord
+class Exercise < ApplicationRecord
   include LearningElementConcern
 
   belongs_to :unit

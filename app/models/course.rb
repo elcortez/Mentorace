@@ -10,15 +10,15 @@ class Course < ApplicationRecord
     unit = chapter.units.order(:position_in_chapter).first
     return unless unit.present?
 
-    unit_exercise = unit.unit_exercises.order(:position_in_unit).first
-    return unless unit_exercise.present?
+    exercise = unit.exercises.order(:position_in_unit).first
+    return unless exercise.present?
 
     LearningStatus.create!(
       user_id: user_id,
       course_id: self.id,
       chapter_id: chapter.id,
       unit_id: unit.id,
-      unit_exercise_id: unit_exercise.id,
+      exercise_id: exercise.id,
     )
   end
 end

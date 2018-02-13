@@ -45,21 +45,21 @@ unit_example_2 = UnitExample.create(
 )
 
 
-unit_exercise = UnitExercise.create(
+exercise = Exercise.create(
   unit: unit,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 1
 )
 
-unit_exercise_2 = UnitExercise.create(
+exercise_2 = Exercise.create(
   unit: unit,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 2
 )
 
-unit_exercise_3 = UnitExercise.create(
+exercise_3 = Exercise.create(
   unit: unit,
   question: 'Question for the first exercise',
   answer: 'right answer',
@@ -100,21 +100,21 @@ unit_example_2 = UnitExample.create(
 )
 
 
-unit_exercise = UnitExercise.create(
+exercise = Exercise.create(
   unit: unit_2,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 1
 )
 
-unit_exercise_2 = UnitExercise.create(
+exercise_2 = Exercise.create(
   unit: unit_2,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 2
 )
 
-unit_exercise_3 = UnitExercise.create(
+exercise_3 = Exercise.create(
   unit: unit_2,
   question: 'Question for the first exercise',
   answer: 'right answer',
@@ -158,21 +158,21 @@ unit_example_2 = UnitExample.create(
 )
 
 
-unit_exercise = UnitExercise.create(
+exercise = Exercise.create(
   unit: unit_3,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 1
 )
 
-unit_exercise_2 = UnitExercise.create(
+exercise_2 = Exercise.create(
   unit: unit_3,
   question: 'Question for the first exercise',
   answer: 'right answer',
   position_in_unit: 2
 )
 
-unit_exercise_3 = UnitExercise.create(
+exercise_3 = Exercise.create(
   unit: unit_3,
   question: 'Question for the first exercise',
   answer: 'right answer',

@@ -6,7 +6,7 @@ class Unit < ApplicationRecord
   has_many :unit_lessons
   has_many :unit_examples
   has_many :unit_images
-  has_many :unit_exercises
+  has_many :exercises
   has_one :learning_status
 
   has_one :next_unit_in_chapter, -> (unit) {

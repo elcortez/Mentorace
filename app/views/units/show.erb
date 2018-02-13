@@ -6,11 +6,11 @@
   <p>
     <%= link_to(
       "I am ready to get challenged on this unit",
-      new_course_chapter_unit_unit_exercise_exercise_attempt_path(
+      new_course_chapter_unit_exercise_exercise_attempt_path(
         course_id: @unit.chapter.course_id,
         chapter_id: @unit.chapter_id,
         unit_id: @unit.id,
-        unit_exercise_id: @unit.unit_exercises.first.id
+        exercise_id: @unit.exercises.first.id
       )
     ) %>
   </p>

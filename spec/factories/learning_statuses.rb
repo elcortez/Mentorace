@@ -4,6 +4,6 @@ FactoryBot.define do
     course nil
     chapter nil
     unit nil
-    unit_exercise nil
+    exercise nil
   end
 end

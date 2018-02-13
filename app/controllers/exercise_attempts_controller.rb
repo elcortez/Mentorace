@@ -1,6 +1,6 @@
 class ExerciseAttemptsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_unit_exercise
+  before_action :find_exercise
 
   def new
     @exercise_attempt = ExerciseAttempt.new
@@ -11,16 +11,16 @@ class ExerciseAttemptsController < ApplicationController
       course_id: @unit.chapter.course_id,
       chapter_id: @unit.chapter_id,
       unit_id: @unit.id,
-      unit_exercise_id: @unit.unit_exercises.first.id
+      exercise_id: @unit.exercises.first.id
     }
 
-    redirect_back fallback_location: new_course_chapter_unit_unit_exercise_exercise_attempt_path(fallback_params)
+    redirect_back fallback_location: new_course_chapter_unit_exercise_exercise_attempt_path(fallback_params)
   end
 
   private
 
-  def find_unit_exercise
-    @unit_exercise = UnitExercise.find(params[:unit_exercise_id])
-    @unit = @unit_exercise.unit
+  def find_exercise
+    @exercise = Exercise.find(params[:exercise_id])
+    @unit = @exercise.unit
   end
 end

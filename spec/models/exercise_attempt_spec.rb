@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ExerciseAttempt, type: :model do
   describe '#set_successful' do
-    let!(:unit_exercise) { create(:unit_exercise,
+    let!(:exercise) { create(:exercise,
       question: double('question'),
       unit: create(:unit, chapter: create(:chapter, course: create(:course))),
       answer: '123'
@@ -10,10 +10,10 @@ RSpec.describe ExerciseAttempt, type: :model do
 
     let!(:user) { create(:user) }
     let!(:successful_attempt) { create(:exercise_attempt,
-      unit_exercise: unit_exercise, attempted_answer: '123', user: user) }
+      exercise: exercise, attempted_answer: '123', user: user) }
 
     let!(:failed_attempt) { create(:exercise_attempt,
-      unit_exercise: unit_exercise, attempted_answer: '1234', user: user) }
+      exercise: exercise, attempted_answer: '1234', user: user) }
 
     it 'sets successful and failure on create' do
       expect(successful_attempt.attempt_successful).to eql(true)
@@ -25,8 +25,8 @@ RSpec.describe ExerciseAttempt, type: :model do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
     let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:unit_exercise) { create(:unit_exercise, unit: unit, position_in_unit: 1) }
-    let!(:unit_exercise_2) { create(:unit_exercise, unit: unit, position_in_unit: 2) }
+    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
+    let!(:exercise_2) { create(:exercise, unit: unit, position_in_unit: 2) }
 
     let!(:user) { create(:user) }
 
@@ -39,11 +39,11 @@ RSpec.describe ExerciseAttempt, type: :model do
           'course_id' => course.id,
           'chapter_id' => chapter.id,
           'unit_id' => unit.id,
-          'unit_exercise_id' => unit_exercise.id
+          'exercise_id' => exercise.id
         )
       )
 
-      create(:exercise_attempt, user: user, unit_exercise: unit_exercise, attempted_answer: unit_exercise.answer)
+      create(:exercise_attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
       user.reload
 
       expect(user.learning_statuses.first.attributes
@@ -53,7 +53,7 @@ RSpec.describe ExerciseAttempt, type: :model do
           'course_id' => course.id,
           'chapter_id' => chapter.id,
           'unit_id' => unit.id,
-          'unit_exercise_id' => unit_exercise_2.id
+          'exercise_id' => exercise_2.id
         )
       )
     end
