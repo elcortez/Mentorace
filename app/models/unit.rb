@@ -30,6 +30,10 @@ class Unit < ApplicationRecord
       .sort_by { |e| e.position_in_unit }
   end
 
+  def exercises_ordered
+    self.exercises.order(:position_in_unit)
+  end
+
   def unique_position_in_chapter
     return unless self.chapter.units.pluck(:position_in_chapter).include?(self.position_in_chapter)
     errors.add(:position_in_chapter, 'already taken')

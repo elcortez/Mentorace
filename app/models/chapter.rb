@@ -23,4 +23,8 @@ class Chapter < ApplicationRecord
     return unless self.course.chapters.where.not(id: self.id).pluck(:position_in_course).include?(self.position_in_course)
     errors.add(:position_in_course, 'already taken')
   end
+
+  def units_ordered
+    self.units.order(:position_in_chapter)
+  end
 end
