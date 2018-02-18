@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Exercise, type: :model do
   describe 'validations / relations' do
+    let!(:course_0) { create(:course) }
+
+    let!(:chapter_0) { create(:chapter, course: course_0, position_in_course: 1) }
+    let!(:unit_0) { create(:unit, chapter: chapter_0, position_in_chapter: 1) }
+    let!(:exercise_0) { create(:exercise, unit: unit_0, position_in_unit: 1) }
+
     let!(:course) { create(:course) }
 
     let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
@@ -16,6 +22,17 @@ RSpec.describe Exercise, type: :model do
     let!(:unit_3) { create(:unit, chapter: chapter_2, position_in_chapter: 1) }
     let!(:exercise_5) { create(:exercise, unit: unit_3, position_in_unit: 1) }
     let!(:exercise_6) { create(:exercise, unit: unit_3, position_in_unit: 2) }
+
+    it 'has_one :previous_exercise' do
+      expect(exercise_0.previous_exercise).to eql(nil)
+
+      expect(exercise_1.previous_exercise).to eql(nil)
+      expect(exercise_2.previous_exercise.id).to eql(exercise_1.id)
+      expect(exercise_3.previous_exercise.id).to eql(exercise_2.id)
+      expect(exercise_4.previous_exercise.id).to eql(exercise_3.id)
+      expect(exercise_5.previous_exercise.id).to eql(exercise_4.id)
+      expect(exercise_6.previous_exercise.id).to eql(exercise_5.id)
+    end
 
     it 'has_one :next_exercise_in_unit' do
       expect(exercise_1.next_exercise_in_unit.id).to eql(exercise_2.id)

@@ -20,4 +20,13 @@ class Exercise < ApplicationRecord
     ).limit(1)
   }, through: :unit, source: :exercises
 
+  def previous_exercise
+    return previous_exercise_in_unit if previous_exercise_in_unit
+
+    previous_unit = self.unit.previous_unit_in_chapter
+    return previous_unit.exercises_ordered.last if previous_unit
+
+    previous_chapter = self.unit.chapter.previous_chapter_in_course
+    return previous_chapter.units_ordered.last.exercises_ordered.last if previous_chapter
+  end
 end
