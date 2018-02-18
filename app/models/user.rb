@@ -12,4 +12,9 @@ class User < ApplicationRecord
   def create_learning_statuses
     Course.find_each { |course| course.create_learning_status_for_user(self.id) }
   end
+
+  def has_finished_exercise?(exercise)
+    self.attempts.where(exercise_id: exercise.id, attempt_successful: true).any?
+  end
+  # current_user.can_access_exercise?(exercise)
 end

@@ -1,13 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe '#has_finished_exercise?' do
+    let!(:course) { create(:course) }
+    let!(:chapter) { create(:chapter, course: course) }
+    let!(:unit) { create(:unit, chapter: chapter) }
+    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
+    let!(:exercise_2) { create(:exercise, unit: unit, position_in_unit: 2) }
+
+    let!(:user) { create(:user) }
+
+    it 'returns false if user has not finished exercise' do
+      expect(user.has_finished_exercise?(exercise)).to eql(false)
+      expect(user.has_finished_exercise?(exercise_2)).to eql(false)
+    end
+
+    it 'returns true if user has finished exercise' do
+      create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+
+      user.reload
+      expect(user.has_finished_exercise?(exercise)).to eql(true)
+      expect(user.has_finished_exercise?(exercise_2)).to eql(false)
+    end
+
+    it 'returns true if user has finished exercise 2' do
+      create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+
+      user.reload
+      expect(user.has_finished_exercise?(exercise)).to eql(false)
+      expect(user.has_finished_exercise?(exercise_2)).to eql(true)
+    end
+  end
+
+
   describe 'create_learning_statuses' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
     let!(:unit) { create(:unit, chapter: chapter) }
     let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
 
-    it 'will automaticallly create a learning_status for each course' do
+    it 'will automatically create a learning_status for each course' do
       user = create(:user)
       user.reload
       expect(user.learning_statuses.count).to eql(1)
