@@ -15,6 +15,17 @@ ActiveRecord::Schema.define(version: 20180201204332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attempts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exercise_id"
+    t.string "attempted_answer"
+    t.boolean "attempt_successful"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_attempts_on_exercise_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
+
   create_table "chapters", force: :cascade do |t|
     t.bigint "course_id"
     t.string "title"
@@ -39,17 +50,6 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["unit_id"], name: "index_examples_on_unit_id"
-  end
-
-  create_table "attempts", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "exercise_id"
-    t.string "attempted_answer"
-    t.boolean "attempt_successful"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["exercise_id"], name: "index_attempts_on_exercise_id"
-    t.index ["user_id"], name: "index_attempts_on_user_id"
   end
 
   create_table "exercises", force: :cascade do |t|
@@ -123,10 +123,10 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "chapters", "courses"
-  add_foreign_key "examples", "units"
   add_foreign_key "attempts", "exercises"
   add_foreign_key "attempts", "users"
+  add_foreign_key "chapters", "courses"
+  add_foreign_key "examples", "units"
   add_foreign_key "exercises", "units"
   add_foreign_key "learning_statuses", "chapters"
   add_foreign_key "learning_statuses", "courses"
