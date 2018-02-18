@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#has_finished_exercise?' do
+  describe '#has_finished_exercise?, #can_access_exercise?' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
     let!(:unit) { create(:unit, chapter: chapter) }
@@ -29,6 +29,19 @@ RSpec.describe User, type: :model do
       user.reload
       expect(user.has_finished_exercise?(exercise)).to eql(false)
       expect(user.has_finished_exercise?(exercise_2)).to eql(true)
+    end
+
+    it 'can access exercise if there is not other before it' do
+      expect(user.can_access_exercise?(exercise)).to eql(true)
+    end
+
+    it 'cannot access exercise if the one before it is not finished' do
+      expect(user.can_access_exercise?(exercise_2)).to eql(false)
+    end
+
+    it 'can access exercise if the one before it is finished' do
+      create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+      expect(user.can_access_exercise?(exercise_2)).to eql(true)
     end
   end
 

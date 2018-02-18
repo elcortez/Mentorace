@@ -16,5 +16,9 @@ class User < ApplicationRecord
   def has_finished_exercise?(exercise)
     self.attempts.where(exercise_id: exercise.id, attempt_successful: true).any?
   end
-  # current_user.can_access_exercise?(exercise)
+
+  def can_access_exercise?(exercise)
+    previous_exercise = exercise.previous_exercise
+    previous_exercise.blank? || self.has_finished_exercise?(previous_exercise)
+  end
 end
