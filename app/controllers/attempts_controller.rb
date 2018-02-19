@@ -1,4 +1,5 @@
 class AttemptsController < ApplicationController
+  protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :find_objects
   before_action :validate_user_presence
