@@ -32,6 +32,9 @@ RSpec.describe AttemptsController, type: :controller do
 
       it 'will redirect to the next exercise if attempt is successful' do
       end
+
+      it 'user can create as many attempts as she wishes on same exercise' do
+      end
     end
 
     describe 'new' do
@@ -70,6 +73,34 @@ RSpec.describe AttemptsController, type: :controller do
         expect(Attempt).to receive(:new)
         response = get :new, params: basic_params.merge(exercise_id: exercise_2.id)
 
+        expect(response.code).to eql('200')
+      end
+
+      it 'can access exercise 1 even if already validated' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+
+        expect(Attempt).to receive(:new)
+        response = get :new, params: basic_params.merge(exercise_id: exercise_3.id)
+        expect(response.code).to eql('200')
+      end
+
+      it 'can access exercise 2 even if already validated' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+
+        expect(Attempt).to receive(:new)
+        response = get :new, params: basic_params.merge(exercise_id: exercise_3.id)
+        expect(response.code).to eql('200')
+      end
+
+      it 'can access exercise 3 even if already validated' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_2.answer)
+
+        expect(Attempt).to receive(:new)
+        response = get :new, params: basic_params.merge(exercise_id: exercise_3.id)
         expect(response.code).to eql('200')
       end
 

@@ -1,14 +1,13 @@
 class AttemptsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_objects
+  before_action :validate_user_presence
 
   def new
-    validate_user_presence
     @attempt = Attempt.new
   end
 
   def create
-    validate_user_presence
   end
 
   private
