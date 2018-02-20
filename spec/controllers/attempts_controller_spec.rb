@@ -25,15 +25,67 @@ RSpec.describe AttemptsController, type: :controller do
 
     describe 'create' do
       it 'will redirect to same exercise if user should not have access to exercise' do
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise_2.id,
+          attempt: { attempted_answer: exercise_2.answer }
+        )
+
+        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise.id)
+        )
       end
 
       it 'it will save && redirect to same exercise if it is a wrong answer' do
+        expect(user.attempts.count).to eql(0)
+
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise.id,
+          attempt: { attempted_answer: 'wrong answer' }
+        )
+
+        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise.id)
+        )
+        user.reload
+        expect(user.attempts.count).to eql(1)
       end
 
       it 'will redirect to the next exercise if attempt is successful' do
+        expect(user.attempts.count).to eql(0)
+
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise.id,
+          attempt: { attempted_answer: exercise.answer }
+        )
+
+        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise_2.id)
+        )
+        user.reload
+        expect(user.attempts.count).to eql(1)
+        expect(user.attempts.first.attempt_successful).to eql(true)
       end
 
       it 'user can create as many attempts as she wishes on same exercise' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        user.reload
+        expect(user.attempts.count).to eql(1)
+
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise.id,
+          attempt: { attempted_answer: exercise.answer }
+        )
+
+        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise_2.id)
+        )
+
+        user.reload
+        expect(user.attempts.pluck(:exercise_id, :user_id, :attempted_answer, :attempt_successful))
+          .to eql([
+            [exercise.id, user.id, exercise.answer, true],
+            [exercise.id, user.id, exercise.answer, true]
+          ])
       end
     end
 

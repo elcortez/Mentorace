@@ -9,21 +9,30 @@ class AttemptsController < ApplicationController
   end
 
   def create
+    Attempt.create(
+      user_id: current_user.id,
+      exercise_id: @exercise.id,
+      attempted_answer: params['attempt']['attempted_answer']
+    )
+
+    redirect_to_current_learning_status
   end
 
   private
 
   def validate_user_presence
-    unless current_user.can_access_exercise?(@exercise)
-      status = LearningStatus.find_by(user_id: current_user.id, course_id: @course.id)
+    redirect_to_current_learning_status unless current_user.can_access_exercise?(@exercise)
+  end
 
-      return redirect_to new_course_chapter_unit_exercise_attempt_path(
-        course_id: status.course_id,
-        chapter_id: status.chapter_id,
-        unit_id: status.unit_id,
-        exercise_id: status.exercise_id
-      )
-    end
+  def redirect_to_current_learning_status
+    status = LearningStatus.find_by(user_id: current_user.id, course_id: @course.id)
+
+    return redirect_to new_course_chapter_unit_exercise_attempt_path(
+      course_id: status.course_id,
+      chapter_id: status.chapter_id,
+      unit_id: status.unit_id,
+      exercise_id: status.exercise_id
+    )
   end
 
   def find_objects
