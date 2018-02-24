@@ -4,6 +4,8 @@ class Course < ApplicationRecord
   has_one :learning_status
 
   def create_learning_status_for_user(user_id)
+    return if LearningStatus.find_by(user_id: user_id, course_id: self.id)
+
     chapter = self.chapters.order(:position_in_course).first
     return unless chapter.present?
 
