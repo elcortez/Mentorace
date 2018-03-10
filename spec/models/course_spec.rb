@@ -22,9 +22,8 @@ RSpec.describe Course, type: :model do
     end
   end
 
-  describe '#display_title' do
-    let!(:course) { create(:course, title: 'maths_for_cs',
-      description: 'maths_for_cs') }
+  describe '#display_title, #display_description' do
+    let!(:course) { create(:course, title: 'maths_for_cs') }
 
     it '#display_title' do
       expect(I18n).to receive(:translate).with(
@@ -32,6 +31,14 @@ RSpec.describe Course, type: :model do
       ) { 'Mathematics for Computer Science' }
 
       expect(course.display_title).to eql('Mathematics for Computer Science')
+    end
+
+    it '#display_description' do
+      expect(I18n).to receive(:translate).with(
+        'course.maths_for_cs.description'
+      ) { 'Description for Maths for CS' }
+
+      expect(course.display_description).to eql('Description for Maths for CS')
     end
   end
 

@@ -1,9 +1,6 @@
 # rails db:seed / rails db:setup
 
-course = Course.create(
-  title: 'maths_for_cs',
-  description: 'maths_for_cs'
-)
+course = Course.create(title: 'maths_for_cs')
 
 chapter = Chapter.create(
   course: course,
