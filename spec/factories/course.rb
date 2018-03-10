@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :course do
-    title 'awesome course title'
-    description 'cool description of a course'
+    title 'maths_for_cs'
+    description 'maths_for_cs'
   end
 end

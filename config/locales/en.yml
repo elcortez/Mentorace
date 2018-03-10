@@ -1,33 +1,82 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  course:
+    maths_for_cs:
+      title: "Mathematics For Computer Science"
+      description: "Learn how to use mathematics as a software engineer"
+
+  chapter:
+    maths_for_cs:
+      sets:
+        title: "Sets"
+        description: "What are sets, how to understand and manipulate them"
+
+  units:
+    maths_for_cs:
+      sets:
+        definitions:
+          title: "Definition and characteristics of a set"
+
+  lessons:
+    maths_for_cs:
+      sets:
+        definitions:
+          lesson_1:
+            content: "A set can be defined as a collection, or a grouping of
+              elements;
+              \n there are two ways to define sets :
+              <ol>
+                <li>
+                  by extension: write down all elements of the set between braces,
+                  each element separated by a semicolon:
+                  for instance R = { 1 ; 2 ; 3 ; 4 }
+                </li>
+                <li>
+                  by comprehension: write down the conditions under which an
+                  element can be part of a set:
+
+                  \n each element must be put between simple braces: -> (x − 1)
+                  you put them one after the other -> (x − 1)(x − 2)(x − 3)(x − 4) = 0
+                  \n and you define a number x that belongs (belonging symbol : ∈)
+                  to a set R `such as` these conditions are respected.
+                  \n The mathematical symbol for `such as` is written with the
+                  pipe : |
+
+                  \n { x ∈ R | (x − 1)(x − 2)(x − 3)(x − 4) = 0 }
+                  \n the mathematical expression above can be read as the
+                  following : `x belongs to the set R such as x - 1, or x - 2,
+                  or x - 3, or x - 4 is equal to 0`
+                  \n Therefore you can easily conclude that R is a set
+                  that includes the numbers 1, 2, 3 and 4
+                </li>
+              </ol>"
+
+  examples:
+    maths_for_cs:
+      sets:
+        definitions:
+          example_1:
+            content: "let E be the set that includes all even numbers below 10.
+              E = { 2 ; 4 ; 6 ; 8 }
+              \n or you can define E by comprehension:
+              \n { x ∈ E | (x / 2 is an integer) AND (x <= 10) }"
+          example_2:
+            content: "let U be the set that includes all uneven numbers below 10.
+              U = { 1 ; 3 ; 5 ; 7 ; 9 }
+              \n or we can define U by comprehension:
+              \n { x ∈ U | (x / 2 is not an integer) AND (x <= 10) }"
+
+  exercises:
+    maths_for_cs:
+      sets:
+        definitions:
+          exercise_1:
+            question: "Let R be a set which can be defined as follows:
+              \n { x ∈ R | (x >= 5) AND (x < 10) AND (x is an integer) }
+              \n define R by extension"
+            answer: "{ 5 ; 6 ; 7 ; 8 ; 9 }"
+          exercise_2:
+            question: "Let S be a set which can be defined by extension as follows:
+              \n S = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 }
+              \n can S be also defined by comprehension as follows?
+              \n { x ∈ S | (x <= 6) AND ((x + 1) > 6) }"
+            answer: "false"
