@@ -22,6 +22,19 @@ RSpec.describe Course, type: :model do
     end
   end
 
+  describe '#display_title' do
+    let!(:course) { create(:course, title: 'maths_for_cs',
+      description: 'maths_for_cs') }
+
+    it '#display_title' do
+      expect(I18n).to receive(:translate).with(
+        'course.maths_for_cs.title'
+      ) { 'Mathematics for Computer Science' }
+
+      expect(course.display_title).to eql('Mathematics for Computer Science')
+    end
+  end
+
   describe 'validates_presence_of :title' do
     let(:course) { Course.new }
 
