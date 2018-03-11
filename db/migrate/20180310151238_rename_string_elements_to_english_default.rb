@@ -1,4 +1,4 @@
-class RemoveDescriptionFromCourse < ActiveRecord::Migration[5.1]
+class RenameStringElementsToEnglishDefault < ActiveRecord::Migration[5.1]
   def change
     rename_column :courses, :title, :title_en
     rename_column :courses, :description, :description_en

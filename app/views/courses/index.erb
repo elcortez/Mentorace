@@ -1,14 +1,14 @@
 <h1>Here are all our awesome courses</h1>
 <% Course.find_each do |course| %>
-  <h2> <%= course.title %></h2>
+  <h2> <%= course.title_en %></h2>
 
   <% course.chapters.order(:position_in_course).each do |chapter| %>
 
-    <h4><%= chapter.title %></h4>
-    <h6><%= chapter.description %></h6>
+    <h4><%= chapter.title_en %></h4>
+    <h6><%= chapter.description_en %></h6>
     <% chapter.units.order(:position_in_chapter).each do |unit| %>
       <p>
-        <%= link_to(unit.title, course_chapter_unit_path(
+        <%= link_to(unit.title_en, course_chapter_unit_path(
           course_id: unit.chapter.course_id,
           chapter_id: unit.chapter_id,
           id: unit.id)

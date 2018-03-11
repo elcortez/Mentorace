@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :lesson do
-    content 'awesome lesson content'
+    content_en 'awesome lesson content'
   end
 end

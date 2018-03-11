@@ -2,7 +2,7 @@ class Chapter < ApplicationRecord
   belongs_to :course
   has_many :units
   has_one :learning_status
-  validates_presence_of :title
+  validates_presence_of :title_en
   validate :unique_position_in_course
 
   has_one :next_chapter_in_course, -> (chapter) {

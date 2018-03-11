@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Image, type: :model do
   describe 'validations' do
-    let!(:course) { create(:course, title: 'awesome title') }
-    let!(:chapter) { create(:chapter, course: course, position_in_course: 1, title: 'title') }
-    let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1, title: 'title') }
+    let!(:course) { create(:course, title_en: 'awesome title_en') }
+    let!(:chapter) { create(:chapter, course: course, position_in_course: 1, title_en: 'title_en') }
+    let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1, title_en: 'title_en') }
     let!(:image) { create(:image, unit: unit, img_url: 'img_url', position_in_unit: 1) }
 
     it 'will not save if position_in_unit is already taken' do

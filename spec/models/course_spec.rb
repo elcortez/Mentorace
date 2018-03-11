@@ -22,36 +22,16 @@ RSpec.describe Course, type: :model do
     end
   end
 
-  describe '#display_title, #display_description' do
-    let!(:course) { create(:course, title: 'maths_for_cs') }
-
-    it '#display_title' do
-      expect(I18n).to receive(:translate).with(
-        'course.maths_for_cs.title'
-      ) { 'Mathematics for Computer Science' }
-
-      expect(course.display_title).to eql('Mathematics for Computer Science')
-    end
-
-    it '#display_description' do
-      expect(I18n).to receive(:translate).with(
-        'course.maths_for_cs.description'
-      ) { 'Description for Maths for CS' }
-
-      expect(course.display_description).to eql('Description for Maths for CS')
-    end
-  end
-
-  describe 'validates_presence_of :title' do
+  describe 'validates_presence_of :title_en' do
     let(:course) { Course.new }
 
-    it 'will refuse validation if no title' do
+    it 'will refuse validation if no title_en' do
       expect(course.save). to be false
-      expect(course.errors.messages).to eql(title: ["can't be blank"])
+      expect(course.errors.messages).to eql(title_en: ["can't be blank"])
     end
 
-    it 'will accept validation with some title' do
-      course.title = 'awesome course title'
+    it 'will accept validation with some title_en' do
+      course.title_en = 'awesome course title_en'
       expect(course.save).to be true
     end
   end

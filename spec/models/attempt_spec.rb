@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Attempt, type: :model do
   describe '#set_successful' do
     let!(:exercise) { create(:exercise,
-      question: double('question'),
+      question_en: double('question'),
       unit: create(:unit, chapter: create(:chapter, course: create(:course))),
       answer: '123'
     ) }

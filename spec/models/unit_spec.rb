@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
   describe '.learning_elements' do
-    let!(:course) { create(:course, title: 'awesome title') }
+    let!(:course) { create(:course, title_en: 'awesome title_en') }
     let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
     let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
-    let!(:example) { create(:example, unit: unit, position_in_unit: 1, content: 'content') }
+    let!(:example) { create(:example, unit: unit, position_in_unit: 1, content_en: 'content') }
     let!(:image) { create(:image, unit: unit, position_in_unit: 2, img_url: 'url') }
-    let!(:lesson) { create(:lesson, unit: unit, position_in_unit: 3, content: 'content') }
+    let!(:lesson) { create(:lesson, unit: unit, position_in_unit: 3, content_en: 'content') }
 
     it 'can find its learning_elements' do
       unit.reload
@@ -18,7 +18,7 @@ RSpec.describe Unit, type: :model do
   end
 
   describe 'validations / relations' do
-    let(:course) { create(:course, title: 'awesome title') }
+    let(:course) { create(:course, title_en: 'awesome title_en') }
     let(:chapter) { create(:chapter, course: course, position_in_course: 1) }
 
     let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
@@ -37,17 +37,17 @@ RSpec.describe Unit, type: :model do
       expect(unit_3.previous_unit_in_chapter.id).to eql(unit_2.id)
     end
 
-    it 'will refuse validation if no title' do
-      unit = Unit.new(title: nil, chapter: chapter)
+    it 'will refuse validation if no title_en' do
+      unit = Unit.new(title_en: nil, chapter: chapter)
       expect(unit.save). to be false
-      expect(unit.errors.messages).to eql(title: ["can't be blank"])
+      expect(unit.errors.messages).to eql(title_en: ["can't be blank"])
 
-      unit.title = 'awesome unit title'
+      unit.title_en = 'awesome unit title_en'
       expect(unit.save).to be true
     end
 
     it 'will not save if position_in_chapter is already taken' do
-      wrong_unit = Unit.new(title: 'title', chapter: chapter, position_in_chapter: 1)
+      wrong_unit = Unit.new(title_en: 'title_en', chapter: chapter, position_in_chapter: 1)
       expect(wrong_unit.save).to be false
       expect(wrong_unit.errors.messages).to eql(position_in_chapter: ['already taken'])
     end

@@ -19,14 +19,14 @@ RSpec.describe Chapter, type: :model do
       expect(chapter_3.previous_chapter_in_course.id).to eql(chapter_2.id)
     end
 
-    it 'will refuse validation if no title' do
-      chapter.title = nil
+    it 'will refuse validation if no title_en' do
+      chapter.title_en = nil
       expect(chapter.save).to be false
-      expect(chapter.errors.messages).to eql(title: ["can't be blank"])
+      expect(chapter.errors.messages).to eql(title_en: ["can't be blank"])
     end
 
-    it 'will accept validation with some title' do
-      chapter.title = 'awesome chapter title'
+    it 'will accept validation with some title_en' do
+      chapter.title_en = 'awesome chapter title_en'
       expect(chapter.save).to be true
     end
 

@@ -1,6 +1,6 @@
 class Unit < ApplicationRecord
   belongs_to :chapter
-  validates_presence_of :title
+  validates_presence_of :title_en
   validate :unique_position_in_chapter
 
   has_many :lessons

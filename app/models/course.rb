@@ -1,15 +1,7 @@
 class Course < ApplicationRecord
-  validates_presence_of :title
+  validates_presence_of :title_en
   has_many :chapters
   has_one :learning_status
-
-  def display_title
-    I18n.translate("course.#{self.title}.title")
-  end
-
-  def display_description
-    I18n.translate("course.#{self.title}.description")
-  end
 
   def create_learning_status_for_user(user_id)
     return if LearningStatus.find_by(user_id: user_id, course_id: self.id)
