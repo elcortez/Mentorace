@@ -24,7 +24,7 @@ RSpec.describe AttemptsController, type: :controller do
     end
 
     describe 'create' do
-      it 'will redirect to same exercise if user should not have access to exercise' do
+      it 'will redirect to first exercise if user should not have access to exercise' do
         response = post :create, params: basic_params.merge(
           exercise_id: exercise_2.id,
           attempt: { attempted_answer: exercise_2.answer }

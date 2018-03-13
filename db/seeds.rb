@@ -20,9 +20,9 @@ unit_1 = Unit.create(
 
 lesson_1 = Lesson.create(
   unit: unit_1,
-  content_en: "A set can be defined as a collection, or a grouping of " \
-    'elements;' \
-    "\n there are two ways to define sets : " \
+  content_en: "<p> A set can be defined as a collection, or a grouping of " \
+    'elements; </p>' \
+    "<p> there are two ways to define sets : " \
     "<ol> " \
       "<li> " \
         "by extension: write down all elements of the set between braces, " \
@@ -45,7 +45,7 @@ lesson_1 = Lesson.create(
         "\n Therefore you can easily conclude that R is a set " \
         "that includes the numbers 1, 2, 3 and 4 " \
       "</li> " \
-    "</ol>",
+    "</ol> </p>",
   position_in_unit: 1
 )
 
@@ -67,7 +67,7 @@ example_2 = Example.create(
   position_in_unit: 3
 )
 
-exercise = Exercise.create(
+exercise_1 = Exercise.create(
   unit: unit_1,
   question_en: "Let R be a set which can be defined as follows: " \
     "\n { x ∈ R | (x >= 5) AND (x < 10) AND (x is an integer) } " \
@@ -83,6 +83,15 @@ exercise_2 = Exercise.create(
     "\n can S be also defined by comprehension as follows? " \
     "\n { x ∈ S | (x <= 6) AND ((x + 1) > 6) }",
   answer: 'false',
+  position_in_unit: 2
+)
+
+lesson_2 = Lesson.create(
+  unit: unit_1,
+  content_en: "An empty set is defined as a set that contains no element." \
+    "\n You can write it with the symbol : ∅ " \
+    "\n Or you can write it by comprehension with an impossible equation :"
+    "\n { x ∈ R | x ** x = -1 }",
   position_in_unit: 2
 )
 
