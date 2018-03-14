@@ -4,10 +4,10 @@ RSpec.describe AttemptsController, type: :controller do
   describe 'new / create' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
-    let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
-    let!(:exercise_2) { create(:exercise, unit: unit, position_in_unit: 2) }
-    let!(:exercise_3) { create(:exercise, unit: unit, position_in_unit: 3) }
+    let!(:lesson) { create(:lesson, chapter: chapter) }
+    let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
+    let!(:exercise_2) { create(:exercise, lesson: lesson, position_in_lesson: 2) }
+    let!(:exercise_3) { create(:exercise, lesson: lesson, position_in_lesson: 3) }
 
     let!(:user) { create(:user) }
     let!(:user_two) { create(:user, email: 'other@gmail.com') }
@@ -15,7 +15,7 @@ RSpec.describe AttemptsController, type: :controller do
     let(:basic_params) { {
       course_id: course.id,
       chapter_id: chapter.id,
-      unit_id: unit.id
+      lesson_id: lesson.id
     } }
 
     before do
@@ -30,7 +30,7 @@ RSpec.describe AttemptsController, type: :controller do
           attempt: { attempted_answer: exercise_2.answer }
         )
 
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise.id)
         )
       end
@@ -43,7 +43,7 @@ RSpec.describe AttemptsController, type: :controller do
           attempt: { attempted_answer: 'wrong answer' }
         )
 
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise.id)
         )
         user.reload
@@ -58,7 +58,7 @@ RSpec.describe AttemptsController, type: :controller do
           attempt: { attempted_answer: exercise.answer }
         )
 
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise_2.id)
         )
         user.reload
@@ -76,7 +76,7 @@ RSpec.describe AttemptsController, type: :controller do
           attempt: { attempted_answer: exercise.answer }
         )
 
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise_2.id)
         )
 
@@ -90,25 +90,25 @@ RSpec.describe AttemptsController, type: :controller do
     end
 
     describe 'new' do
-      it 'will always redirect to the first unit exercise that has not yet been validated' do
+      it 'will always redirect to the first lesson exercise that has not yet been validated' do
         response = get :new, params: basic_params.merge(exercise_id: exercise_2.id)
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise.id)
         )
       end
 
-      it 'will redirect to the first unit exercise that has not yet been validated even if exercise is further away' do
+      it 'will redirect to the first lesson exercise that has not yet been validated even if exercise is further away' do
         response = get :new, params: basic_params.merge(exercise_id: exercise_3.id)
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise.id)
         )
       end
 
-      it 'will redirect to the first unit exercise that has not yet been validated even if another one is validated' do
+      it 'will redirect to the first lesson exercise that has not yet been validated even if another one is validated' do
         create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
 
         response = get :new, params: basic_params.merge(exercise_id: exercise_3.id)
-        expect(response).to redirect_to new_course_chapter_unit_exercise_attempt_path(
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
           basic_params.merge(exercise_id: exercise_2.id)
         )
       end

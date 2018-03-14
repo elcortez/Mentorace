@@ -3,7 +3,7 @@ FactoryBot.define do
     user nil
     course nil
     chapter nil
-    unit nil
+    lesson nil
     exercise nil
   end
 end

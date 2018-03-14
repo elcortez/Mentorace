@@ -12,7 +12,7 @@ chapter_1 = Chapter.create(
   position_in_course: 1
 )
 
-unit_1 = Unit.create(
+lesson_1 = Lesson.create(
   chapter: chapter_1,
   position_in_chapter: 1,
   title_en: 'Definition and characteristics of a set',
@@ -45,47 +45,47 @@ unit_1 = Unit.create(
 )
 
 example_1 = Example.create(
-  unit: unit_1,
+  lesson: lesson_1,
   content_en: "let E be the set that includes all even numbers below 10. " \
     "E = { 2 ; 4 ; 6 ; 8 } " \
     "\n or you can define E by comprehension: " \
     "\n { x ∈ E | (x / 2 is an integer) AND (x <= 10) }",
-  position_in_unit: 2
+  position_in_lesson: 2
 )
 
 example_2 = Example.create(
-  unit: unit_1,
+  lesson: lesson_1,
   content_en: "let U be the set that includes all uneven numbers below 10. " \
     "U = { 1 ; 3 ; 5 ; 7 ; 9 } " \
     "\n or we can define U by comprehension: " \
     "\n { x ∈ U | (x / 2 is not an integer) AND (x <= 10) }",
-  position_in_unit: 3
+  position_in_lesson: 3
 )
 
 exercise_1 = Exercise.create(
-  unit: unit_1,
+  lesson: lesson_1,
   question_en: "Let R be a set which can be defined as follows: " \
     "\n { x ∈ R | (x >= 5) AND (x < 10) AND (x is an integer) } " \
     "\n define R by extension",
   answer: "{ 5 ; 6 ; 7 ; 8 ; 9 }",
-  position_in_unit: 1
+  position_in_lesson: 1
 )
 
 exercise_2 = Exercise.create(
-  unit: unit_1,
+  lesson: lesson_1,
   question_en: "Let S be a set which can be defined by extension as follows: " \
     "\n S = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 } " \
     "\n can S be also defined by comprehension as follows? " \
     "\n { x ∈ S | (x <= 6) AND ((x + 1) > 6) }",
   answer: 'false',
-  position_in_unit: 2
+  position_in_lesson: 2
 )
 
 lesson_2 = Lesson.create(
-  unit: unit_1,
+  lesson: lesson_1,
   content_en: "An empty set is defined as a set that contains no element." \
     "\n You can write it with the symbol : ∅ " \
     "\n Or you can write it by comprehension with an impossible equation :"
     "\n { x ∈ R | x ** x = -1 }",
-  position_in_unit: 2
+  position_in_lesson: 2
 )

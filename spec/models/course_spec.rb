@@ -5,8 +5,8 @@ RSpec.describe Course, type: :model do
     let!(:user) { create(:user) }
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
-    let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
+    let!(:lesson) { create(:lesson, chapter: chapter) }
+    let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
 
 
     it 'will create learning_status and be idempotent' do

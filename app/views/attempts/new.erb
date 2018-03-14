@@ -1,12 +1,12 @@
 <p>
-  Unit Exercise N°<%= @exercise.position_in_unit %>
+  Lesson Exercise N°<%= @exercise.position_in_lesson %>
 </p>
 
 <p>
   <%= @exercise.question_en %>
 </p>
 
-<%= simple_form_for [:course, :chapter, :unit, @exercise, @attempt] do |f| %>
+<%= simple_form_for [:course, :chapter, :lesson, @exercise, @attempt] do |f| %>
   <%= f.input :attempted_answer %>
   <%= f.button :submit %>
 <% end %>

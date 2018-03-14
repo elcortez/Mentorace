@@ -4,7 +4,7 @@ class CreateLearningStatuses < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :course, foreign_key: true
       t.references :chapter, foreign_key: true
-      t.references :unit, foreign_key: true
+      t.references :lesson, foreign_key: true
       t.references :exercise, foreign_key: true
 
       t.timestamps

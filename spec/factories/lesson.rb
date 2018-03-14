@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :unit do
-    title_en 'awesome unit title'
+  factory :lesson do
+    title_en 'awesome lesson title'
     position_in_chapter 1
   end
 end

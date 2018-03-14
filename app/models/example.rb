@@ -1,11 +1,11 @@
 class Example < ApplicationRecord
-  belongs_to :unit
+  belongs_to :lesson
 
-  validate :unique_position_in_unit
+  validate :unique_position_in_lesson
   validates_presence_of :content_en
 
-  def unique_position_in_unit
-    return unless self.unit.examples.pluck(:position_in_unit).include?(self.position_in_unit)
-    errors.add(:position_in_unit, 'already taken')
+  def unique_position_in_lesson
+    return unless self.lesson.examples.pluck(:position_in_lesson).include?(self.position_in_lesson)
+    errors.add(:position_in_lesson, 'already taken')
   end
 end

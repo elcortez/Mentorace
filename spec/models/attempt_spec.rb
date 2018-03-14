@@ -4,7 +4,7 @@ RSpec.describe Attempt, type: :model do
   describe '#set_successful' do
     let!(:exercise) { create(:exercise,
       question_en: double('question'),
-      unit: create(:unit, chapter: create(:chapter, course: create(:course))),
+      lesson: create(:lesson, chapter: create(:chapter, course: create(:course))),
       answer: '123'
     ) }
 
@@ -25,18 +25,18 @@ RSpec.describe Attempt, type: :model do
     let!(:course) { create(:course) }
 
     let!(:chapter_1) { create(:chapter, course: course) }
-    let!(:unit_1) { create(:unit, chapter: chapter_1) }
-    let!(:exercise_1) { create(:exercise, unit: unit_1) }
-    let!(:exercise_2) { create(:exercise, unit: unit_1, position_in_unit: 2) }
+    let!(:lesson_1) { create(:lesson, chapter: chapter_1) }
+    let!(:exercise_1) { create(:exercise, lesson: lesson_1) }
+    let!(:exercise_2) { create(:exercise, lesson: lesson_1, position_in_lesson: 2) }
 
-    let!(:unit_2) { create(:unit, chapter: chapter_1, position_in_chapter: 2) }
-    let!(:exercise_3) { create(:exercise, unit: unit_2) }
-    let!(:exercise_4) { create(:exercise, unit: unit_2, position_in_unit: 2) }
+    let!(:lesson_2) { create(:lesson, chapter: chapter_1, position_in_chapter: 2) }
+    let!(:exercise_3) { create(:exercise, lesson: lesson_2) }
+    let!(:exercise_4) { create(:exercise, lesson: lesson_2, position_in_lesson: 2) }
 
     let!(:chapter_2) { create(:chapter, course: course, position_in_course: 2) }
-    let!(:unit_3) { create(:unit, chapter: chapter_2, position_in_chapter: 3) }
-    let!(:exercise_5) { create(:exercise, unit: unit_3) }
-    let!(:exercise_6) { create(:exercise, unit: unit_3, position_in_unit: 2) }
+    let!(:lesson_3) { create(:lesson, chapter: chapter_2, position_in_chapter: 3) }
+    let!(:exercise_5) { create(:exercise, lesson: lesson_3) }
+    let!(:exercise_6) { create(:exercise, lesson: lesson_3, position_in_lesson: 2) }
 
     let!(:user) { create(:user) }
 
@@ -49,7 +49,7 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
-        'unit_id' => unit_1.id,
+        'lesson_id' => lesson_1.id,
         'exercise_id' => exercise_1.id
       )
     end
@@ -65,7 +65,7 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
-        'unit_id' => unit_1.id,
+        'lesson_id' => lesson_1.id,
         'exercise_id' => exercise_1.id
       )
     end
@@ -81,12 +81,12 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
-        'unit_id' => unit_1.id,
+        'lesson_id' => lesson_1.id,
         'exercise_id' => exercise_2.id
       )
     end
 
-    it 'update exercise 3, unit 2' do
+    it 'update exercise 3, lesson 2' do
       create(:attempt, user: user, exercise: exercise_1, attempted_answer: exercise_1.answer)
       create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
 
@@ -99,12 +99,12 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
-        'unit_id' => unit_2.id,
+        'lesson_id' => lesson_2.id,
         'exercise_id' => exercise_3.id
       )
     end
 
-    it 'update exercise 4, unit 2' do
+    it 'update exercise 4, lesson 2' do
       create(:attempt, user: user, exercise: exercise_1, attempted_answer: exercise_1.answer)
       create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
       create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
@@ -118,12 +118,12 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
-        'unit_id' => unit_2.id,
+        'lesson_id' => lesson_2.id,
         'exercise_id' => exercise_4.id
       )
     end
 
-    it 'update exercise 5, unit 3, chapter 2' do
+    it 'update exercise 5, lesson 3, chapter 2' do
       create(:attempt, user: user, exercise: exercise_1, attempted_answer: exercise_1.answer)
       create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
       create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
@@ -138,12 +138,12 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_2.id,
-        'unit_id' => unit_3.id,
+        'lesson_id' => lesson_3.id,
         'exercise_id' => exercise_5.id
       )
     end
 
-    it 'update exercise 6, unit 3, chapter 2' do
+    it 'update exercise 6, lesson 3, chapter 2' do
       create(:attempt, user: user, exercise: exercise_1, attempted_answer: exercise_1.answer)
       create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
       create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
@@ -159,7 +159,7 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_2.id,
-        'unit_id' => unit_3.id,
+        'lesson_id' => lesson_3.id,
         'exercise_id' => exercise_6.id
       )
     end
@@ -181,7 +181,7 @@ RSpec.describe Attempt, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_2.id,
-        'unit_id' => unit_3.id,
+        'lesson_id' => lesson_3.id,
         'exercise_id' => exercise_6.id
       )
 

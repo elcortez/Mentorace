@@ -1,6 +1,6 @@
 class Chapter < ApplicationRecord
   belongs_to :course
-  has_many :units
+  has_many :lessons
   has_one :learning_status
   validates_presence_of :title_en
   validate :unique_position_in_course
@@ -24,7 +24,7 @@ class Chapter < ApplicationRecord
     errors.add(:position_in_course, 'already taken')
   end
 
-  def units_ordered
-    self.units.order(:position_in_chapter)
+  def lessons_ordered
+    self.lessons.order(:position_in_chapter)
   end
 end

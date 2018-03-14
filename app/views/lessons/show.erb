@@ -1,0 +1,17 @@
+<div class="container">
+  <% @lesson.learning_elements.each do |learning_element| %>
+    <%= render partial: learning_element.class.to_s.underscore, locals: { learning_element: learning_element } %>
+  <% end %>
+
+  <p>
+    <%= link_to(
+      "I am ready to get challenged on this lesson",
+      new_course_chapter_lesson_exercise_attempt_path(
+        course_id: @lesson.chapter.course_id,
+        chapter_id: @lesson.chapter_id,
+        lesson_id: @lesson.id,
+        exercise_id: @lesson.exercises.first.id
+      )
+    ) %>
+  </p>
+</div>

@@ -4,9 +4,9 @@ RSpec.describe User, type: :model do
   describe '#has_finished_exercise?, #can_access_exercise?' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
-    let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
-    let!(:exercise_2) { create(:exercise, unit: unit, position_in_unit: 2) }
+    let!(:lesson) { create(:lesson, chapter: chapter) }
+    let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
+    let!(:exercise_2) { create(:exercise, lesson: lesson, position_in_lesson: 2) }
 
     let!(:user) { create(:user) }
 
@@ -49,8 +49,8 @@ RSpec.describe User, type: :model do
   describe 'create_learning_statuses' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
-    let!(:unit) { create(:unit, chapter: chapter) }
-    let!(:exercise) { create(:exercise, unit: unit, position_in_unit: 1) }
+    let!(:lesson) { create(:lesson, chapter: chapter) }
+    let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
 
     it 'will automatically create a learning_status for each course' do
       user = create(:user)
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter.id,
-        'unit_id' => unit.id,
+        'lesson_id' => lesson.id,
         'exercise_id' => exercise.id
       )
     end

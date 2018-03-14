@@ -27,18 +27,18 @@ class AttemptsController < ApplicationController
   def redirect_to_current_learning_status
     status = LearningStatus.find_by(user_id: current_user.id, course_id: @course.id)
 
-    return redirect_to new_course_chapter_unit_exercise_attempt_path(
+    return redirect_to new_course_chapter_lesson_exercise_attempt_path(
       course_id: status.course_id,
       chapter_id: status.chapter_id,
-      unit_id: status.unit_id,
+      lesson_id: status.lesson_id,
       exercise_id: status.exercise_id
     )
   end
 
   def find_objects
     @exercise = Exercise.find(params[:exercise_id])
-    @unit = @exercise.unit
-    @chapter = @unit.chapter
+    @lesson = @exercise.lesson
+    @chapter = @lesson.chapter
     @course = @chapter.course
   end
 end
