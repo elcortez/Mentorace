@@ -8,5 +8,6 @@
 
 <%= simple_form_for [:course, :chapter, :lesson, @exercise, @attempt] do |f| %>
   <%= f.input :attempted_answer %>
+  <%= f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id } %>
   <%= f.button :submit %>
 <% end %>

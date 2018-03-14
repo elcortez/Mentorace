@@ -9,11 +9,7 @@ class AttemptsController < ApplicationController
   end
 
   def create
-    Attempt.create(
-      user_id: current_user.id,
-      exercise_id: @exercise.id,
-      attempted_answer: params['attempt']['attempted_answer']
-    )
+    Attempt.create({ user_id: current_user.id }.merge(lesson_params))
 
     redirect_to_current_learning_status
   end
@@ -33,6 +29,12 @@ class AttemptsController < ApplicationController
       lesson_id: status.lesson_id,
       exercise_id: status.exercise_id
     )
+  end
+
+  private
+
+  def lesson_params
+    params.require(:attempt).permit(:attempted_answer, :exercise_id)
   end
 
   def find_objects
