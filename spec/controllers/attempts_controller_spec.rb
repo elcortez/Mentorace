@@ -3,11 +3,23 @@ require 'rails_helper'
 RSpec.describe AttemptsController, type: :controller do
   describe 'new / create' do
     let!(:course) { create(:course) }
-    let!(:chapter) { create(:chapter, course: course) }
-    let!(:lesson) { create(:lesson, chapter: chapter) }
+
+    let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
+
+    let!(:lesson) { create(:lesson, chapter: chapter, position_in_chapter: 1) }
     let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
     let!(:exercise_2) { create(:exercise, lesson: lesson, position_in_lesson: 2) }
     let!(:exercise_3) { create(:exercise, lesson: lesson, position_in_lesson: 3) }
+
+    let!(:lesson_2) { create(:lesson, chapter: chapter, position_in_chapter: 2) }
+    let!(:exercise_4) { create(:exercise, lesson: lesson_2, position_in_lesson: 1) }
+    let!(:exercise_5) { create(:exercise, lesson: lesson_2, position_in_lesson: 2) }
+
+    let!(:chapter_2) { create(:chapter, course: course, position_in_course: 2) }
+
+    let!(:lesson_3) { create(:lesson, chapter: chapter_2, position_in_chapter: 2) }
+    let!(:exercise_5) { create(:exercise, lesson: lesson_3, position_in_lesson: 1) }
+    let!(:exercise_6) { create(:exercise, lesson: lesson_3, position_in_lesson: 2) }
 
     let!(:user) { create(:user) }
     let!(:user_two) { create(:user, email: 'other@gmail.com') }
@@ -23,7 +35,50 @@ RSpec.describe AttemptsController, type: :controller do
       allow(controller).to receive(:current_user) { user }
     end
 
+
+# if last exercise from lesson, move to next lesson (if learning_stauts exercise become the first of the next lesson)
+# if last lesson, move to next lesson
+# if last lesson, move to next chapter, first lesson
+# if last chapter, move to beginning of course with congrats
+
     describe 'create' do
+      it 'will redirect to next lesson if it was the last exercise' do
+        [exercise, exercise_2, exercise_3].each do |exo|
+          create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
+        end
+
+        
+      end
+
+      it 'will redirect to the next exercise if attempt is successful' do
+        expect(user.attempts.count).to eql(0)
+
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise.id,
+          attempt: { attempted_answer: exercise.answer }
+        )
+
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise_2.id)
+        )
+        user.reload
+        expect(user.attempts.count).to eql(1)
+        expect(user.attempts.first.attempt_successful).to eql(true)
+
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise_2.id,
+          attempt: { attempted_answer: exercise_2.answer }
+        )
+
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise_3.id)
+        )
+
+        user.reload
+        expect(user.attempts.count).to eql(2)
+        expect(user.attempts.find_by(exercise_id: exercise_2.id).attempt_successful).to eql(true)
+      end
+
       it 'will redirect to first exercise if user should not have access to exercise' do
         response = post :create, params: basic_params.merge(
           exercise_id: exercise_2.id,
@@ -48,22 +103,6 @@ RSpec.describe AttemptsController, type: :controller do
         )
         user.reload
         expect(user.attempts.count).to eql(1)
-      end
-
-      it 'will redirect to the next exercise if attempt is successful' do
-        expect(user.attempts.count).to eql(0)
-
-        response = post :create, params: basic_params.merge(
-          exercise_id: exercise.id,
-          attempt: { attempted_answer: exercise.answer }
-        )
-
-        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
-          basic_params.merge(exercise_id: exercise_2.id)
-        )
-        user.reload
-        expect(user.attempts.count).to eql(1)
-        expect(user.attempts.first.attempt_successful).to eql(true)
       end
 
       it 'user can create as many attempts as she wishes on same exercise' do

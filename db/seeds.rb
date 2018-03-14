@@ -16,7 +16,7 @@ lesson_1 = Lesson.create(
   chapter: chapter_1,
   position_in_chapter: 1,
   title_en: 'Definition and characteristics of a set',
-  lesson_en: "<p> A set can be defined as a collection, or a grouping of " \
+  content_en: "<p> A set can be defined as a collection, or a grouping of " \
     'elements; </p>' \
     "<p> there are two ways to define sets : " \
     "<ol> " \
@@ -81,11 +81,10 @@ exercise_2 = Exercise.create(
   position_in_lesson: 2
 )
 
-lesson_2 = Lesson.create(
-  lesson: lesson_1,
-  content_en: "An empty set is defined as a set that contains no element." \
-    "\n You can write it with the symbol : ∅ " \
-    "\n Or you can write it by comprehension with an impossible equation :"
-    "\n { x ∈ R | x ** x = -1 }",
-  position_in_lesson: 2
-)
+# lesson_2 = Lesson.create(
+#   content_en: "An empty set is defined as a set that contains no element." \
+#     "\n You can write it with the symbol : ∅ " \
+#     "\n Or you can write it by comprehension with an impossible equation : " \
+#     "\n { x ∈ R | x ** x = -1 }",
+#   position_in_lesson: 2
+# )

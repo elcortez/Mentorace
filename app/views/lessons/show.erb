@@ -1,6 +1,10 @@
 <div class="container">
-  <% @lesson.learning_elements.each do |learning_element| %>
-    <%= render partial: learning_element.class.to_s.underscore, locals: { learning_element: learning_element } %>
+
+  <h3> <%= @lesson.title_en.html_safe %> </h3>
+  <p> <%= @lesson.content_en.html_safe %> </p>
+
+  <% @lesson.examples.each do |example| %>
+    <%= render partial: 'example', locals: { example: example } %>
   <% end %>
 
   <p>
