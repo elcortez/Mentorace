@@ -1,22 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
-  describe '.learning_elements' do
-    let!(:course) { create(:course, title_en: 'awesome title_en') }
-    let!(:chapter) { create(:chapter, course: course, position_in_course: 1) }
-    let!(:unit) { create(:unit, chapter: chapter, position_in_chapter: 1) }
-    let!(:example) { create(:example, unit: unit, position_in_unit: 1, content_en: 'content') }
-    let!(:image) { create(:image, unit: unit, position_in_unit: 2, img_url: 'url') }
-    let!(:lesson) { create(:lesson, unit: unit, position_in_unit: 3, content_en: 'content') }
-
-    it 'can find its learning_elements' do
-      unit.reload
-      expect(unit.learning_elements.map(&:id)).to eql([
-        example.id, image.id, lesson.id
-      ])
-    end
-  end
-
   describe 'validations / relations' do
     let(:course) { create(:course, title_en: 'awesome title_en') }
     let(:chapter) { create(:chapter, course: course, position_in_course: 1) }

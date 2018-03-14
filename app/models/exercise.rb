@@ -1,5 +1,4 @@
 class Exercise < ApplicationRecord
-  include LearningElementConcern
   validate :unique_exercise_position_in_unit
 
   belongs_to :unit
@@ -19,6 +18,11 @@ class Exercise < ApplicationRecord
       unit_id: exercise.unit_id
     ).limit(1)
   }, through: :unit, source: :exercises
+
+  def unique_exercise_position_in_unit
+    return unless self.unit.exercises.pluck(:position_in_unit).include?(self.position_in_unit)
+    errors.add(:position_in_unit, 'already taken')
+  end
 
   def previous_exercise
     return previous_exercise_in_unit if previous_exercise_in_unit

@@ -14,13 +14,9 @@ chapter_1 = Chapter.create(
 
 unit_1 = Unit.create(
   chapter: chapter_1,
+  position_in_chapter: 1,
   title_en: 'Definition and characteristics of a set',
-  position_in_chapter: 1
-)
-
-lesson_1 = Lesson.create(
-  unit: unit_1,
-  content_en: "<p> A set can be defined as a collection, or a grouping of " \
+  lesson_en: "<p> A set can be defined as a collection, or a grouping of " \
     'elements; </p>' \
     "<p> there are two ways to define sets : " \
     "<ol> " \
@@ -45,8 +41,7 @@ lesson_1 = Lesson.create(
         "\n Therefore you can easily conclude that R is a set " \
         "that includes the numbers 1, 2, 3 and 4 " \
       "</li> " \
-    "</ol> </p>",
-  position_in_unit: 1
+    "</ol> </p>"
 )
 
 example_1 = Example.create(
@@ -94,9 +89,3 @@ lesson_2 = Lesson.create(
     "\n { x ∈ R | x ** x = -1 }",
   position_in_unit: 2
 )
-
-# image = Image.create(
-#   unit: unit_1,
-#   img_url: 'https://picsum.photos/200/300',
-#   position_in_unit: 2
-# )

@@ -62,14 +62,6 @@ ActiveRecord::Schema.define(version: 20180310151238) do
     t.index ["unit_id"], name: "index_exercises_on_unit_id"
   end
 
-  create_table "images", force: :cascade do |t|
-    t.string "img_url"
-    t.integer "unit_id"
-    t.integer "position_in_unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "learning_statuses", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "course_id"
@@ -83,15 +75,6 @@ ActiveRecord::Schema.define(version: 20180310151238) do
     t.index ["exercise_id"], name: "index_learning_statuses_on_exercise_id"
     t.index ["unit_id"], name: "index_learning_statuses_on_unit_id"
     t.index ["user_id"], name: "index_learning_statuses_on_user_id"
-  end
-
-  create_table "lessons", force: :cascade do |t|
-    t.bigint "unit_id"
-    t.text "content_en"
-    t.integer "position_in_unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["unit_id"], name: "index_lessons_on_unit_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -133,6 +116,5 @@ ActiveRecord::Schema.define(version: 20180310151238) do
   add_foreign_key "learning_statuses", "exercises"
   add_foreign_key "learning_statuses", "units"
   add_foreign_key "learning_statuses", "users"
-  add_foreign_key "lessons", "units"
   add_foreign_key "units", "chapters"
 end

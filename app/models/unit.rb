@@ -3,9 +3,7 @@ class Unit < ApplicationRecord
   validates_presence_of :title_en
   validate :unique_position_in_chapter
 
-  has_many :lessons
   has_many :examples
-  has_many :images
   has_many :exercises
   has_one :learning_status
 
@@ -22,13 +20,6 @@ class Unit < ApplicationRecord
       chapter_id: unit.chapter_id
     ).limit(1)
   }, through: :chapter, source: :units
-
-  def learning_elements
-    (self.lessons.to_a << self.examples.to_a <<  self.images.to_a)
-      .compact
-      .flatten
-      .sort_by { |e| e.position_in_unit }
-  end
 
   def exercises_ordered
     self.exercises.order(:position_in_unit)

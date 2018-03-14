@@ -9,6 +9,5 @@ class RenameStringElementsToEnglishDefault < ActiveRecord::Migration[5.1]
     rename_column :units, :title, :title_en
     rename_column :examples, :content, :content_en
     rename_column :exercises, :question, :question_en
-    rename_column :lessons, :content, :content_en
   end
 end
