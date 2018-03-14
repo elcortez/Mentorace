@@ -35,19 +35,20 @@ RSpec.describe AttemptsController, type: :controller do
       allow(controller).to receive(:current_user) { user }
     end
 
-
-# if last exercise from lesson, move to next lesson (if learning_stauts exercise become the first of the next lesson)
-# if last lesson, move to next lesson
-# if last lesson, move to next chapter, first lesson
-# if last chapter, move to beginning of course with congrats
-
     describe 'create' do
       it 'will redirect to next lesson if it was the last exercise' do
-        [exercise, exercise_2, exercise_3].each do |exo|
+        [exercise, exercise_2].each do |exo|
           create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
         end
 
-        
+        response = post :create, params: basic_params.merge(
+          exercise_id: exercise_3.id,
+          attempt: { attempted_answer: exercise_3.answer, exercise_id: exercise_3.id }
+        )
+
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
+          basic_params.merge(exercise_id: exercise_2.id)
+        )
       end
 
       it 'will redirect to the next exercise if attempt is successful' do
@@ -55,7 +56,7 @@ RSpec.describe AttemptsController, type: :controller do
 
         response = post :create, params: basic_params.merge(
           exercise_id: exercise.id,
-          attempt: { attempted_answer: exercise.answer }
+          attempt: { attempted_answer: exercise.answer, exercise_id: exercise.id }
         )
 
         expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
@@ -67,7 +68,7 @@ RSpec.describe AttemptsController, type: :controller do
 
         response = post :create, params: basic_params.merge(
           exercise_id: exercise_2.id,
-          attempt: { attempted_answer: exercise_2.answer }
+          attempt: { attempted_answer: exercise_2.answer, exercise_id: exercise_2.id }
         )
 
         expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
@@ -82,7 +83,7 @@ RSpec.describe AttemptsController, type: :controller do
       it 'will redirect to first exercise if user should not have access to exercise' do
         response = post :create, params: basic_params.merge(
           exercise_id: exercise_2.id,
-          attempt: { attempted_answer: exercise_2.answer }
+          attempt: { attempted_answer: exercise_2.answer, exercise_id: exercise_2.id }
         )
 
         expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
@@ -95,7 +96,7 @@ RSpec.describe AttemptsController, type: :controller do
 
         response = post :create, params: basic_params.merge(
           exercise_id: exercise.id,
-          attempt: { attempted_answer: 'wrong answer' }
+          attempt: { attempted_answer: 'wrong answer', exercise_id: exercise.id }
         )
 
         expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
@@ -112,7 +113,7 @@ RSpec.describe AttemptsController, type: :controller do
 
         response = post :create, params: basic_params.merge(
           exercise_id: exercise.id,
-          attempt: { attempted_answer: exercise.answer }
+          attempt: { attempted_answer: exercise.answer, exercise_id: exercise.id }
         )
 
         expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
