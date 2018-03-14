@@ -5,7 +5,9 @@ class Attempt < ApplicationRecord
   after_create :update_learning_status
 
   def set_successful
-    self.attempt_successful = self.attempted_answer.present? && self.attempted_answer == self.exercise.answer
+    return false unless self.attempted_answer.present?
+    return false unless self.attempted_answer.gsub(/' '/, '') == self.exercise.answer.gsub(/' '/, '')
+    self.attempt_successful = true
   end
 
   def update_learning_status
