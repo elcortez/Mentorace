@@ -31,6 +31,7 @@ class AttemptsController < ApplicationController
       )
 
     elsif status.finished_at.present? && @exercise.id == status.exercise_id
+      flash[:success] = I18n.t('course_finished')
       return redirect_to courses_path
 
     else
