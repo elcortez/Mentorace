@@ -15,11 +15,12 @@ RSpec.describe AttemptsController, type: :controller do
     let!(:exercise_4) { create(:exercise, lesson: lesson_2, position_in_lesson: 1) }
     let!(:exercise_5) { create(:exercise, lesson: lesson_2, position_in_lesson: 2) }
 
+
     let!(:chapter_2) { create(:chapter, course: course, position_in_course: 2) }
 
     let!(:lesson_3) { create(:lesson, chapter: chapter_2, position_in_chapter: 2) }
-    let!(:exercise_5) { create(:exercise, lesson: lesson_3, position_in_lesson: 1) }
-    let!(:exercise_6) { create(:exercise, lesson: lesson_3, position_in_lesson: 2) }
+    let!(:exercise_6) { create(:exercise, lesson: lesson_3, position_in_lesson: 1) }
+    let!(:exercise_7) { create(:exercise, lesson: lesson_3, position_in_lesson: 2) }
 
     let!(:user) { create(:user) }
     let!(:user_two) { create(:user, email: 'other@gmail.com') }
@@ -36,18 +37,76 @@ RSpec.describe AttemptsController, type: :controller do
     end
 
     describe 'create' do
-      it 'will redirect to next lesson if it was the last exercise' do
+      it 'will redirect to course index if last exercise && successful' do
+        [exercise, exercise_2, exercise_3, exercise_4, exercise_5, exercise_6].each do |exo|
+          create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
+        end
+
+        response = post :create, params: {
+          attempt: { attempted_answer: exercise_7.answer, exercise_id: exercise_7.id },
+          exercise_id: exercise_7.id,
+          lesson_id: lesson_3.id,
+          chapter_id: chapter_2.id,
+          course_id: course.id
+        }
+
+        expect(response).to redirect_to courses_path
+      end
+
+      it 'even if every exercise is over, user can still go up to the top' do
+        [exercise, exercise_2, exercise_3, exercise_4, exercise_5, exercise_6, exercise_7].each do |exo|
+          create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
+        end
+
+        response = post :create, params: {
+          attempt: { attempted_answer: exercise_6.answer, exercise_id: exercise_6.id },
+          exercise_id: exercise_6.id,
+          lesson_id: lesson_3.id,
+          chapter_id: chapter_2.id,
+          course_id: course.id
+        }
+
+        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
+          exercise_id: exercise_7.id,
+          lesson_id: lesson_3.id,
+          chapter_id: chapter_2.id,
+          course_id: course.id
+        )
+      end
+
+      it 'will redirect to next chapter if it was the last lesson of the chapter' do
+        [exercise, exercise_2, exercise_3, exercise_4].each do |exo|
+          create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
+        end
+
+        response = post :create, params: {
+          attempt: { attempted_answer: exercise_5.answer, exercise_id: exercise_5.id },
+          exercise_id: exercise_5.id,
+          lesson_id: lesson_2.id,
+          chapter_id: chapter.id,
+          course_id: course.id
+        }
+
+        expect(response).to redirect_to course_chapter_lesson_path(
+          course_id: course.id, chapter_id: chapter_2.id, id: lesson_3.id
+        )
+      end
+
+      it 'will redirect to next lesson if it was the last exercise of the lesson' do
         [exercise, exercise_2].each do |exo|
           create(:attempt, user_id: user.id, exercise_id: exo.id, attempted_answer: exo.answer)
         end
 
-        response = post :create, params: basic_params.merge(
+        response = post :create, params: {
+          attempt: { attempted_answer: exercise_3.answer, exercise_id: exercise_3.id },
           exercise_id: exercise_3.id,
-          attempt: { attempted_answer: exercise_3.answer, exercise_id: exercise_3.id }
-        )
+          lesson_id: lesson.id,
+          chapter_id: chapter.id,
+          course_id: course.id
+        }
 
-        expect(response).to redirect_to new_course_chapter_lesson_exercise_attempt_path(
-          basic_params.merge(exercise_id: exercise_2.id)
+        expect(response).to redirect_to course_chapter_lesson_path(
+          course_id: course.id, chapter_id: chapter.id, id: lesson_2.id
         )
       end
 

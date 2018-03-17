@@ -23,12 +23,24 @@ class AttemptsController < ApplicationController
   def redirect_to_current_learning_status
     status = LearningStatus.find_by(user_id: current_user.id, course_id: @course.id)
 
-    return redirect_to new_course_chapter_lesson_exercise_attempt_path(
-      course_id: status.course_id,
-      chapter_id: status.chapter_id,
-      lesson_id: status.lesson_id,
-      exercise_id: status.exercise_id
-    )
+    if status.lesson_id != @lesson.id
+      return redirect_to course_chapter_lesson_path(
+        course_id: status.course_id,
+        chapter_id: status.chapter_id,
+        id: status.lesson_id
+      )
+
+    elsif status.finished_at.present? && @exercise.id == status.exercise_id
+      return redirect_to courses_path
+
+    else
+      return redirect_to new_course_chapter_lesson_exercise_attempt_path(
+        course_id: status.course_id,
+        chapter_id: status.chapter_id,
+        lesson_id: status.lesson_id,
+        exercise_id: status.exercise_id
+      )
+    end
   end
 
   private
