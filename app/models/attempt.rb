@@ -36,7 +36,7 @@ class Attempt < ApplicationRecord
       learning_status.exercise_id = lesson.exercises_ordered.first.id
 
     else
-      return :finished
+      learning_status.finished_at = Time.now
     end
 
     learning_status.save

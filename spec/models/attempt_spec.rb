@@ -46,6 +46,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
@@ -62,6 +63,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
@@ -78,6 +80,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
@@ -96,6 +99,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
@@ -115,6 +119,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_1.id,
@@ -135,6 +140,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_2.id,
@@ -156,6 +162,7 @@ RSpec.describe Attempt, type: :model do
         user.learning_statuses.first.attributes
         .except('created_at', 'id', 'updated_at')
       ).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter_2.id,
@@ -176,7 +183,7 @@ RSpec.describe Attempt, type: :model do
       expect(user.learning_statuses.count).to eql(1)
       expect(
         user.learning_statuses.first.attributes
-        .except('created_at', 'id', 'updated_at')
+        .except('created_at', 'id', 'updated_at', 'finished_at')
       ).to eql(
         'user_id' => user.id,
         'course_id' => course.id,
@@ -185,7 +192,7 @@ RSpec.describe Attempt, type: :model do
         'exercise_id' => exercise_6.id
       )
 
-      expect(last_attempt.update_learning_status).to eql(:finished)
+      expect(user.learning_statuses.first.finished_at.class).to eql(ActiveSupport::TimeWithZone)
     end
   end
 end

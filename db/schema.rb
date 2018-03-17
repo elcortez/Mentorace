@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.bigint "chapter_id"
     t.bigint "lesson_id"
     t.bigint "exercise_id"
+    t.datetime "finished_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chapter_id"], name: "index_learning_statuses_on_chapter_id"

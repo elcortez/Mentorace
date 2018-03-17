@@ -59,6 +59,7 @@ RSpec.describe User, type: :model do
 
       status = user.learning_statuses.first
       expect(status.attributes.except('created_at', 'id', 'updated_at')).to eql(
+        'finished_at' => nil,
         'user_id' => user.id,
         'course_id' => course.id,
         'chapter_id' => chapter.id,

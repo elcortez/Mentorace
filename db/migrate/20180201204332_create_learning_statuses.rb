@@ -6,6 +6,7 @@ class CreateLearningStatuses < ActiveRecord::Migration[5.1]
       t.references :chapter, foreign_key: true
       t.references :lesson, foreign_key: true
       t.references :exercise, foreign_key: true
+      t.datetime :finished_at
 
       t.timestamps
     end
