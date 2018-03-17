@@ -1,47 +1,58 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#has_finished_exercise?, #can_access_exercise?' do
+  describe '#has_finished_course?, #has_finished_exercise?, #can_access_exercise?' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
+
     let!(:lesson) { create(:lesson, chapter: chapter) }
     let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
     let!(:exercise_2) { create(:exercise, lesson: lesson, position_in_lesson: 2) }
+    let!(:lesson_2) { create(:lesson, chapter: chapter, position_in_chapter: 2) }
+    let!(:exercise_3) { create(:exercise, lesson: lesson_2, position_in_lesson: 3) }
+
+    let!(:chapter_2) { create(:chapter, course: course, position_in_course: 2) }
+    let!(:lesson_3) { create(:lesson, chapter: chapter_2, position_in_chapter: 2) }
+    let!(:exercise_4) { create(:exercise, lesson: lesson_3, position_in_lesson: 1) }
 
     let!(:user) { create(:user) }
 
-    it 'returns false if user has not finished exercise' do
-      expect(user.has_finished_exercise?(exercise)).to eql(false)
-      expect(user.has_finished_exercise?(exercise_2)).to eql(false)
+    describe 'has_finished_exercise?' do
+      it 'returns false if user has not finished exercise' do
+        expect(user.has_finished_exercise?(exercise)).to eql(false)
+        expect(user.has_finished_exercise?(exercise_2)).to eql(false)
+      end
+
+      it 'returns true if user has finished exercise' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+
+        user.reload
+        expect(user.has_finished_exercise?(exercise)).to eql(true)
+        expect(user.has_finished_exercise?(exercise_2)).to eql(false)
+      end
+
+      it 'returns true if user has finished exercise 2' do
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+
+        user.reload
+        expect(user.has_finished_exercise?(exercise)).to eql(false)
+        expect(user.has_finished_exercise?(exercise_2)).to eql(true)
+      end
     end
 
-    it 'returns true if user has finished exercise' do
-      create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+    describe 'can_access_exercise?' do
+      it 'can access exercise if there is not other before it' do
+        expect(user.can_access_exercise?(exercise)).to eql(true)
+      end
 
-      user.reload
-      expect(user.has_finished_exercise?(exercise)).to eql(true)
-      expect(user.has_finished_exercise?(exercise_2)).to eql(false)
-    end
+      it 'cannot access exercise if the one before it is not finished' do
+        expect(user.can_access_exercise?(exercise_2)).to eql(false)
+      end
 
-    it 'returns true if user has finished exercise 2' do
-      create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
-
-      user.reload
-      expect(user.has_finished_exercise?(exercise)).to eql(false)
-      expect(user.has_finished_exercise?(exercise_2)).to eql(true)
-    end
-
-    it 'can access exercise if there is not other before it' do
-      expect(user.can_access_exercise?(exercise)).to eql(true)
-    end
-
-    it 'cannot access exercise if the one before it is not finished' do
-      expect(user.can_access_exercise?(exercise_2)).to eql(false)
-    end
-
-    it 'can access exercise if the one before it is finished' do
-      create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
-      expect(user.can_access_exercise?(exercise_2)).to eql(true)
+      it 'can access exercise if the one before it is finished' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        expect(user.can_access_exercise?(exercise_2)).to eql(true)
+      end
     end
   end
 
