@@ -1,10 +1,10 @@
 <div class="container">
 
   <h3> <%= @lesson.title_en.html_safe %> </h3>
-  <p> <%= @lesson.content_en.html_safe %> </p>
+  <p> <%= @lesson.display_content(I18n.locale).html_safe %> </p>
 
   <% @lesson.examples.each do |example| %>
-    <%= render partial: 'example', locals: { example: example } %>
+    <%= example.display_content(I18n.locale).html_safe %>
   <% end %>
 
   <p>
