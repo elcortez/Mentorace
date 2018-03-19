@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#has_finished_course?, #has_finished_exercise?, #can_access_exercise?' do
+  describe 'model methods' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
 
@@ -17,7 +17,61 @@ RSpec.describe User, type: :model do
 
     let!(:user) { create(:user) }
 
-    describe 'has_finished_exercise?' do
+    describe '#has_finished_lesson?' do
+      it 'has not finished any lesson' do
+        expect(user.has_finished_lesson?(lesson)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'has not finished any lesson with wrong attempts' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_4, attempted_answer: 'wrong answer')
+
+        expect(user.has_finished_lesson?(lesson)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'has not finished any lesson even with first exercise done' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        expect(user.has_finished_lesson?(lesson)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'has finished lesson_1' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+        expect(user.has_finished_lesson?(lesson)).to eql(true)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(false)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'has finished lesson_2' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
+        expect(user.has_finished_lesson?(lesson)).to eql(true)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(true)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'has finished lesson_3' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
+        create(:attempt, user: user, exercise: exercise_4, attempted_answer: exercise_4.answer)
+
+        expect(user.has_finished_lesson?(lesson)).to eql(true)
+        expect(user.has_finished_lesson?(lesson_2)).to eql(true)
+        expect(user.has_finished_lesson?(lesson_3)).to eql(true)
+      end
+    end
+
+    describe '#has_finished_exercise?' do
       it 'returns false if user has not finished exercise' do
         expect(user.has_finished_exercise?(exercise)).to eql(false)
         expect(user.has_finished_exercise?(exercise_2)).to eql(false)
@@ -40,7 +94,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe 'can_access_exercise?' do
+    describe '#can_access_exercise?' do
       it 'can access exercise if there is not other before it' do
         expect(user.can_access_exercise?(exercise)).to eql(true)
       end
@@ -57,7 +111,7 @@ RSpec.describe User, type: :model do
   end
 
 
-  describe 'create_learning_statuses' do
+  describe '#create_learning_statuses' do
     let!(:course) { create(:course) }
     let!(:chapter) { create(:chapter, course: course) }
     let!(:lesson) { create(:lesson, chapter: chapter) }
