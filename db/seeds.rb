@@ -12,6 +12,9 @@ chapter_1 = Chapter.create(
   position_in_course: 1
 )
 
+
+###############################################################################
+
 lesson_1 = Lesson.create(
   chapter: chapter_1,
   position_in_chapter: 1,
@@ -110,7 +113,31 @@ exercise_5 = Exercise.create(
   position_in_lesson: 5
 )
 
-#############################################################
+###############################################################################
+
+lesson_2 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 2,
+  title_en: 'Belonging and inclusion within sets',
+  content_en: "Sets can belong to one another, or include other sets. \n\n" \
+    "* When a set belongs to another, we use the symbol ∈ : P ∈ R (P belongs to R) \n\n" \
+    "* When a set includes another we use the symbol ⊂ : R ⊂ P (R includes P)"
+)
+
+example_5 = Example.create(
+  lesson: lesson_2,
+  content_en: "In the US, 91% of adults own a cellphone and 56% of them are smartphone \n\n" \
+    "* Let A be the set including all adults in America. \n\n" \
+    "* Let C be the set including all adults owning a cellphone. \n\n" \
+    "* Let S be the set including all adults owning a smartphone \n\n" \
+    "Here we can see that A ⊂ C ⊂ S : A includes C, which includes S \n\n" \
+    "In other words : S ∈ C ∈ A : S belongs to C which belongs to A",
+  img_url: 'maths_for_cs/chapter_1/lesson_2/example_1.png',
+  position_in_lesson: 5
+)
+
+
+###############################################################################
 
 user = User.create(
   email: 'pierre.hersant@gmail.com',
