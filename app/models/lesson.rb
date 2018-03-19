@@ -44,4 +44,11 @@ class Lesson < ApplicationRecord
     return unless self.chapter.lessons.pluck(:position_in_chapter).include?(self.position_in_chapter)
     errors.add(:position_in_chapter, 'already taken')
   end
+
+  def previous_lesson
+    return previous_lesson_in_chapter if previous_lesson_in_chapter
+
+    previous_chapter = self.chapter.previous_chapter_in_course
+    return previous_chapter.lessons_ordered.last if previous_chapter
+  end
 end
