@@ -7,13 +7,15 @@
     <h4><%= chapter.title_en %></h4>
     <h6><%= chapter.description_en %></h6>
     <% chapter.lessons.order(:position_in_chapter).each do |lesson| %>
-      <p>
-        <%= link_to(lesson.title_en, course_chapter_lesson_path(
-          course_id: lesson.chapter.course_id,
-          chapter_id: lesson.chapter_id,
-          id: lesson.id)
-        ) %>
-      </p>
+     <% if current_user.can_access_lesson?(lesson) %>
+        <p>
+          <%= link_to(lesson.title_en, course_chapter_lesson_path(
+            course_id: lesson.chapter.course_id,
+            chapter_id: lesson.chapter_id,
+            id: lesson.id)
+          ) %>
+        </p>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
