@@ -4,7 +4,9 @@
   <p> <%= @lesson.display_content(I18n.locale).html_safe %> </p>
 
   <% @lesson.examples.each do |example| %>
-    <%= example.display_content(I18n.locale).html_safe %>
+    <div style="border: 1px solid black">
+      <%= example.display_content(I18n.locale).html_safe %>
+    </div>
   <% end %>
 
   <p>
