@@ -22,6 +22,11 @@ class User < ApplicationRecord
     previous_exercise.blank? || self.has_finished_exercise?(previous_exercise)
   end
 
+  def can_access_lesson?(lesson)
+    previous_lesson = lesson.previous_lesson
+    previous_lesson.blank? || self.has_finished_lesson?(previous_lesson)
+  end
+
   def has_finished_lesson?(lesson)
     exercises_id = lesson.exercises.pluck(:id).sort
     attempts_id = self.attempts

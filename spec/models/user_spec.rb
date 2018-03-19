@@ -71,6 +71,40 @@ RSpec.describe User, type: :model do
       end
     end
 
+    describe '#can_access_lesson?' do
+      it 'cannot access lesson if he has not finished previous exercises' do
+        expect(user.can_access_lesson?(lesson)).to eql(true)
+        expect(user.can_access_lesson?(lesson_2)).to eql(false)
+        expect(user.can_access_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'cannot access lesson even with one of two finished' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        expect(user.can_access_lesson?(lesson)).to eql(true)
+        expect(user.can_access_lesson?(lesson_2)).to eql(false)
+        expect(user.can_access_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'can access lesson even with two of two finished' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+
+        expect(user.can_access_lesson?(lesson)).to eql(true)
+        expect(user.can_access_lesson?(lesson_2)).to eql(true)
+        expect(user.can_access_lesson?(lesson_3)).to eql(false)
+      end
+
+      it 'can access lesson_3' do
+        create(:attempt, user: user, exercise: exercise, attempted_answer: exercise.answer)
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: exercise_2.answer)
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: exercise_3.answer)
+
+        expect(user.can_access_lesson?(lesson)).to eql(true)
+        expect(user.can_access_lesson?(lesson_2)).to eql(true)
+        expect(user.can_access_lesson?(lesson_3)).to eql(true)
+      end
+    end
+
     describe '#has_finished_exercise?' do
       it 'returns false if user has not finished exercise' do
         expect(user.has_finished_exercise?(exercise)).to eql(false)
