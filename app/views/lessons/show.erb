@@ -7,17 +7,22 @@
     <div style="border: 1px solid black">
       <%= example.display_content(I18n.locale).html_safe %>
     </div>
+    <% if example.img_url %>
+      <img src="example.img_url" alt='maths for computer science'>
+    <% end %>
   <% end %>
 
   <p>
-    <%= link_to(
-      "I am ready to get challenged on this lesson",
-      new_course_chapter_lesson_exercise_attempt_path(
-        course_id: @lesson.chapter.course_id,
-        chapter_id: @lesson.chapter_id,
-        lesson_id: @lesson.id,
-        exercise_id: @lesson.exercises.first.id
-      )
-    ) %>
+    <% if @lesson.exercises.present? %>
+      <%= link_to(
+        "I am ready to get challenged on this lesson",
+        new_course_chapter_lesson_exercise_attempt_path(
+          course_id: @lesson.chapter.course_id,
+          chapter_id: @lesson.chapter_id,
+          lesson_id: @lesson.id,
+          exercise_id: @lesson.exercises.first.id
+        )
+      ) %>
+    <% end %>
   </p>
 </div>
