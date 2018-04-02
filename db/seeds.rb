@@ -121,20 +121,45 @@ lesson_2 = Lesson.create(
   title_en: 'Belonging and inclusion within sets',
   content_en: "Sets can belong to one another, or include other sets. \n\n" \
     "* When a set belongs to another, we use the symbol ∈ : P ∈ R (P belongs to R) \n\n" \
-    "* When a set includes another we use the symbol ⊂ : R ⊂ P (R includes P)"
+    "* When a set includes another we use the symbol ⊂ : R ⊂ P (R includes P) \n\n" \
+    "* You can say that a set is a subpart of another if it is included in it"
 )
 
 example_5 = Example.create(
   lesson: lesson_2,
-  content_en: "In the US, 91% of adults own a cellphone and 56% of them are smartphone \n\n" \
+  position_in_lesson: 1,
+  content_en: "In the US, 91% of adults own a cellphone and 56% of these are smartphone \n\n" \
     "* Let A be the set including all adults in America. \n\n" \
     "* Let C be the set including all adults owning a cellphone. \n\n" \
     "* Let S be the set including all adults owning a smartphone \n\n" \
     "Here we can see that A ⊂ C ⊂ S : A includes C, which includes S \n\n" \
     "In other words : S ∈ C ∈ A : S belongs to C which belongs to A",
-  img_url: 'maths_for_cs/chapter_1/lesson_2/example_1.png',
-  position_in_lesson: 5
+  img_url: 'maths_for_cs/chapter_1/lesson_2/example_1.png'
 )
+
+example_6 = Example.create(
+  lesson: lesson_2,
+  position_in_lesson: 2,
+  content_en: "* Let N be the set including natural numbers { 1 ; 2 ; 3 ; ... } \n\n" \
+    "* Let Z be the set including all integers : { ... -2 ; - 1 ; 0 ; 1 ; 2 ...} \n\n" \
+    "* Let R be the set including all real numbers : { .. -1.5 ; 0.2 ; 4 ; 12 ... } \n\n" \
+    "Therefore, R ⊂ Z ⊂ N and N ∈ Z ∈ R. \n\n" \
+    "Also, 1 ∈ Z and 1 ∈ R and 1 ∈ N; or, N ⊂ 1 and Z ⊂ 1 and R ⊂ 1..."
+  img_url: 'maths_for_cs/chapter_1/lesson_2/example_2.png'
+)
+
+example_7 = Example.create(
+  lesson: lesson_2,
+  position_in_lesson: 3,
+  content_en: "* Thousands of animal species populate the Earth. \n\n" \
+    "* Amongst them are mammals, like dolphins, monkeys, etc. Humans are mammals too ! \n\n" \
+    "*  Therefore, Animals ⊂ Mammals ⊂ Humans \n\n" \
+    "*  Or in other words, Humans ∈ Mammals ∈ Animals \n\n" \
+    "*  Fishes are animals too, but they are not mammals  ; Therefore, Animals ⊂ Fish, " \
+    "Animals ⊂ Mammals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n "
+  img_url: 'maths_for_cs/chapter_1/lesson_2/example_3.png'
+)
+
 
 
 ###############################################################################
