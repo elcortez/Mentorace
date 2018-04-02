@@ -31,7 +31,7 @@ lesson_1 = Lesson.create(
     "Note that the cardinal of an empty set is obviously 0."
 )
 
-example_1 = Example.create(
+Example.create(
   lesson: lesson_1,
   content_en: "let E be the set that includes all even numbers below 10 and above 0. \n" \
     "We can write E in two different manners \n\n" \
@@ -40,7 +40,7 @@ example_1 = Example.create(
   position_in_lesson: 2
 )
 
-example_2 = Example.create(
+Example.create(
   lesson: lesson_1,
   content_en: "let F be the set that includes all uneven numbers below 10. \n" \
     "We can write U in two different manners \n\n" \
@@ -49,7 +49,7 @@ example_2 = Example.create(
   position_in_lesson: 3
 )
 
-example_3 = Example.create(
+Example.create(
   lesson: lesson_1,
   content_en: "let G be an empty set \n" \
     "We can write G in two different manners \n\n" \
@@ -58,7 +58,7 @@ example_3 = Example.create(
   position_in_lesson: 4
 )
 
-example_4 = Example.create(
+Example.create(
   lesson: lesson_1,
   content_en: "let G be a set defined as follows : G = { 1 ; 2 ; 3} \n" \
     "G's cardinal is 3 because it has 3 elements \n\n" \
@@ -67,7 +67,7 @@ example_4 = Example.create(
   position_in_lesson: 5
 )
 
-exercise_1 = Exercise.create(
+Exercise.create(
   lesson: lesson_1,
   question_en: "Let R be a set which can be defined as follows: \n" \
     "{ x ∈ R | (x >= 5) AND (x < 10) AND (x is an integer) } \n" \
@@ -76,7 +76,7 @@ exercise_1 = Exercise.create(
   position_in_lesson: 1
 )
 
-exercise_2 = Exercise.create(
+Exercise.create(
   lesson: lesson_1,
   question_en: "Let S be a set which can be defined by extension as follows: \n" \
     "S = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 } \n" \
@@ -86,7 +86,7 @@ exercise_2 = Exercise.create(
   position_in_lesson: 2
 )
 
-exercise_3 = Exercise.create(
+Exercise.create(
   lesson: lesson_1,
   question_en: "Let T be a set defined as follows: " \
     "\n { x ∈ T | (x > 10) AND (x < 1) } " \
@@ -95,7 +95,7 @@ exercise_3 = Exercise.create(
   position_in_lesson: 3
 )
 
-exercise_4 = Exercise.create(
+Exercise.create(
   lesson: lesson_1,
   question_en: "Let U be a set defined as follows: " \
     "\n { x ∈ U | (x > 10) AND (x < 15) AND (x is an integer) } " \
@@ -104,7 +104,7 @@ exercise_4 = Exercise.create(
   position_in_lesson: 4
 )
 
-exercise_5 = Exercise.create(
+Exercise.create(
   lesson: lesson_1,
   question_en: "Let V be a set defined as follows: " \
     "\n { x ∈ V | (x ** x) = -1} " \
@@ -125,7 +125,7 @@ lesson_2 = Lesson.create(
     "* You can say that a set is a subpart of another if it is included in it"
 )
 
-example_5 = Example.create(
+Example.create(
   lesson: lesson_2,
   position_in_lesson: 1,
   content_en: "In the US, 91% of adults own a cellphone and 56% of these are smartphone \n\n" \
@@ -137,18 +137,18 @@ example_5 = Example.create(
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_1.png'
 )
 
-example_6 = Example.create(
+Example.create(
   lesson: lesson_2,
   position_in_lesson: 2,
   content_en: "* Let N be the set including natural numbers { 1 ; 2 ; 3 ; ... } \n\n" \
     "* Let Z be the set including all integers : { ... -2 ; - 1 ; 0 ; 1 ; 2 ...} \n\n" \
     "* Let R be the set including all real numbers : { .. -1.5 ; 0.2 ; 4 ; 12 ... } \n\n" \
     "Therefore, R ⊂ Z ⊂ N and N ∈ Z ∈ R. \n\n" \
-    "Also, 1 ∈ Z and 1 ∈ R and 1 ∈ N; or, N ⊂ 1 and Z ⊂ 1 and R ⊂ 1..."
+    "Also, 1 ∈ Z and 1 ∈ R and 1 ∈ N; or, N ⊂ 1 and Z ⊂ 1 and R ⊂ 1...",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_2.png'
 )
 
-example_7 = Example.create(
+Example.create(
   lesson: lesson_2,
   position_in_lesson: 3,
   content_en: "* Thousands of animal species populate the Earth. \n\n" \
@@ -156,11 +156,54 @@ example_7 = Example.create(
     "*  Therefore, Animals ⊂ Mammals ⊂ Humans \n\n" \
     "*  Or in other words, Humans ∈ Mammals ∈ Animals \n\n" \
     "*  Fishes are animals too, but they are not mammals  ; Therefore, Animals ⊂ Fish, " \
-    "Animals ⊂ Mammals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n "
+    "Animals ⊂ Mammals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_3.png'
 )
 
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 1,
+  question_en: 'Let N be a set which has a cardinal of 0; Does 0 ∈ N ?',
+  answer: 'false'
+)
 
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 2,
+  question_en: "* N = { x ∈ N | (x > 1) && (x < 10) } \n\n" \
+    "* P = { x ∈ P | (x > 5) && (x <= 10) } \n\n" \
+    "Does N ⊂ P?",
+  answer: 'false'
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 3,
+  question_en: "* N = { 1 ; 2 ; 3 } \n\n" \
+    "* P = { 4 ; 5 ; 6 } \n\n" \
+    "* We know that Q ⊂ N and Q ⊂ P \n\n" \
+    "What is Q's cardinal?",
+  answer: '6',
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 4,
+  question_en: "* N = { 1 ; 3 ; 5 } \n\n" \
+    "* P = { 1 ; 3 ; 5 ; 7 ; 9 ; 11 } \n\n" \
+    "* We know that  Q ⊂ N AND P ⊂ Q ; however 9 ∉ Q  \n\n" \
+    "Define Q by extension",
+  answer: '{ 1 ; 3 ; 5 ; 7 ; 11 } ',
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 4,
+  question_en: "* Let N, P and Q be 3 sets. \n\n" \
+   "* N ⊂ P and P ⊂ Q \n\n" \
+   "Does N ⊂ Q ?",
+  answer: 'true',
+)
 
 ###############################################################################
 
