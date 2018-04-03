@@ -207,6 +207,85 @@ Exercise.create(
 
 ###############################################################################
 
+lesson_3 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 3,
+  title_en: 'Parts of a set',
+  content_en: "A set is part of another if it is included in it. \n\n" \
+    "You can decide to call this a part or a subset. \n\n" \
+    "Here, inclusion is to be taken at the largest possible definition, meaning " \
+    "a set Q always includes itself and the empty set ø. \n\n" \
+    "For any given set Q, the set containing its parts is written P(Q) " \
+    "If a set Q contains n elements, P(Q) will contains 2**n elements."
+)
+
+Example.create(
+  lesson: lesson_3,
+  position_in_lesson: 1,
+  content_en: "Let N be a set defined as the following : N = { 1 ; 2 ; 3 } \n\n" \
+    "* Then P(N) = { ∅ ; { 1 } ; { 2 } ; { 3 } ; {1 ; 2 } ; { 2 ; 3 } ; {1 ; 3} ; { 1 ; 2 ; 3 } } \n\n" \
+    "* The cardinal of N can be written |N| \n\n" \
+    "* The cardinal of P(N) can be written |P(N)| \n\n" \
+    "* As you can see, |N| = 3, and |P(N)| = 2**3 = 8"
+)
+
+
+Example.create(
+  lesson: lesson_3,
+  position_in_lesson: 2,
+  content_en: "Let N be a set defined as an empty set : ø \n\n" \
+    "Then P(N) = { ø } \n\n" \
+    "|N| = 0 (because N is empty) \n\n" \
+    "|P(N)| = 2**0 = 1 \n\n"
+)
+
+Example.create(
+  lesson: lesson_3,
+  position_in_lesson: 3,
+  content_en: "Let N be defined as = N = { 1 } \n\n" \
+    "Then P(N) = { ø ; { 1 } } \n\n" \
+    "|N| = 1 \n\n" \
+    "|P(N)| = 2**1 = 2 \n\n"
+)
+
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 1,
+  question_en: "Let N be a set defined this way : { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
+   "How many parts does P(N) have ? \n\n",
+  answer: '32'
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 2,
+  question_en: "Let P(N) a collection of parts from a set defined as follows \n\n" \
+   "P(N) = { {ø} {3} {5} {3 ; 5} } \n\n" \
+   "Define the cardinal of N, |N|",
+  answer: '2'
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 3,
+  question_en: "If N ⊂ M, does P(M) ⊂ P(M)?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_2,
+  position_in_lesson: 4,
+  question_en: "Let N be a set defined as follows : N = { 10 ; 15 ; 20 ; 25 } \n\n" \
+    "Let M be a set defined as follows : { x ∈ M | (x >= 10) AND (x < 30) AND (x / 10 ∈ N) } \n\n" \
+    "Is M a part of N? \n\n" \
+    "Reminder : N is the set including all natural integers.",
+  answer: 'true'
+)
+
+
+###############################################################################
+
 user = User.create(
   email: 'pierre.hersant@gmail.com',
   password: 'azertyuiopmlkjhgffdsq'
