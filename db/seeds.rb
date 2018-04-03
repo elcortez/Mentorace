@@ -229,7 +229,6 @@ Example.create(
     "* As you can see, |N| = 3, and |P(N)| = 2**3 = 8"
 )
 
-
 Example.create(
   lesson: lesson_3,
   position_in_lesson: 2,
@@ -250,7 +249,7 @@ Example.create(
 
 
 Exercise.create(
-  lesson: lesson_2,
+  lesson: lesson_3,
   position_in_lesson: 1,
   question_en: "Let N be a set defined this way : { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
    "How many parts does P(N) have ? \n\n",
@@ -258,7 +257,7 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_2,
+  lesson: lesson_3,
   position_in_lesson: 2,
   question_en: "Let P(N) a collection of parts from a set defined as follows \n\n" \
    "P(N) = { {ø} {3} {5} {3 ; 5} } \n\n" \
@@ -267,14 +266,14 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_2,
+  lesson: lesson_3,
   position_in_lesson: 3,
   question_en: "If N ⊂ M, does P(M) ⊂ P(M)?",
   answer: 'true'
 )
 
 Exercise.create(
-  lesson: lesson_2,
+  lesson: lesson_3,
   position_in_lesson: 4,
   question_en: "Let N be a set defined as follows : N = { 10 ; 15 ; 20 ; 25 } \n\n" \
     "Let M be a set defined as follows : { x ∈ M | (x >= 10) AND (x < 30) AND (x / 10 ∈ N) } \n\n" \
@@ -283,6 +282,105 @@ Exercise.create(
   answer: 'true'
 )
 
+###############################################################################
+
+lesson_4 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 4,
+  title_en: 'Cartesian product',
+  content_en: "a Cartesian product is an operation that returns a set from multiple sets. \n\n" \
+  "For sets A and B, the Cartesian product A × B is the set of all ordered pairs (a, b) where a ∈ A and b ∈ B. \n\n" \
+  "You can call the result of that set product set, or simply product \n\n" \
+  "The product set is NOT commutative, meaning A x B ≠ B x A unless A = B \n\n" \
+  "For two sets A and B, |A x B| = |A| x |B| \n\n" \
+  "This also works if you create products with more than two sets : |A x B x C| = |A| x |B| x |C| \n\n" \
+  "Elements belonging to the sets are called p-lists"
+)
+
+Example.create(
+  lesson: lesson_4,
+  position_in_lesson: 1,
+  content_en: "E = { 1 ; 2 ; 3 } \n\n" \
+    "F = { 4 ; 5 ; 6 }" \
+    "E x F will be a set including all results of the following table, " \
+    "and each element will be its p-list.",
+  img_url: 'maths_for_cs/chapter_1/lesson_4/example_1.png'
+)
+
+Example.create(
+  lesson: lesson_4,
+  position_in_lesson: 2,
+  content_en: "What time is it? \n\n" \
+    "* Let H be the set including all possible hours H = {x ∈ H | x <= 12 AND x ∈ N} \n\n" \
+    "* Let M be the set including all possible minutes M = { x ∈  M | x <= 59 AND x ∈ N} \n\n" \
+    "* The current time is a part of H x M  \n\n" \
+    "* Which is why H x M ≠ M x H ; If it is 11:09, it is not 09:11 !",
+  img_url: 'maths_for_cs/chapter_1/lesson_4/example_2.png'
+)
+
+Example.create(
+  lesson: lesson_4,
+  position_in_lesson: 3,
+  content_en: "What are the coordinates of your home ? \n\n" \
+    "Let T be the latitude, G the longitude \n\n" \
+    "T = { x ∈ T | x <= 90 AND x >= -90 AND x ∈ R } \n\n" \
+    "G = { x ∈ G | x <= 180 AND x >= -180 AND x ∈ R } \n\n" \
+    "(Reminder : R is the set including all real numbers) \n\n" \
+    "Your coordinates are a subset of the product T x G \n\n" \
+    "The city of Paris, in France, for instance has approximately the following coordinates : { 48,51 ; 2,20 } \n\n",
+  img_url: 'maths_for_cs/chapter_1/lesson_4/example_3.png'
+)
+
+Example.create(
+  lesson: lesson_4,
+  position_in_lesson: 4,
+  content_en: "A = {1,2}; B = {3,4} C = { 5 } \n\n" \
+    "A × B x C = {1,2} × {3,4} x {5}= {(1,3,5), (1,4,5), (2,3,5), (2,4,5)} \n\n" \
+    "B × A x C= {3,4} × {1,2} x {5} = {(3,1,5), (3,2,5), (4,1,5), (4,2,5)} \n\n" \
+    "Again, the order pf the p-lists matters, even with 3 sets"
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 1,
+  question_en: "Let’s roll a 6-faces die twice. \n\n" \
+    "We expect a result looking like this : { first roll ; second roll } \n\n" \
+    "What are the number of possible combinations? ",
+  answer: '36'
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 2,
+  question_en: "Let’s roll a 6-faces die three times. \n\n" \
+    "We expect a result looking like this : { first roll ; second roll ; third roll } \n\n" \
+    "What are the number of possible values?",
+  answer: '216'
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 3,
+  question_en: "If we flip a coin 5 times, one after the other, how many different set of face/toes can we have in total?",
+  answer: '32'
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 4,
+  question_en: "A = { 1 ; 2 ; 3 } \n\n" \
+  "B = { 2 ; 3 ; 5 } \n\n" \
+  "C = { 7 ; 8 ; 9 } \n\n" \
+  "Is { 5 ; 2 ; 9 } a subpart of the set A x B x C?",
+  answer: 'false'
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 5,
+  question_en: "We grade 5 students from A to F. How many sets of grades are possible?",
+  answer: '7776'
+)
 
 ###############################################################################
 
