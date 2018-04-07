@@ -294,7 +294,9 @@ lesson_4 = Lesson.create(
   "The product set is NOT commutative, meaning A x B ≠ B x A unless A = B \n\n" \
   "For two sets A and B, |A x B| = |A| x |B| \n\n" \
   "This also works if you create products with more than two sets : |A x B x C| = |A| x |B| x |C| \n\n" \
-  "Elements belonging to the sets are called p-lists"
+  "Elements belonging to the sets are called p-lists. \n\n" \
+  "You can also multiply a set by itself, which means you will raise the set to the power of p. \n\n" \
+  "In that case, |Eⁿ| = |E|ⁿ"
 )
 
 Example.create(
@@ -340,6 +342,16 @@ Example.create(
     "Again, the order pf the p-lists matters, even with 3 sets"
 )
 
+Example.create(
+  lesson: lesson_4,
+  position_in_lesson: 5,
+  content_en: "What is the number of possibilities for a 4-digit credit card number? \n\n" \
+    "Since each digit can go from 0 to 9, our basic set C is {0; 1; 2; 3; 4; 5; 6; 7; 8; 9} \n\n" \
+    "Since we have 4 digits, we have to raise this set to the power of 4 \n\n" \
+    "Therefore, |C| = 10, and |C⁴| = |C|⁴ = 10⁴ = 10000. \n\n" \
+    "In other mathematical words, we call this a ‘repeated permutation’"
+)
+
 Exercise.create(
   lesson: lesson_4,
   position_in_lesson: 1,
@@ -380,6 +392,13 @@ Exercise.create(
   position_in_lesson: 5,
   question_en: "We grade 5 students from A to F. How many sets of grades are possible?",
   answer: '7776'
+)
+
+Exercise.create(
+  lesson: lesson_4,
+  position_in_lesson: 6,
+  question_en: "What are the different possibilites for an 8-digit phone number?",
+  answer: '100000000'
 )
 
 ###############################################################################
