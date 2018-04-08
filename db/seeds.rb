@@ -403,6 +403,14 @@ Exercise.create(
 
 ###############################################################################
 
+lesson_5 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 5,
+  title_en: 'Intersection, reunion, and complementation',
+  content_en: ""
+)
+
+###############################################################################
 user = User.create(
   email: 'pierre.hersant@gmail.com',
   password: 'azertyuiopmlkjhgffdsq'
