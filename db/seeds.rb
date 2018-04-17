@@ -292,6 +292,7 @@ lesson_4 = Lesson.create(
   "For sets A and B, the Cartesian product A × B is the set of all ordered pairs (a, b) where a ∈ A and b ∈ B. \n\n" \
   "You can call the result of that set product set, or simply product \n\n" \
   "The product set is NOT commutative, meaning A x B ≠ B x A unless A = B \n\n" \
+  "The product set is NOT associative, meaning A x B x C ≠ A x (B x C) ≠ (A x B) x C \n\n" \
   "For two sets A and B, |A x B| = |A| x |B| \n\n" \
   "This also works if you create products with more than two sets : |A x B x C| = |A| x |B| x |C| \n\n" \
   "Elements belonging to the sets are called p-lists. \n\n" \
@@ -406,9 +407,91 @@ Exercise.create(
 lesson_5 = Lesson.create(
   chapter: chapter_1,
   position_in_chapter: 5,
-  title_en: 'Intersection, reunion, and complementation',
-  content_en: ""
+  title_en: 'Intersection of sets',
+  content_en: "An intersection between two sets is a new set that groups all elements that belong to both sets. \n\n" \
+    "Its symbol is the following : ⋂ \n\n" \
+    "Intersections is commutative, which mean A ⋂ B = B ⋂ A \n\n" \
+    "Intersections are associative, which means : (A ⋂ B) ⋂ C = A ⋂ (B ⋂ C) \n\n" \
+    "Intersections are idempotents, which means A ⋂ A = A \n\n" \
+    "Whichever set A exists, A ⋂ ∅ = ∅ \n\n" \
+    "If A ⋂ B = ∅, then A and B are disjoints, which means no element from A can be found in B."
 )
+
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 1,
+  content_en: "A = { 1 ; 2 ; 3 } \n\n" \
+    "B = { 3 ; 4 ; 5 } \n\n" \
+    "A ⋂ B = { 3 }",
+    img_url: 'maths_for_cs/chapter_1/lesson_5/example_1.png'
+)
+
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 2,
+  content_en: "A = { 1 ; 2 ; 3 } \n\n" \
+    "B = { 4 ; 5 } \n\n" \
+    "A ⋂ B = ∅ \n\n" \
+    "Here A and B are disjoints",
+  img_url: 'maths_for_cs/chapter_1/lesson_5/example_2.png'
+)
+
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 3,
+  content_en: "A = { 1 ; 2 ; 3 } \n\n" \
+    "B = { 2 ; 3 ; 4 ; 5 } \n\n" \
+    "C = { 3 ; 7 ; 8 } \n\n" \
+    "A ⋂ B = { 2 ; 3 } \n\n" \
+    "A ⋂ C = { 3 } \n\n" \
+    "(A ⋂ B) ⋂ C = A ⋂ (B ⋂ C) = { 3 }"
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 1,
+  question_en: "A = { 2 ; 4 ; 8 ; 52 ; 78 } \n\n" \
+    "B = { 78 ; 87 } \n\n" \
+    "Define A ⋂ B",
+  answer: '{ 78 }'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 2,
+  question_en: "N = { x ∈ N | x > 1 AND x is an integer AND x < 5 } \n\n" \
+    "M = { 3 ; 4 } \n\n" \
+    "What is the number |P(N ⋂ M)| ? \n\n",
+  answer: '4'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 3,
+  question_en: "if R ⋂ P = A and  A ⋂ P = P, then Does R ⊂ P?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 4,
+  question_en: "if B ∈ C and C ⋂ D = B, then Does D = B?",
+  answer: 'false'
+)
+
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 5,
+  question_en: "if B ∈ (A ⋂ C) and C ∈ (A ⋂ B), then Is B = C?",
+  answer: 'true'
+)
+
+
+
+
+
+
 
 ###############################################################################
 user = User.create(
