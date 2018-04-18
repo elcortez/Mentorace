@@ -409,6 +409,7 @@ lesson_5 = Lesson.create(
   position_in_chapter: 5,
   title_en: 'Intersection of sets',
   content_en: "An intersection between two sets is a new set that groups all elements that belong to both sets. \n\n" \
+    "Every element that is in the set A AND in the set B will be present in this set. \n\n" \
     "Its symbol is the following : ⋂ \n\n" \
     "Intersections is commutative, which mean A ⋂ B = B ⋂ A \n\n" \
     "Intersections are associative, which means : (A ⋂ B) ⋂ C = A ⋂ (B ⋂ C) \n\n" \
@@ -487,11 +488,106 @@ Exercise.create(
   answer: 'true'
 )
 
+###############################################################################
+lesson_6 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 6,
+  title_en: 'Union of sets',
+  content_en: "The unions of two sets A and B are a new set C containing all elements that belongs to any set.\n\n" \
+    "Every element that is in the set A OR in the set B will be present in this set. \n\n" \
+    "Its symbol is the following : ∪ \n\n" \
+    "Unions are commutative, which mean A ∪ B = B ∪ A. \n\n" \
+    "Unions are associative, which means (A ∪ B) ∪ C = A ∪ (B ∪ C) = A ∪ B ∪ C \n\n" \
+    "Unions are idempotents, which mean A ∪ A = A \n\n" \
+    "Whichever set A exists, A ∪ ø = A \n\n" \
+    "If A ∪ B = ø, it means A = ø and B = ø. \n\n"
+)
 
 
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 1,
+  content_en: "A ∪ B",
+  img_url: 'maths_for_cs/chapter_1/lesson_6/example_1.png'
+)
+
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 2,
+  content_en: "(A ∪ B) ⋂ C = (A ⋂ B) ∪ (B ⋂ C)",
+  img_url: 'maths_for_cs/chapter_1/lesson_6/example_2.png'
+)
 
 
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 3,
+  content_en: "(A ⋂ B) ∪ C = (A ∪ C) ⋂ (B ∪ C)",
+  img_url: 'maths_for_cs/chapter_1/lesson_6/example_3.png'
+)
 
+Example.create(
+  lesson: lesson_5,
+  position_in_lesson: 4,
+  content_en: "(A ⋂ B) ∪ (B ∪ C)",
+  img_url: 'maths_for_cs/chapter_1/lesson_6/example_4.png'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 1,
+  question_en: "A = { 1 ; 2 ; 3 } \n\n" \
+    "B = { 4 } \n\n" \
+    "Define A ∪ B",
+  answer: '{ 1 ; 2 ; 3 ; 4 }',
+  hint: '{ a ; b ; c }'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 2,
+  question_en: "A = { 1 ; 2 ; 3 } \n\n" \
+  "B = { 3 ; 4 } \n\n" \
+  "C = { 4 ; 5 ; 6 } \n\n" \
+  "Define (A ∪ B) ⋂ C",
+  answer: '{ 4 }',
+  hint: '{ a ; b ; c }'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 3,
+  question_en: "Is (A ∪ B) ⋂ (A ∪ C) ⋂ (B ∪ C) = A ∪ B ∪ C?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 4,
+  question_en: "B ∈ (A ∪ C) \n\n" \
+    "B ∉ (A ⋂ C) \n\n" \
+    "C ⊄ B \n\n" \
+    "Does B ∈ A ?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 5,
+  question_en: "A ⊂ (B ⋂ C) \n\n" \
+    "(B ∪ C) ⊂ A\n\n" \
+    "Does A = B = C ?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_5,
+  position_in_lesson: 6,
+  question_en: "If (A ∪ B) ⊂ (A ∪ C) \n\n" \
+    "And (A ⋂ B) ⊂ (A ⋂ C) \n\n" \
+    "Does B ⊂ C?",
+  answer: 'true'
+)
 
 ###############################################################################
 user = User.create(
