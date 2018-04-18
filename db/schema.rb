@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.bigint "lesson_id"
     t.text "question_en"
     t.string "answer"
+    t.string "hint"
     t.integer "position_in_lesson"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

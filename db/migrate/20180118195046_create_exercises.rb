@@ -4,6 +4,7 @@ class CreateExercises < ActiveRecord::Migration[5.1]
       t.references :lesson, foreign_key: true
       t.text :question_en
       t.string :answer
+      t.string :hint
       t.integer :position_in_lesson
 
       t.timestamps
