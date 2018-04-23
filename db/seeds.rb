@@ -503,7 +503,6 @@ lesson_6 = Lesson.create(
     "If A ∪ B = ø, it means A = ø and B = ø. \n\n"
 )
 
-
 Example.create(
   lesson: lesson_5,
   position_in_lesson: 1,
@@ -587,6 +586,80 @@ Exercise.create(
     "And (A ⋂ B) ⊂ (A ⋂ C) \n\n" \
     "Does B ⊂ C?",
   answer: 'true'
+)
+
+###############################################################################
+
+lesson_7 = Lesson.create(
+  chapter: chapter_1,
+  position_in_chapter: 7,
+  title_en: 'Complement of sets',
+  content_en: "The complement of a set contained inside another set is a third set containing \n\n" \
+  "all elements of the containing set that do not belong to the contained set. \n\n" \
+  "* Its symbol is ∁, which means that for a set A contained inside a set B, the \n\n" \
+  "complement of A inside B is written -> ∁ᴬʙ \n\n" \
+  "* You can also write it with an overline like this : for a set X, its complement is X̅ \n\n" \
+  "* You can also write it simply like this : Aᶜ\n\n" \
+  "* A set and its complement are always disjoints : X ⋂ X̅ = ø \n\n" \
+  "* A set and its complement, if united, are complementary inside another set : A ∪ ∁ᴬʙ = B \n\n" \
+  "* The complement of a complement is always itself : for a set O, o̿ = O. \n\n" \
+  "* The first law of Morgan stipulates the following : The complement of the " \
+  "union of two sets is always the intersection of their mutual complements. " \
+  "Which means (A ∪ B)ᶜ = Aᶜ ⋂ Bᶜ. \n\n" \
+  "* The second law of Morgan stipulates the following : The complement of the " \
+  "intersection of two sets is the union of their complements; "\
+  "which means (A ⋂ B)ᶜ = (Aᶜ ∪ Bᶜ)"
+)
+
+Example.create(
+  lesson: lesson_7,
+  position_in_lesson: 1,
+  content_en: "B = { 3 } \n\n" \
+    "G = { 2 ; 3 ; 4 } \n\n" \
+    "M = { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
+    "Here you can see that A ⊂ B ⊂ C \n\n" \
+    "And ∁ᴮᴍ = { 1 ; 2 ; 4 ; 5 } \n\n" \
+    "But ∁ᴮɢ = { 2 ; 4 } \n\n",
+  img_url: 'maths_for_cs/chapter_1/lesson_7/example_1.png'
+)
+
+Example.create(
+  lesson: lesson_7,
+  position_in_lesson: 2,
+  content_en: "B = { 3 ; 4 ; 6 } \n\n" \
+    "G = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 ; 7 } \n\n" \
+    "∁ᴮɢ = { 1 ; 2 ; 5 ; 7 } \n\n" \
+    "Here the cardinal of B, |B| = 3 \n\n" \
+    "Also the cardinal of ∁ᴮɢ, |∁ᴮɢ| = 4 \n\n" \
+    "Therefore, |G| = |B| + |∁ᴮɢ| = 3 + 4 = 7 \n\n",
+)
+
+Example.create(
+  lesson: lesson_7,
+  position_in_lesson: 3,
+  content_en: "Let's consider a set E = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 ; 7 } \n\n" \
+    "A = { 3 ; 4 } \n\n" \
+    "B = { 1 ; 2 ; 3 } \n\n" \
+    "We can easily see that A ∪ B = { 1 ; 2 ; 3 ; 4 } \n\n" \
+    "Therefore (A ∪ B)ᶜ = { 5 ; 6 ; 7 } \n\n" \
+    "Also, within E, Aᶜ = { 1 ; 2 ; 5 ; 6 ; 7 } ; \n\n" \
+    "And Bᶜ = { 4 ; 5 ; 6 ; 7 } \n\n" \
+    "Therefore, according to the first law of Morgan, \n\n" \
+    "Aᶜ ⋂ Bᶜ = { 5 ; 6 ; 7 }, which is equal to (A ∪ B)ᶜ",
+  img_url: 'maths_for_cs/chapter_1/lesson_7/example_3.png'
+)
+
+Example.create(
+  lesson: lesson_7,
+  position_in_lesson: 4,
+  content_en: "Let's take the same example as above ; \n\n" \
+    "We can easily see that A ⋂ B = { 3 } \n\n" \
+    "Therefore (A ⋂ B)ᶜ = { 1 ; 2 ; 4 ; 5 ; 6 ; 7 } \n\n" \
+    "Also, within E, Aᶜ = { 1 ; 2 ; 5 ; 6 ; 7 } ; \n\n" \
+    "And Bᶜ = { 4 ; 5 ; 6 ; 7 } \n\n" \
+    "Therefore, according to the first law of Morgan, \n\n" \
+    "Aᶜ ∪ Bᶜ = { 1 ; 2 ; 4 ; 5 ; 6 ; 7 }, which is equal to (A ⋂ B)ᶜ",
+  img_url: 'maths_for_cs/chapter_1/lesson_7/example_4.png'
 )
 
 ###############################################################################
