@@ -121,7 +121,7 @@ lesson_2 = Lesson.create(
   title_en: 'Belonging and inclusion within sets',
   content_en: "Sets can belong to one another, or include other sets. \n\n" \
     "* When a set belongs to another, we use the symbol ∈ : P ∈ R (P belongs to R) \n\n" \
-    "* When a set includes another we use the symbol ⊂ : R ⊂ P (R includes P) \n\n" \
+    "* When a set is included another we use the symbol ⊂ : P ⊂ R (R includes P, or P is a subpart of R) \n\n" \
     "* You can say that a set is a subpart of another if it is included in it"
 )
 
@@ -132,7 +132,7 @@ Example.create(
     "* Let A be the set including all adults in America. \n\n" \
     "* Let C be the set including all adults owning a cellphone. \n\n" \
     "* Let S be the set including all adults owning a smartphone \n\n" \
-    "Here we can see that A ⊂ C ⊂ S : A includes C, which includes S \n\n" \
+    "Here we can see that S ⊂ C ⊂ A: A includes C, which includes S \n\n" \
     "In other words : S ∈ C ∈ A : S belongs to C which belongs to A",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_1.png'
 )
@@ -143,8 +143,8 @@ Example.create(
   content_en: "* Let N be the set including natural numbers { 1 ; 2 ; 3 ; ... } \n\n" \
     "* Let Z be the set including all integers : { ... -2 ; - 1 ; 0 ; 1 ; 2 ...} \n\n" \
     "* Let R be the set including all real numbers : { .. -1.5 ; 0.2 ; 4 ; 12 ... } \n\n" \
-    "Therefore, R ⊂ Z ⊂ N and N ∈ Z ∈ R. \n\n" \
-    "Also, 1 ∈ Z and 1 ∈ R and 1 ∈ N; or, N ⊂ 1 and Z ⊂ 1 and R ⊂ 1...",
+    "Therefore, N ⊂ Z ⊂ R and N ∈ Z ∈ R. \n\n" \
+    "Also, 1 ∈ Z and 1 ∈ R and 1 ∈ N",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_2.png'
 )
 
@@ -153,10 +153,10 @@ Example.create(
   position_in_lesson: 3,
   content_en: "* Thousands of animal species populate the Earth. \n\n" \
     "* Amongst them are mammals, like dolphins, monkeys, etc. Humans are mammals too ! \n\n" \
-    "*  Therefore, Animals ⊂ Mammals ⊂ Humans \n\n" \
+    "*  Therefore, Humans ⊂ Mammals ⊂ Animals (Humans are a subpart of Mammals, etc.) \n\n" \
     "*  Or in other words, Humans ∈ Mammals ∈ Animals \n\n" \
-    "*  Fishes are animals too, but they are not mammals  ; Therefore, Animals ⊂ Fish, " \
-    "Animals ⊂ Mammals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n",
+    "*  Fishes are animals too, but they are not mammals  ; Therefore, Fish ⊂ Animals, " \
+    "Mammals ⊂ Animals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_3.png'
 )
 
@@ -172,7 +172,7 @@ Exercise.create(
   position_in_lesson: 2,
   question_en: "* N = { x ∈ N | (x > 1) && (x < 10) } \n\n" \
     "* P = { x ∈ P | (x > 5) && (x <= 10) } \n\n" \
-    "Does N ⊂ P?",
+    "Does P ⊂ N ?",
   answer: 'false'
 )
 
@@ -181,7 +181,7 @@ Exercise.create(
   position_in_lesson: 3,
   question_en: "* N = { 1 ; 2 ; 3 } \n\n" \
     "* P = { 4 ; 5 ; 6 } \n\n" \
-    "* We know that Q ⊂ N and Q ⊂ P \n\n" \
+    "* We know that N ⊂ Q and P ⊂ Q \n\n" \
     "What is Q's cardinal?",
   answer: '6',
 )
@@ -191,7 +191,7 @@ Exercise.create(
   position_in_lesson: 4,
   question_en: "* N = { 1 ; 3 ; 5 } \n\n" \
     "* P = { 1 ; 3 ; 5 ; 7 ; 9 ; 11 } \n\n" \
-    "* We know that  Q ⊂ N AND P ⊂ Q ; however 9 ∉ Q  \n\n" \
+    "* We know that N ⊂  Q AND Q ⊂ P ; however 9 ∉ Q  \n\n" \
     "Define Q by extension",
   answer: '{ 1 ; 3 ; 5 ; 7 ; 11 } ',
 )
@@ -200,8 +200,8 @@ Exercise.create(
   lesson: lesson_2,
   position_in_lesson: 4,
   question_en: "* Let N, P and Q be 3 sets. \n\n" \
-   "* N ⊂ P and P ⊂ Q \n\n" \
-   "Does N ⊂ Q ?",
+   "* P ⊂ N and Q ⊂ P \n\n" \
+   "Does Q ⊂ N ?",
   answer: 'true',
 )
 
@@ -469,7 +469,7 @@ Exercise.create(
 Exercise.create(
   lesson: lesson_5,
   position_in_lesson: 3,
-  question_en: "if R ⋂ P = A and  A ⋂ P = P, then Does R ⊂ P?",
+  question_en: "if R ⋂ P = A and  A ⋂ P = P, then Does P ⊂ R ?",
   answer: 'true'
 )
 
@@ -504,14 +504,14 @@ lesson_6 = Lesson.create(
 )
 
 Example.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 1,
   content_en: "A ∪ B",
   img_url: 'maths_for_cs/chapter_1/lesson_6/example_1.png'
 )
 
 Example.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 2,
   content_en: "(A ∪ B) ⋂ C = (A ⋂ B) ∪ (B ⋂ C)",
   img_url: 'maths_for_cs/chapter_1/lesson_6/example_2.png'
@@ -519,21 +519,21 @@ Example.create(
 
 
 Example.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 3,
   content_en: "(A ⋂ B) ∪ C = (A ∪ C) ⋂ (B ∪ C)",
   img_url: 'maths_for_cs/chapter_1/lesson_6/example_3.png'
 )
 
 Example.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 4,
   content_en: "(A ⋂ B) ∪ (B ∪ C)",
   img_url: 'maths_for_cs/chapter_1/lesson_6/example_4.png'
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 1,
   question_en: "A = { 1 ; 2 ; 3 } \n\n" \
     "B = { 4 } \n\n" \
@@ -543,7 +543,7 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 2,
   question_en: "A = { 1 ; 2 ; 3 } \n\n" \
   "B = { 3 ; 4 } \n\n" \
@@ -554,14 +554,14 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 3,
   question_en: "Is (A ∪ B) ⋂ (A ∪ C) ⋂ (B ∪ C) = A ∪ B ∪ C?",
   answer: 'true'
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 4,
   question_en: "B ∈ (A ∪ C) \n\n" \
     "B ∉ (A ⋂ C) \n\n" \
@@ -571,7 +571,7 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 5,
   question_en: "A ⊂ (B ⋂ C) \n\n" \
     "(B ∪ C) ⊂ A\n\n" \
@@ -580,7 +580,7 @@ Exercise.create(
 )
 
 Exercise.create(
-  lesson: lesson_5,
+  lesson: lesson_6,
   position_in_lesson: 6,
   question_en: "If (A ∪ B) ⊂ (A ∪ C) \n\n" \
     "And (A ⋂ B) ⊂ (A ⋂ C) \n\n" \
@@ -661,6 +661,53 @@ Example.create(
     "Aᶜ ∪ Bᶜ = { 1 ; 2 ; 4 ; 5 ; 6 ; 7 }, which is equal to (A ⋂ B)ᶜ",
   img_url: 'maths_for_cs/chapter_1/lesson_7/example_4.png'
 )
+
+Exercise.create(
+  lesson: lesson_7,
+  position_in_lesson: 1,
+  question_en: "A = { 1 ; 2 } \n\n" \
+    "B = { 2 ; 4 } \n\n" \
+    "is P(A) ⋂ P(B) = P(A ⋂ B) ?",
+  answer: 'true'
+)
+
+Exercise.create(
+  lesson: lesson_7,
+  position_in_lesson: 2,
+  question_en: "A = { 1 ; 2 ; 3 } \n\n" \
+    "B = { 2 ; 4 } \n\n" \
+    "Is P(A ∪ B) = P(A) ∪ P(B) ?",
+  answer: 'false'
+)
+
+Exercise.create(
+  lesson: lesson_7,
+  position_in_lesson: 3,
+  question_en: "A = { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
+    "B = { 2 ; 3 } \n\n" \
+    "C = { 4 ; 5 } \n\n" \
+    "Define, (B ∪ C)ᶜ within A",
+  answer: '{ 1 }'
+)
+
+Exercise.create(
+  lesson: lesson_7,
+  position_in_lesson: 4,
+  question_en: "Within a set E containing all letters of the english alphabet \n\n" \
+    "A = { a ; b ; c ; d ; e } and B = { b ; d ; e ; f ; g } \n\n" \
+    "Does b ∈ (A ⋂ Bᶜ) ?\n\n";
+  answer: 'false'
+)
+
+Exercise.create(
+  lesson: lesson_7,
+  position_in_lesson: 5,
+  question_en: "Within a set E containing all letters of the english alphabet \n\n" \
+    "A = { a ; b ; c ; d ; e } and B = { b ; d ; e ; f ; g } \n\n" \
+    "Does { a ; c } ⊂ (A ⋂ Bᶜ) ?\n\n",
+  answer: 'true'
+)
+
 
 ###############################################################################
 user = User.create(
