@@ -695,7 +695,7 @@ Exercise.create(
   position_in_lesson: 4,
   question_en: "Within a set E containing all letters of the english alphabet \n\n" \
     "A = { a ; b ; c ; d ; e } and B = { b ; d ; e ; f ; g } \n\n" \
-    "Does b ∈ (A ⋂ Bᶜ) ?\n\n";
+    "Does b ∈ (A ⋂ Bᶜ) ?\n\n",
   answer: 'false'
 )
 
