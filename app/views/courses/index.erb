@@ -4,8 +4,11 @@
 
   <% course.chapters.order(:position_in_course).each do |chapter| %>
 
-    <h4><%= chapter.title_en %></h4>
-    <h6><%= chapter.description_en %></h6>
+    <h3><%= chapter.title_en %></h3>
+    <p> <em> <%= chapter.description_en %></em></p>
+
+    <h5> <b> All Lessons </b> </h5>
+
     <% chapter.lessons.order(:position_in_chapter).each do |lesson| %>
       <% if current_user.can_access_lesson?(lesson) %>
         <p>
