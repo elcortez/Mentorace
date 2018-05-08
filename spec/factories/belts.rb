@@ -2,10 +2,10 @@ FactoryBot.define do
   factory :belt do
     user nil
     course nil
-    rank 1
-    color "MyString"
-    grade "MyString"
-    current_xp 1
-    max_xp 1
+    color :white
+    grade :rokukyu
+    level 1
+    current_xp 0
+    max_xp 10
   end
 end

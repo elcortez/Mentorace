@@ -10,6 +10,7 @@ class Course < ApplicationRecord
 
   def create_belts_for_user(user_id)
     return if Belt.find_by(user_id: user_id, course_id: self.id)
+
     Belt.create!(
       user_id: user_id,
       course_id: self.id,

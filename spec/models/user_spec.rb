@@ -25,6 +25,37 @@ RSpec.describe User, type: :model do
       end
 
       it 'current_belts' do
+        expect(user.current_belts.count).to eql(1)
+        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
+
+        user.reload
+        expect(user.current_belts.count).to eql(1)
+        expect(user.current_belts.last.color.to_sym).to eql(:yellow)
+        expect(user.current_belts.last.level).to eql(2)
+        expect(user.current_belts.last.grade.to_sym).to eql(:gokyu)
+      end
+
+      it 'current_belts with several courses' do
+        expect(user.current_belts.count).to eql(1)
+        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
+        create(:course)
+        create(:course)
+        create(:course)
+
+        user.create_first_belts
+        user.reload
+
+        expect(user.belts.count).to eql(5)
+        expect(user.current_belts.count).to eql(4)
+
+        expect(user.current_belts.order(level: :desc)
+          .map { |b| [b.color.to_sym, b.level, b.grade.to_sym] })
+          .to eql([
+            [:yellow, 2, :gokyu],
+            [:white, 1, :rokukyu],
+            [:white, 1, :rokukyu],
+            [:white, 1, :rokukyu]
+          ])
       end
     end
 
