@@ -33,6 +33,7 @@ RSpec.describe Course, type: :model do
     it 'will accept validation with some title_en' do
       course.title_en = 'awesome course title_en'
       expect(course.save).to be true
+      expect(course.display_title).to eql('awesome course title_en')
     end
   end
 end

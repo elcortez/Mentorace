@@ -1,6 +1,8 @@
 en:
   team: "Pierre and Mikaël"
+  all_courses: "All Courses"
   about_us:
+    title: 'About Us'
     another_learning_platform: "Oh great, another learning platform…"
     it_is_different: "But this time, it’s different !"
     we_wanted_to_learn_too: "We wanted to learn too. We tried all these websites."
