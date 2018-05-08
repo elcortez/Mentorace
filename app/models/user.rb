@@ -20,6 +20,7 @@ class User < ApplicationRecord
   after_create :create_first_belts
 
   def current_belt_for_course(course_id)
+    self.current_belts.find_by(course_id: course_id)
   end
 
   def create_first_belts

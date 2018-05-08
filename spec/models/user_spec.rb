@@ -24,6 +24,14 @@ RSpec.describe User, type: :model do
         expect(user.belts.first.color.to_sym).to eql(:white)
       end
 
+      it 'current_belt_for_course' do
+        expect(user.current_belt_for_course(course.id).color.to_sym).to eql(:white)
+        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
+
+        user.reload
+        expect(user.current_belt_for_course(course.id).color.to_sym).to eql(:yellow)
+      end
+
       it 'current_belts' do
         expect(user.current_belts.count).to eql(1)
         create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
