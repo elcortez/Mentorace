@@ -7,7 +7,15 @@
 </p>
 
 <%= simple_form_for [:course, :chapter, :lesson, @exercise, @attempt] do |f| %>
-  <%= f.input :attempted_answer %>
+  <% if [:false, :true].include?(@exercise.answer.to_sym) %>
+    <%= f.input :attempted_answer,
+      as: :radio_buttons,
+      collection: [:true, :false]
+    %>
+  <% else %>
+    <%= f.input :attempted_answer %>
+  <% end %>
+
   <%= f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id } %>
   <%= f.button :submit %>
 <% end %>
