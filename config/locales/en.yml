@@ -1,2 +1,55 @@
 en:
-  course_finished: 'Congratulations, you finished this course !'
+  team: "Pierre and Mikaël"
+  about_us:
+    another_learning_platform: "Oh great, another learning platform…"
+    it_is_different: "But this time, it’s different !"
+    we_wanted_to_learn_too: "We wanted to learn too. We tried all these websites."
+    we_went_through_every_mooc: "We went through every MOOC, every youtube tutorial,
+      every wikipedia page, and every book to learn mathematics and computer science."
+    and_it_hurt: "And man did it hurt."
+    we_struggled: "We struggled with each of these classes, and hardly finished any."
+    why_is_it_so_hard:
+      question: "Why is it so hard to learn?"
+      content_1: "Most of the MOOCS out there are either introductory, trading
+        off depth for simplicity and a rapid overview of a topic that does not
+        really teach you any professional skill…"
+      content_2: "…. Or go straight into excruciatingly complex technical details
+        that are simply out of reach for someone who has not already graduated
+        on a similar topic"
+      content_3: "Schools and universities already select the best young students
+        and claim to be at the top of their game, when in fact the students they
+        preselected were already the best before they passed through their doors"
+      content_4: "Most of the time, you will get several pages of abstract theory
+        thrown at your face without any example, or very few, and you will always
+        have to come back to the same pages 10 times to finally understand one
+        simple concept that could have been explained easily with just 2 or 3 examples."
+    why_are_we_different:
+      question: "Why are we different?"
+      content_1: "First, we’re here to teach you a complete subject. You will
+        not find mere « introductory courses » on this website. When we start
+        something, we finish it. If you are here to learn mathematics for CS and
+        algorithms, you will learn them fully, completely, from top to bottom,
+        until you master the general concepts and every little detail."
+      content_2: "We are professional oriented : these courses are designed to
+        give you skills that you can use on the field of any business, as soon
+        as you finished your learning"
+      content_3: "We will take you to each step incrementally and carefully,
+        decomposing every chunk of knowledge with a lot of practice, so that you
+        never have to come back to the previous lesson to understand something.
+        Our concept is very straightforward : 1 lesson, 5 exercices; and no
+        lesson should take more than 15 minutes to read."
+      content_4: "We will make you repeat the exercises several times on different
+        situations. You will never leave a lesson without having practiced the
+        concepts again and again, to make sure you really master the subject."
+    many_teachers_believe: "Many teachers still believe that their job is merely
+      to « transmit knowledge », and that it is up to the student to educated herself."
+    we_believe: "We believe that someone who wants to learn something should just
+      show up with her strong will and desire, and that it is up to the teacher
+      to make sure that she learned properly."
+    we_believe_2: "We believe in a world where anyone who desires to learn
+      should have the ability to do so, regardless of their financial situation,
+      or pre existing diplomas."
+    if_you_believe: "If you believe in that too, then welcome aboard !
+      You will embark in an amazing journey through the best classes out there,
+      and leave with skills that you can use in the professional world."
+    you_might_come_back: "And who knows, you might even come back here for fun !"
