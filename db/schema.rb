@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201204332) do
+ActiveRecord::Schema.define(version: 20180508124531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 20180201204332) do
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_attempts_on_exercise_id"
     t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
+
+  create_table "belts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.integer "rank"
+    t.string "color"
+    t.string "grade"
+    t.integer "current_xp"
+    t.integer "max_xp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_belts_on_course_id"
+    t.index ["user_id"], name: "index_belts_on_user_id"
   end
 
   create_table "chapters", force: :cascade do |t|
@@ -112,6 +126,8 @@ ActiveRecord::Schema.define(version: 20180201204332) do
 
   add_foreign_key "attempts", "exercises"
   add_foreign_key "attempts", "users"
+  add_foreign_key "belts", "courses"
+  add_foreign_key "belts", "users"
   add_foreign_key "chapters", "courses"
   add_foreign_key "examples", "lessons"
   add_foreign_key "exercises", "lessons"

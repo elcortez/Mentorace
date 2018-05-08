@@ -2,6 +2,7 @@ class Course < ApplicationRecord
   validates_presence_of :title_en
   has_many :chapters
   has_one :learning_status
+  has_many :belts
 
   def display_title
     self.send("title_#{I18n.locale}")

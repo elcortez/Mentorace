@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :attempts
   has_many :learning_statuses
+  has_many :belts
 
   after_create :create_learning_statuses
 
