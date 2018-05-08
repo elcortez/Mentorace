@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180508124531) do
   create_table "belts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "course_id"
-    t.integer "rank"
+    t.integer "level"
     t.string "color"
     t.string "grade"
     t.integer "current_xp"
