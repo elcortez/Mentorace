@@ -17,6 +17,17 @@ RSpec.describe User, type: :model do
 
     let!(:user) { create(:user) }
 
+    describe 'current_belts, current_belt_for_course, create_first_belts' do
+      it 'create_first_belts' do
+        expect(user.belts.count).to eql(1)
+        expect(user.belts.first.course_id).to eql(course.id)
+        expect(user.belts.first.color.to_sym).to eql(:white)
+      end
+
+      it 'current_belts' do
+      end
+    end
+
     describe '#has_finished_lesson?' do
       it 'has not finished any lesson' do
         expect(user.has_finished_lesson?(lesson)).to eql(false)

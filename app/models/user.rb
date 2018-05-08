@@ -7,8 +7,17 @@ class User < ApplicationRecord
   has_many :attempts
   has_many :learning_statuses
   has_many :belts
+  has_many :current_belts
 
   after_create :create_learning_statuses
+  after_create :create_first_belts
+
+  def current_belt_for_course(course_id)
+  end
+
+  def create_first_belts
+    Course.find_each { |course| course.create_belts_for_user(self.id) }
+  end
 
   def create_learning_statuses
     Course.find_each { |course| course.create_learning_status_for_user(self.id) }
