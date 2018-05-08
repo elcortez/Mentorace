@@ -6,7 +6,7 @@ class Attempt < ApplicationRecord
 
   def set_successful
     return false unless self.attempted_answer.present?
-    return false unless self.attempted_answer.gsub(/' '/, '') == self.exercise.answer.gsub(/' '/, '')
+    return false unless self.attempted_answer.gsub(/ /, '') == self.exercise.answer.gsub(/ /, '')
     self.attempt_successful = true
   end
 

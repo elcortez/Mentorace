@@ -12,12 +12,16 @@ RSpec.describe Attempt, type: :model do
     let!(:successful_attempt) { create(:attempt,
       exercise: exercise, attempted_answer: '123', user: user) }
 
+    let!(:successful_attempt_with_spaces) { create(:attempt,
+      exercise: exercise, attempted_answer: ' 1 2 3 ', user: user) }
+
     let!(:failed_attempt) { create(:attempt,
       exercise: exercise, attempted_answer: '1234', user: user) }
 
     it 'sets successful and failure on create' do
       expect(successful_attempt.attempt_successful).to eql(true)
       expect(failed_attempt.attempt_successful).to eql(false)
+      expect(successful_attempt_with_spaces.attempt_successful).to eql(true)
     end
   end
 
