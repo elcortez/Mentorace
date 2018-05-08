@@ -715,7 +715,6 @@ user = User.create(
   password: 'azertyuiopmlkjhgffdsq'
 )
 
-
 ###############################################################################
 Course.create(
   title_en: "Algorithms",

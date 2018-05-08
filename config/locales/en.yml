@@ -1,6 +1,14 @@
 en:
   team: "Pierre and Mikaël"
+  contact_mail: "MAIL ADDRESS PENDING"
+  contact_us: "Do not hesitate to keep in touch with us at %{email}"
   all_courses: "All Courses"
+  thank_you_for_your_support:
+    title: "Thank you for your interest and support to our platform !"
+    small_team: "We are a small team dedicated to help people learn better."
+    work_hard: "Everyday we work very hard to bring the best learning experience possible"
+    no_class: "As of now, this course is not yet available, but we have noticed
+      your interest and will do our best to deliver it as soon as possible."
   about_us:
     title: 'About Us'
     another_learning_platform: "Oh great, another learning platform…"
