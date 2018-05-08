@@ -714,3 +714,40 @@ user = User.create(
   email: 'pierre.hersant@gmail.com',
   password: 'azertyuiopmlkjhgffdsq'
 )
+
+
+###############################################################################
+Course.create(
+  title_en: "Algorithms",
+  description_en: "Understand and learn to choose the best algorithms for each use case"
+)
+
+Course.create(
+  title_en: "Computer Science",
+  description_en: "Understand the basic of computer science"
+)
+
+Course.create(
+  title_en: "Software architecture",
+  description_en: "Understand the basic of software architecture"
+)
+
+Course.create(
+  title_en: "Cryptography",
+  description_en: "Learn how to protect data with this cryptography course"
+)
+
+Course.create(
+  title_en: "Blockchain",
+  description_en: "Learn how blockchain works by build them"
+)
+
+Course.create(
+  title_en: "Machine Learning",
+  description_en: "Learn how to use machine learning"
+)
+
+Course.create(
+  title_en: "Data science and data engineering",
+  description_en: "Learn Data Science and the difference with data engineering"
+)

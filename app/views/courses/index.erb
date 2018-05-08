@@ -1,5 +1,5 @@
 <h1><%= I18n.t('all_courses') %></h1>
 
 <% Course.find_each do |course| %>
-  <%= link_to(course.display_title, course_path(course)) %>
+  <%= render partial: 'display', locals: { course: course } %>
 <% end %>
