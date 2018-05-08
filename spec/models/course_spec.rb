@@ -8,6 +8,20 @@ RSpec.describe Course, type: :model do
     let!(:lesson) { create(:lesson, chapter: chapter) }
     let!(:exercise) { create(:exercise, lesson: lesson, position_in_lesson: 1) }
 
+    it 'will create belts for users' do
+      expect(Course.count).to eql(1)
+      expect(user.belts.count).to eql(0)
+      course.create_belts_for_user(user.id)
+      course.create_belts_for_user(user.id)
+      course.create_belts_for_user(user.id)
+      course.create_belts_for_user(user.id)
+      course.create_belts_for_user(user.id)
+
+      expect(user.belts.count).to eql(1)
+      expect(user.belts.first.level).to eql(1)
+      expect(user.belts.first.color.to_sym).to eql(:white)
+      expect(user.belts.first.grade.to_sym).to eql(:rokukyu)
+    end
 
     it 'will create learning_status and be idempotent' do
       expect(Course.count).to eql(1)
