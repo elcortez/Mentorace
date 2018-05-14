@@ -43,9 +43,9 @@ Example.create(
 Example.create(
   lesson: lesson_1,
   content_en: "let F be the set that includes all uneven numbers below 10. \n" \
-    "We can write U in two different manners \n\n" \
-    "* extension : U = { 1 ; 3 ; 5 ; 7 ; 9 } \n\n" \
-    "* comprehension : { x ∈ U | (x is not even) AND (x <= 10) }",
+    "We can write F in two different manners \n\n" \
+    "* extension : F = { 1 ; 3 ; 5 ; 7 ; 9 } \n\n" \
+    "* comprehension : { x ∈ U | (x is not even) AND (x <= 10) AND (x > 0) }",
   position_in_lesson: 3
 )
 
@@ -54,16 +54,21 @@ Example.create(
   content_en: "let G be an empty set \n" \
     "We can write G in two different manners \n\n" \
     "* extension : U = ∅ \n\n" \
-    "* comprehension : { x ∈ U | (x ** x) = -1 }",
+    "* comprehension : { x ∈ U | (xᵡ) = -1 } \n\n" \
+    "* xᵡ means x to the power of x, and can also be writter x ** x \n\n" \
+    "* No number raised to the power of itself can even be negative, which is why the set must be empty",
   position_in_lesson: 4
 )
 
 Example.create(
   lesson: lesson_1,
-  content_en: "let G be a set defined as follows : G = { 1 ; 2 ; 3} \n" \
+  content_en: "let G be a set defined as follows : G = { 4 ; 8 ; 13 } \n" \
     "G's cardinal is 3 because it has 3 elements \n\n" \
     "* card(G) = 3 \n\n" \
-    "* #(G) = 3",
+    "* #(G) = 3 \n\n" \
+    "* |G| = 3 \n\n" \
+    "Each one of these writings can be used the same way, and in the following " \
+    "lessons, we will use mostly the following version : |G|"
   position_in_lesson: 5
 )
 
@@ -81,7 +86,7 @@ Exercise.create(
   question_en: "Let S be a set which can be defined by extension as follows: \n" \
     "S = { 1 ; 2 ; 3 ; 4 ; 5 ; 6 } \n" \
     "can S be also defined by comprehension as follows? \n" \
-    "{ x ∈ S | (x <= 6) AND ((x + 1) > 6) }",
+    "{ x ∈ S | (x <= 6) AND ((x + 1) > 6) AND (x is an integer) }",
   answer: 'false',
   position_in_lesson: 2
 )
@@ -121,8 +126,9 @@ lesson_2 = Lesson.create(
   title_en: 'Belonging and inclusion within sets',
   content_en: "Sets can belong to one another, or include other sets. \n\n" \
     "* When a set belongs to another, we use the symbol ∈ : P ∈ R (P belongs to R) \n\n" \
-    "* When a set is included another we use the symbol ⊂ : P ⊂ R (R includes P, or P is a subpart of R) \n\n" \
-    "* You can say that a set is a subpart of another if it is included in it"
+    "* When a set is included into another we use the symbol ⊂ : P ⊂ R (which means that P is a subpart of R, or that R includes P) \n\n" \
+    "* You can say that a set is a subpart of another if it is included in it \n\n" \
+    "* You can also use this symbol the other way around : R ⊃ P : R includes P" \
 )
 
 Example.create(
@@ -152,11 +158,11 @@ Example.create(
   lesson: lesson_2,
   position_in_lesson: 3,
   content_en: "* Thousands of animal species populate the Earth. \n\n" \
-    "* Amongst them are mammals, like dolphins, monkeys, etc. Humans are mammals too ! \n\n" \
+    "* Amongst them are mammals, like bears, monkeys, etc. Humans are mammals too ! \n\n" \
     "*  Therefore, Humans ⊂ Mammals ⊂ Animals (Humans are a subpart of Mammals, etc.) \n\n" \
-    "*  Or in other words, Humans ∈ Mammals ∈ Animals \n\n" \
+    "*  Or in other words, Animals ⊃ Mammals ⊃ Humans \n\n" \
     "*  Fishes are animals too, but they are not mammals  ; Therefore, Fish ⊂ Animals, " \
-    "Mammals ⊂ Animals, Dolphins ∈ Mammals BUT Dolphins ∉ Fish \n\n",
+    "Mammals ⊂ Animals, Bears ⊂ Mammals BUT Bears ⊄ Fish \n\n",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_3.png'
 )
 
@@ -215,8 +221,10 @@ lesson_3 = Lesson.create(
     "You can decide to call this a part or a subset. \n\n" \
     "Here, inclusion is to be taken at the largest possible definition, meaning " \
     "a set Q always includes itself and the empty set ø. \n\n" \
-    "For any given set Q, the set containing its parts is written P(Q) " \
-    "If a set Q contains n elements, P(Q) will contains 2**n elements."
+    "For any given set Q, the set containing its parts is written P(Q) \n\n" \
+    "If a set Q contains n elements, P(Q) will contains 2**n elements. \n\n" \
+    "Remember the cardinal of a set Q is written |Q|. \n\n" \
+    "Therefore, the cardinal of its parts P(Q) is written |P(Q)|. "
 )
 
 Example.create(
@@ -252,7 +260,7 @@ Exercise.create(
   lesson: lesson_3,
   position_in_lesson: 1,
   question_en: "Let N be a set defined this way : { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
-   "How many parts does P(N) have ? \n\n",
+   "How many parts does P(N) have ? (Meaning, what is |P(N)| ?) \n\n",
   answer: '32'
 )
 
@@ -275,10 +283,9 @@ Exercise.create(
 Exercise.create(
   lesson: lesson_3,
   position_in_lesson: 4,
-  question_en: "Let N be a set defined as follows : N = { 10 ; 15 ; 20 ; 25 } \n\n" \
-    "Let M be a set defined as follows : { x ∈ M | (x >= 10) AND (x < 30) AND (x / 10 ∈ N) } \n\n" \
-    "Is M a part of N? \n\n" \
-    "Reminder : N is the set including all natural integers.",
+  question_en: "Let M be a set defined as follows : M = { 10 ; 15 ; 20 ; 25 } \n\n" \
+    "Let P be a set defined as follows : { x ∈ P | (x >= 10) AND (x < 30) AND (x / 10 ∈ M) } \n\n" \
+    "Is P a part of M? \n\n",
   answer: 'true'
 )
 
@@ -563,10 +570,10 @@ Exercise.create(
 Exercise.create(
   lesson: lesson_6,
   position_in_lesson: 4,
-  question_en: "B ∈ (A ∪ C) \n\n" \
-    "B ∉ (A ⋂ C) \n\n" \
+  question_en: "B ⊂ (A ∪ C) \n\n" \
+    "B ⊄ (A ⋂ C) \n\n" \
     "C ⊄ B \n\n" \
-    "Does B ∈ A ?",
+    "Does B ⊂ A ?",
   answer: 'true'
 )
 
@@ -599,7 +606,7 @@ lesson_7 = Lesson.create(
   "* Its symbol is ∁, which means that for a set A contained inside a set B, the \n\n" \
   "complement of A inside B is written -> ∁ᴬʙ \n\n" \
   "* You can also write it with an overline like this : for a set X, its complement is X̅ \n\n" \
-  "* You can also write it simply like this : Aᶜ\n\n" \
+  "* You can also write it simply like this : Aᶜ, knowing that we are in the context of B\n\n" \
   "* A set and its complement are always disjoints : X ⋂ X̅ = ø \n\n" \
   "* A set and its complement, if united, are complementary inside another set : A ∪ ∁ᴬʙ = B \n\n" \
   "* The complement of a complement is always itself : for a set O, o̿ = O. \n\n" \
@@ -617,7 +624,7 @@ Example.create(
   content_en: "B = { 3 } \n\n" \
     "G = { 2 ; 3 ; 4 } \n\n" \
     "M = { 1 ; 2 ; 3 ; 4 ; 5 } \n\n" \
-    "Here you can see that A ⊂ B ⊂ C \n\n" \
+    "Here you can see that B ⊂ G ⊂ M \n\n" \
     "And ∁ᴮᴍ = { 1 ; 2 ; 4 ; 5 } \n\n" \
     "But ∁ᴮɢ = { 2 ; 4 } \n\n",
   img_url: 'maths_for_cs/chapter_1/lesson_7/example_1.png'
@@ -695,7 +702,7 @@ Exercise.create(
   position_in_lesson: 4,
   question_en: "Within a set E containing all letters of the english alphabet \n\n" \
     "A = { a ; b ; c ; d ; e } and B = { b ; d ; e ; f ; g } \n\n" \
-    "Does b ∈ (A ⋂ Bᶜ) ?\n\n",
+    "Does b ∈ (A ⋂ Bᶜ) within E?\n\n",
   answer: 'false'
 )
 
