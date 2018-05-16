@@ -30,8 +30,6 @@ ActiveRecord::Schema.define(version: 20180508124531) do
     t.bigint "user_id"
     t.bigint "course_id"
     t.integer "level"
-    t.string "color"
-    t.string "grade"
     t.integer "current_xp"
     t.integer "max_xp"
     t.datetime "created_at", null: false

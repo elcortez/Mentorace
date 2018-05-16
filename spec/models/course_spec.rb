@@ -19,8 +19,6 @@ RSpec.describe Course, type: :model do
 
       expect(user.belts.count).to eql(1)
       expect(user.belts.first.level).to eql(1)
-      expect(user.belts.first.color.to_sym).to eql(:white)
-      expect(user.belts.first.grade.to_sym).to eql(:rokukyu)
     end
 
     it 'will create learning_status and be idempotent' do

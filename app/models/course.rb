@@ -14,9 +14,7 @@ class Course < ApplicationRecord
     Belt.create!(
       user_id: user_id,
       course_id: self.id,
-      level: 1,
-      color: :white,
-      grade: :rokukyu
+      level: 1
     )
   end
 

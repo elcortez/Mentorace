@@ -21,34 +21,32 @@ RSpec.describe User, type: :model do
       it 'create_first_belts' do
         expect(user.belts.count).to eql(1)
         expect(user.belts.first.course_id).to eql(course.id)
-        expect(user.belts.first.color.to_sym).to eql(:white)
+        expect(user.belts.first.level).to eql(1)
       end
 
       it 'current_belt_for_course' do
-        expect(user.current_belt_for_course(course.id).color.to_sym).to eql(:white)
-        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
+        expect(user.current_belt_for_course(course.id).level).to eql(1)
+        create(:belt, user: user, course: course, level: 2)
 
         user.reload
-        expect(user.current_belt_for_course(course.id).color.to_sym).to eql(:yellow)
+        expect(user.current_belt_for_course(course.id).level).to eql(2)
       end
 
       it 'current_belts' do
         expect(user.current_belts.count).to eql(1)
-        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
+        create(:belt, user: user, course: course, level: 2)
 
         user.reload
         expect(user.current_belts.count).to eql(1)
-        expect(user.current_belts.last.color.to_sym).to eql(:yellow)
         expect(user.current_belts.last.level).to eql(2)
-        expect(user.current_belts.last.grade.to_sym).to eql(:gokyu)
       end
 
       it 'current_belts with several courses' do
         expect(user.current_belts.count).to eql(1)
-        create(:belt, user: user, course: course, color: :yellow, level: 2, grade: :gokyu)
-        create(:course)
-        create(:course)
-        create(:course)
+        create(:belt, user: user, course: course, level: 2)
+        course_2 = create(:course)
+        course_3 = create(:course)
+        course_4 = create(:course)
 
         user.create_first_belts
         user.reload
@@ -57,12 +55,12 @@ RSpec.describe User, type: :model do
         expect(user.current_belts.count).to eql(4)
 
         expect(user.current_belts.order(level: :desc)
-          .map { |b| [b.color.to_sym, b.level, b.grade.to_sym] })
+          .map { |b| [b.level, b.course_id] })
           .to eql([
-            [:yellow, 2, :gokyu],
-            [:white, 1, :rokukyu],
-            [:white, 1, :rokukyu],
-            [:white, 1, :rokukyu]
+            [2, course.id],
+            [1, course_2.id],
+            [1, course_3.id],
+            [1, course_4.id]
           ])
       end
     end
