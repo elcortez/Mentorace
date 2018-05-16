@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Attempt, type: :model do
+  describe '#give_experience' do
+    let!(:exercise) { create(:exercise,
+      question_en: double('question'),
+      lesson: create(:lesson, chapter: create(:chapter, course: create(:course))),
+      answer: '123'
+    ) }
+
+    let!(:user) { create(:user) }
+
+    it 'will give experience if it is the first successful' do
+      expect(user.belts.first.current_experience).to eql(0)
+
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+    end
+
+    it 'will not give experience if there has been a successful experience before' do
+    end
+
+    it 'will create a new belt if the experience it gives reaches beyond max_xp of current belt' do
+    end
+  end
+
   describe '#set_successful' do
     let!(:exercise) { create(:exercise,
       question_en: double('question'),

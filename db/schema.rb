@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20180508124531) do
     t.bigint "exercise_id"
     t.string "attempted_answer"
     t.boolean "attempt_successful"
+    t.integer "experience_to_gain", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_attempts_on_exercise_id"
@@ -30,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180508124531) do
     t.bigint "user_id"
     t.bigint "course_id"
     t.integer "level"
-    t.integer "current_xp"
+    t.integer "current_xp", default: 0
     t.integer "max_xp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
