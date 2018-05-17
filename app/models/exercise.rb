@@ -4,6 +4,7 @@ class Exercise < ApplicationRecord
   belongs_to :lesson
   has_many :exercises_attempts
   has_one :learning_status
+  validates_presence_of :experience_given
 
   has_one :next_exercise_in_lesson, -> (exercise) {
     where(

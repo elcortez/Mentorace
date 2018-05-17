@@ -11,7 +11,7 @@ RSpec.describe Attempt, type: :model do
     let!(:user) { create(:user) }
 
     it 'will give experience if it is the first successful' do
-      expect(user.belts.first.current_experience).to eql(0)
+      expect(user.belts.first.current_xp).to eql(0)
 
       create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
     end
