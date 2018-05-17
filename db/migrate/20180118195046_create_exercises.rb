@@ -6,6 +6,7 @@ class CreateExercises < ActiveRecord::Migration[5.1]
       t.string :answer
       t.string :hint
       t.integer :position_in_lesson
+      t.integer :experience_given, default: 1
 
       t.timestamps
     end

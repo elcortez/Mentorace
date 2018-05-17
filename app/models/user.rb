@@ -6,8 +6,26 @@ class User < ApplicationRecord
 
   has_many :attempts
   has_many :learning_statuses
+  has_many :belts
+
+  has_many :current_belts, ->(user) {
+    user.belts.joins('LEFT OUTER JOIN belts as latest_belts
+      ON latest_belts.course_id = belts.course_id
+      AND latest_belts.user_id = belts.user_id
+      AND latest_belts.level > belts.level')
+    .where('latest_belts.id IS NULL')
+  }, class_name: 'Belt'
 
   after_create :create_learning_statuses
+  after_create :create_first_belts
+
+  def current_belt_for_course(course_id)
+    self.current_belts.find_by(course_id: course_id)
+  end
+
+  def create_first_belts
+    Course.find_each { |course| course.create_belts_for_user(self.id) }
+  end
 
   def create_learning_statuses
     Course.find_each { |course| course.create_learning_status_for_user(self.id) }

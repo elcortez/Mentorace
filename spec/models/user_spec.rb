@@ -17,6 +17,54 @@ RSpec.describe User, type: :model do
 
     let!(:user) { create(:user) }
 
+    describe 'current_belts, current_belt_for_course, create_first_belts' do
+      it 'create_first_belts' do
+        expect(user.belts.count).to eql(1)
+        expect(user.belts.first.course_id).to eql(course.id)
+        expect(user.belts.first.level).to eql(1)
+      end
+
+      it 'current_belt_for_course' do
+        expect(user.current_belt_for_course(course.id).level).to eql(1)
+        create(:belt, user: user, course: course, level: 2)
+
+        user.reload
+        expect(user.current_belt_for_course(course.id).level).to eql(2)
+      end
+
+      it 'current_belts' do
+        expect(user.current_belts.count).to eql(1)
+        create(:belt, user: user, course: course, level: 2)
+
+        user.reload
+        expect(user.current_belts.count).to eql(1)
+        expect(user.current_belts.last.level).to eql(2)
+      end
+
+      it 'current_belts with several courses' do
+        expect(user.current_belts.count).to eql(1)
+        create(:belt, user: user, course: course, level: 2)
+        course_2 = create(:course)
+        course_3 = create(:course)
+        course_4 = create(:course)
+
+        user.create_first_belts
+        user.reload
+
+        expect(user.belts.count).to eql(5)
+        expect(user.current_belts.count).to eql(4)
+
+        expect(user.current_belts.order(level: :desc)
+          .map { |b| [b.level, b.course_id] })
+          .to eql([
+            [2, course.id],
+            [1, course_2.id],
+            [1, course_3.id],
+            [1, course_4.id]
+          ])
+      end
+    end
+
     describe '#has_finished_lesson?' do
       it 'has not finished any lesson' do
         expect(user.has_finished_lesson?(lesson)).to eql(false)

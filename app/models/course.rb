@@ -2,9 +2,20 @@ class Course < ApplicationRecord
   validates_presence_of :title_en
   has_many :chapters
   has_one :learning_status
+  has_many :belts
 
   def display_title
     self.send("title_#{I18n.locale}")
+  end
+
+  def create_belts_for_user(user_id)
+    return if Belt.find_by(user_id: user_id, course_id: self.id)
+
+    Belt.create!(
+      user_id: user_id,
+      course_id: self.id,
+      level: 1
+    )
   end
 
   def create_learning_status_for_user(user_id)
