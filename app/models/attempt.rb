@@ -50,7 +50,7 @@ class Attempt < ApplicationRecord
 
   def only_successful_attempt_for_exercise?
     self.user.attempts.successful
-      .where(exercise_id: [self.exercise.id])
+      .where(exercise_id: self.exercise.id)
       .where.not(id: self.id)
       .empty?
   end
