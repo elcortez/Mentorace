@@ -5,6 +5,13 @@ class Belt < ApplicationRecord
   LEVELS = [*1..17]
 
   validates :level, inclusion: { in: LEVELS }
+  validates_presence_of :max_xp
+
+  before_validation :define_max_xp, if: -> (b) { b.new_record? }
+
+  def define_max_xp
+    self.max_xp = MAX_XP[self.level]
+  end
 
   # TODO Find a better way to handle this
   MAX_XP = {
@@ -26,5 +33,4 @@ class Belt < ApplicationRecord
     16 => 110,
     17 => 150
   }
-
 end
