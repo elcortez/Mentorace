@@ -2,24 +2,74 @@ require 'rails_helper'
 
 RSpec.describe Attempt, type: :model do
   describe '#give_experience' do
+    let!(:course) { create(:course) }
     let!(:exercise) { create(:exercise,
       question_en: double('question'),
-      lesson: create(:lesson, chapter: create(:chapter, course: create(:course))),
+      lesson: create(:lesson, chapter: create(:chapter, course: course)),
       answer: '123'
     ) }
 
     let!(:user) { create(:user) }
+    let(:belt) { user.belts.first }
 
     it 'will give experience if it is the first successful' do
-      expect(user.belts.first.current_xp).to eql(0)
+      expect(belt.current_xp).to eql(0)
 
       create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      belt.reload
+      expect(belt.current_xp).to eql(1)
     end
 
-    it 'will not give experience if there has been a successful experience before' do
+    it 'will adapt to experience_given' do
+      exercise.experience_given = 5
+      exercise.save
+
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      belt.reload
+      expect(belt.current_xp).to eql(5)
+    end
+
+    it 'experience given is idempotent' do
+      exercise.experience_given = 5
+      exercise.save
+
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+
+      belt.reload
+      expect(belt.current_xp).to eql(5)
     end
 
     it 'will create a new belt if the experience it gives reaches beyond max_xp of current belt' do
+      exercise.experience_given = 10
+      exercise.save
+
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+
+      user.reload
+      expect(user.belts.count).to eql(2)
+      expect(user.current_belt_for_course(course.id).level).to eql(2)
+    end
+
+    it 'will not give more experience if max_belt_reached' do
+      belt = user.current_belt_for_course(course.id)
+      belt.update_columns(level: Belt::MAX_XP.keys.sort.last)
+      expect(user.belts.count).to eql(1)
+
+      create(:attempt, exercise: exercise, attempted_answer: '123', user: user)
+
+      user.reload
+      expect(user.belts.count).to eql(1)
+    end
+
+    it 'will not give more experience if attempt is not successful' do
+      expect(belt.current_xp).to eql(0)
+      create(:attempt, exercise: exercise, attempted_answer: 'wrong', user: user)
+      belt.reload
+      expect(belt.current_xp).to eql(0)
     end
   end
 

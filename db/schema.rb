@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20180508124531) do
     t.string "answer"
     t.string "hint"
     t.integer "position_in_lesson"
+    t.integer "experience_given", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_exercises_on_lesson_id"

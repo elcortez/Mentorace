@@ -90,15 +90,4 @@ RSpec.describe Belt, type: :model do
       expect(belt.max_xp).to eql(150)
     end
   end
-
-  describe 'callbacks' do
-    it 'creating a new user creates a new beginner belt' do
-    end
-
-    it 'finishing an exercise adds experience to the current belt' do
-    end
-
-    it 'passing through the max_xp creates a new belt' do
-    end
-  end
 end
