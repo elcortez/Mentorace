@@ -68,7 +68,7 @@ Example.create(
     "* #(G) = 3 \n\n" \
     "* |G| = 3 \n\n" \
     "Each one of these writings can be used the same way, and in the following " \
-    "lessons, we will use mostly the following version : |G|"
+    "lessons, we will use mostly the following version : |G|",
   position_in_lesson: 5
 )
 
@@ -159,9 +159,9 @@ Example.create(
   position_in_lesson: 3,
   content_en: "* Thousands of animal species populate the Earth. \n\n" \
     "* Amongst them are mammals, like bears, monkeys, etc. Humans are mammals too ! \n\n" \
-    "*  Therefore, Humans ⊂ Mammals ⊂ Animals (Humans are a subpart of Mammals, etc.) \n\n" \
-    "*  Or in other words, Animals ⊃ Mammals ⊃ Humans \n\n" \
-    "*  Fishes are animals too, but they are not mammals  ; Therefore, Fish ⊂ Animals, " \
+    "* Therefore, Humans ⊂ Mammals ⊂ Animals (Humans are a subpart of Mammals, etc.) \n\n" \
+    "* Or in other words, Animals ⊃ Mammals ⊃ Humans \n\n" \
+    "* Fishes are animals too, but they are not mammals  ; Therefore, Fish ⊂ Animals, " \
     "Mammals ⊂ Animals, Bears ⊂ Mammals BUT Bears ⊄ Fish \n\n",
   img_url: 'maths_for_cs/chapter_1/lesson_2/example_3.png'
 )
@@ -197,7 +197,7 @@ Exercise.create(
   position_in_lesson: 4,
   question_en: "* N = { 1 ; 3 ; 5 } \n\n" \
     "* P = { 1 ; 3 ; 5 ; 7 ; 9 ; 11 } \n\n" \
-    "* We know that N ⊂  Q AND Q ⊂ P ; however 9 ∉ Q  \n\n" \
+    "* We know that N ⊂ Q AND Q ⊂ P ; however 9 ∉ Q  \n\n" \
     "Define Q by extension",
   answer: '{ 1 ; 3 ; 5 ; 7 ; 11 } ',
 )
