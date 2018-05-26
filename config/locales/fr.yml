@@ -4,7 +4,7 @@ fr:
   contact_us: "Restons en contact : %{email}"
   all_courses: "Tous les cours"
   homepage:
-    learn_anything: "Commencez à apprendre maintenant"
+    learn_anything: "Commencez à apprendre maintenant."
   belts:
     colors:
       1: 'blanche'

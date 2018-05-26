@@ -1,5 +1,5 @@
 .homepage_picture {
-  background-image: url(asset_path('homepage_picture.jpg'));
+  background-image: url(asset_path('homepage_picture.png'));
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -7,4 +7,13 @@
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
+
+  color: $base-background-color;
+  vertical-align: center;
+  text-align: center;
+  .actions {
+    input {
+      background-color: $base-blue;
+    }
+  }
 }

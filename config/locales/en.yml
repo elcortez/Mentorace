@@ -4,7 +4,7 @@ en:
   contact_us: "Do not hesitate to keep in touch with us at %{email}"
   all_courses: "All Courses"
   homepage:
-    learn_anything: 'Get ready to learn anything'
+    learn_anything: 'Get ready to learn anything.'
   thank_you_for_your_support:
     title: "Thank you for your interest and support to our platform !"
     small_team: "We are a small team dedicated to help people learn better."
