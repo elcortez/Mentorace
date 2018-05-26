@@ -1,4 +1,10 @@
 fr:
+  team: "Pierre et Mikaël"
+  contact_mail: "MAIL EN COURS"
+  contact_us: "Restons en contact : %{email}"
+  all_courses: "Tous les cours"
+  homepage:
+    learn_anything: "Commencez à apprendre maintenant"
   belts:
     colors:
       1: 'blanche'
