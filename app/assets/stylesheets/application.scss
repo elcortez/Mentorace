@@ -6,8 +6,19 @@
 @import "config/variables";
 @import "courses";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900");
 
 body {
   background-color: $base-background-color;
   font-family: $base-font;
+}
+
+.logo {
+  padding: 5px 5px 5px 5px;
+  max-width: 50px
+}
+.company_name {
+  color: $base-black;
+  font-weight: 700;
+  font-size: 20px;
 }
