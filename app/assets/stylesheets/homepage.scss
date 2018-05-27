@@ -3,7 +3,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
-  min-height: 350px;
+  min-height: 450px;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -19,6 +19,15 @@
   .field {
     input {
       color: black;
+    }
+  }
+}
+
+.taglines {
+  text-align: center;
+  .one_tagline {
+    h2 {
+      margin-bottom: 20px;
     }
   }
 }
