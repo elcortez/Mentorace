@@ -5,4 +5,13 @@
   width: 100%;
   background-color: $base-background-color;
   border-top: 2px solid $base-grey;
+
+  .footer_column {
+    text-align: center;
+    font-size: 1.2em;
+  }
+
+  .footer_column:nth-child(2) {
+    text-align: right;
+  }
 }

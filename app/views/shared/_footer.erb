@@ -1,7 +1,15 @@
-<div class='footer_basic'>
-  <div class="row navbar_row">
-    <div class="col-xs-6 col-sm-3 navbar_column">
-      <%= render 'shared/logo' %>
+  <div class='container footer_basic'>
+    <div class="row">
+
+      <div class="col-xs-6 col-sm-3 footer_column">
+        <%= render 'shared/logo' %>
+      </div>
+
+      <div class="col-xs-6 col-sm-3 footer_column">&nbsp;</div>
+      <div class="col-xs-6 col-sm-3 footer_column">&nbsp;</div>
+
+      <div class="col-xs-6 col-sm-3 footer_column">
+        <%= t('contact_us', email: t('contact_mail')).html_safe %>
+      </div>
     </div>
   </div>
-</div>
