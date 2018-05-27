@@ -1,0 +1,8 @@
+@import "config/variables";
+
+.footer_basic {
+  min-height: $footer-size;
+  width: 100%;
+  background-color: $base-background-color;
+  border-top: 2px solid $base-grey;
+}
