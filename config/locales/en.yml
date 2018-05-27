@@ -1,7 +1,7 @@
 en:
   team: "Pierre and Mikaël"
-  contact_mail: "MAIL ADDRESS PENDING"
-  contact_us: "Do not hesitate to keep in touch with us at %{email}"
+  contact_mail: "<p> elcortez [at] mentorace.org </p>"
+  contact_us: "Let me know what you think of this website here : %{email}"
   all_courses: "All Courses"
   homepage:
     learn_anything: 'Get ready to learn anything.'
