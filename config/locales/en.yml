@@ -3,6 +3,20 @@ en:
   contact_mail: "MAIL ADDRESS PENDING"
   contact_us: "Do not hesitate to keep in touch with us at %{email}"
   all_courses: "All Courses"
+  homepage:
+    learn_anything: 'Get ready to learn anything.'
+    acquire_and_apply: 'Acquire and apply knowledge in small chunks'
+    small_lessons: 'Our lessons are divided in small enough chuncks so you can
+      read and understand them quickly.'
+    learn_actively: 'Learn actively rather than passively'
+    lots_of_exercises: 'Lots of small exercises will be proposed at each lesson.'
+    understand_mind: 'Understand how your mind works'
+    know_issues: 'You will immediatly discover and fix your pain points along the way.'
+    finish: 'Finish what you begin'
+    journey: 'You are about to embark in an incredible journey of self-discovery.
+      Welcome aboard ! We are always happy to get feedback from you.'
+
+
   thank_you_for_your_support:
     title: "Thank you for your interest and support to our platform !"
     small_team: "We are a small team dedicated to help people learn better."

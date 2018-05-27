@@ -1,1 +1,75 @@
-<h1>Hello world</h1>
+<div class='container homepage_picture' >
+  <h1><%= t('homepage.learn_anything')%></h1>
+  <br />
+
+  <div class='main_sign_up'>
+    <%= form_for(User.new, as: :user, url: registration_path(:user)) do |f| %>
+
+      <div class="field">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autocomplete: "last name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <br />
+      <div class="actions">
+        <%= f.submit "Sign up and start learning" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container taglines">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <h2><%= t('homepage.acquire_and_apply') %></h2>
+      <p><%= t('homepage.small_lessons') %></p>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <h2><%= t('homepage.learn_actively') %></h2>
+      <p><%= t('homepage.lots_of_exercises') %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <div class="separator"></div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <div class="separator"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <h2><%= t('homepage.understand_mind') %></h2>
+      <p><%= t('homepage.know_issues') %></p>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-6 one_tagline">
+      <h2><%= t('homepage.finish') %></h2>
+      <p><%= t('homepage.journey') %></p>
+    </div>
+  </div>
+</div>
