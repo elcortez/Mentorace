@@ -718,6 +718,8 @@ Exercise.create(
 
 ###############################################################################
 user = User.create(
+  first_name: "Pierre",
+  last_name: "Hersant",
   email: 'pierre.hersant@gmail.com',
   password: 'azertyuiopmlkjhgffdsq'
 )
