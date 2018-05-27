@@ -5,7 +5,7 @@
   background-size: 100%;
   min-height: 450px;
   padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
+  margin: 0px 0px 70px 0px;
   width: 100%;
 
   color: $base-background-color;
@@ -18,16 +18,28 @@
   }
   .field {
     input {
-      color: black;
+      color: $base-black;
     }
   }
 }
 
 .taglines {
   text-align: center;
+
+  .one_tagline:nth-child(1) {
+    border-right: 1px solid $base-grey;
+  }
+
   .one_tagline {
     h2 {
-      margin-bottom: 20px;
+      padding-bottom: 30px;
+    }
+    .separator {
+      position: absolute;
+      left: 25%;
+      right: 25%;
+      width: 60%;
+      border-bottom: 1px solid $base-grey;
     }
   }
 }
