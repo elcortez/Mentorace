@@ -13,7 +13,10 @@
   text-align: center;
   .actions {
     input {
+      border-radius: 5px;
       background-color: $base-blue;
+      border-color: $dark-blue;
+      padding: 5px 40px 5px 40px;
     }
   }
   .field {
