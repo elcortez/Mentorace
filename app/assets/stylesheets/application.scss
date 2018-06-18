@@ -8,6 +8,10 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900");
 
+html, body {
+	height: 100%;
+}
+
 body {
   background-color: $base-background-color;
   font-family: $base-font;
@@ -20,4 +24,10 @@ body {
   color: $base-black;
   font-weight: 700;
   font-size: 20px;
+}
+
+.page_wrapper {
+	position:relative;
+	height:auto !important;
+	min-height:100%;
 }
