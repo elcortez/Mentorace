@@ -1,33 +1,28 @@
-<%= @course.title_en %>
-
-<% if @course.chapters.any? %>
-  <% @course.chapters.order(:position_in_course).each do |chapter| %>
-
+<div class="container">
+  <h2 class="course_title"> <%= @course.title_en %> </h2>
+    <% @course.chapters.order(:position_in_course).each do |chapter| %>
     <h3><%= chapter.title_en %></h3>
-    <p> <em> <%= chapter.description_en %></em></p>
+    <p class='course_description'> <%= chapter.description_en %> </p>
 
     <h5> <b> All Lessons </b> </h5>
 
-    <% chapter.lessons.order(:position_in_chapter).each do |lesson| %>
-      <% if current_user.can_access_lesson?(lesson) %>
-        <p>
-          <%= link_to(lesson.title_en, course_chapter_lesson_path(
-            course_id: lesson.chapter.course_id,
-            chapter_id: lesson.chapter_id,
-            id: lesson.id)
-          ) %>
-        </p>
-      <% else %>
-        <p> <%= lesson.title_en %> </p>
+    <ol>
+      <% chapter.lessons.order(:position_in_chapter).each do |lesson| %>
+        <% if current_user.can_access_lesson?(lesson) %>
+          <li>
+            <%= link_to(lesson.title_en, course_chapter_lesson_path(
+              course_id: lesson.chapter.course_id,
+              chapter_id: lesson.chapter_id,
+              id: lesson.id)
+            ) %>
+          </li>
+        <% else %>
+          <li> <%= lesson.title_en %> </li>
+        <% end %>
       <% end %>
-    <% end %>
+    </ol>
   <% end %>
 
-  <% else %>
-  <p><%= t('thank_you_for_your_support.title') %></p>
-  <p><%= t('thank_you_for_your_support.small_team') %></p>
-  <p><%= t('thank_you_for_your_support.work_hard') %></p>
-  <p><%= t('thank_you_for_your_support.no_class') %></p>
-  <p><%= t('contact_us', email: t('contact_mail')) %></p>
-
-<% end %>
+  <br><br><br>
+  <%= render partial: 'one_man_army' %>
+</div>

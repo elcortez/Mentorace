@@ -14,24 +14,25 @@ en:
     know_issues: 'You will immediatly discover and fix your pain points along the way.'
     finish: 'Finish what you begin'
     journey: 'You are about to embark in an incredible journey of self-discovery.
-      Welcome aboard ! We are always happy to get feedback from you.'
+      Welcome aboard ! I am always happy to get feedback from you.'
 
 
   thank_you_for_your_support:
-    title: "Thank you for your interest and support to our platform !"
-    small_team: "We are a small team dedicated to help people learn better."
-    work_hard: "Everyday we work very hard to bring the best learning experience possible"
-    no_class: "As of now, this course is not yet available, but we have noticed
-      your interest and will do our best to deliver it as soon as possible."
+    title: "Thank you for your interest in this platform !"
+    small_team: "I am but one man wishing to help people learn better."
+    work_hard: "I would love to bring you the best learning experience possible"
+    all_i_have: "As of now, this is all I have to show you. And I know how terrible
+      the design looks :) If you wish to see more lessons, or you want to give me a hand,
+      do not hesitate to contact me !"
   about_us:
     title: 'About Us'
     another_learning_platform: "Oh great, another learning platform…"
     it_is_different: "But this time, it’s different !"
-    we_wanted_to_learn_too: "We wanted to learn too. We tried all these websites."
-    we_went_through_every_mooc: "We went through every MOOC, every youtube tutorial,
+    we_wanted_to_learn_too: "I wanted to learn too. I tried all these websites."
+    we_went_through_every_mooc: "I went through every MOOC, every youtube tutorial,
       every wikipedia page, and every book to learn mathematics and computer science."
     and_it_hurt: "And man did it hurt."
-    we_struggled: "We struggled with each of these classes, and hardly finished any."
+    we_struggled: "I struggled with each of these classes, and hardly finished any."
     ninety_percent: "In fact, 90% of people who start a MOOC will NEVER finish it."
     why_is_it_so_hard:
       question: "Why is it so hard to learn?"
@@ -55,23 +56,23 @@ en:
         something, we finish it. If you are here to learn mathematics for CS and
         algorithms, you will learn them fully, completely, from top to bottom,
         until you master the general concepts and every little detail."
-      content_2: "We are professional oriented : these courses are designed to
+      content_2: "I are professional oriented : these courses are designed to
         give you skills that you can use on the field of any business, as soon
         as you finished your learning"
-      content_3: "We will take you to each step incrementally and carefully,
+      content_3: "I will take you to each step incrementally and carefully,
         decomposing every chunk of knowledge with a lot of practice, so that you
         never have to come back to the previous lesson to understand something.
-        Our concept is very straightforward : 1 lesson, 5 exercices; and no
+       this concept is very straightforward : 1 lesson, 5 exercices; and no
         lesson should take more than 15 minutes to read."
-      content_4: "We will make you repeat the exercises several times on different
+      content_4: "I will make you repeat the exercises several times on different
         situations. You will never leave a lesson without having practiced the
         concepts again and again, to make sure you really master the subject."
     many_teachers_believe: "Many teachers still believe that their job is merely
       to « transmit knowledge », and that it is up to the student to educated herself."
-    we_believe: "We believe that someone who wants to learn something should just
+    we_believe: "I believe that someone who wants to learn something should just
       show up with her strong will and desire, and that it is up to the teacher
       to make sure that she learned properly."
-    we_believe_2: "We believe in a world where anyone who desires to learn
+    we_believe_2: "I believe in a world where anyone who desires to learn
       should have the ability to do so, regardless of their financial situation,
       or pre existing diplomas."
     if_you_believe: "If you believe in that too, then welcome aboard !

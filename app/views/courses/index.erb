@@ -1,5 +1,12 @@
-<h1><%= I18n.t('all_courses') %></h1>
+<div class="container center">
+  <h1><%= I18n.t('all_courses') %></h1>
 
-<% Course.find_each do |course| %>
-  <%= render partial: 'display', locals: { course: course } %>
-<% end %>
+  <% Course.find_each do |course| %>
+    <div class='course_card'>
+      <%= link_to(course.display_title, course_path(course)) %>
+    </div>
+  <% end %>
+  <br><br><br>
+  <%= render partial: 'one_man_army' %>
+
+</div>

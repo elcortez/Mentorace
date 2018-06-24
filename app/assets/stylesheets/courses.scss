@@ -1,7 +1,27 @@
+@import "config/variables";
+
 .course_card {
   border: 1px solid black;
   max-width: 300px;
-  text-align: center;
   margin: 10px 10px 10px 10px;
   padding: 10px 10px 10px 10px;
+}
+
+.course_title {
+  border: 1px solid $base-black;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+}
+
+.course_description {
+  font-style: italic;
+  border-bottom: 1px solid $base-black;
+  margin-bottom: 10px;
+}
+
+.one_man_army {
+  font-style: italic;
+  color: $base-black;
+  border: 1px solid $base-black;
+  padding: 15px 15px 15px 15px;
 }
