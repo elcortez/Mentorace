@@ -4,7 +4,6 @@
 @import "footer";
 @import "homepage";
 @import "config/variables";
-@import "about";
 @import "courses";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900");
@@ -31,4 +30,7 @@ body {
 	position:relative;
 	height:auto !important;
 	min-height:100%;
+}
+.login_wrapper {
+	text-align: center;
 }
