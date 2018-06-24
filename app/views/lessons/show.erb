@@ -1,5 +1,6 @@
-<div class="container">
+<br><br>
 
+<div class="container">
   <h3> <%= @lesson.title_en.html_safe %> </h3>
   <p> <%= @lesson.display_content(I18n.locale).html_safe %> </p>
 
@@ -11,8 +12,8 @@
       <img src="example.img_url" alt='maths for computer science'>
     <% end %>
   <% end %>
-
-  <p>
+  <br><br>
+  <p class='center'>
     <% if @lesson.exercises.present? %>
       <%= link_to(
         "I am ready to get challenged on this lesson",
@@ -25,4 +26,7 @@
       ) %>
     <% end %>
   </p>
+  <br><br>
 </div>
+
+<br><br><br>

@@ -1,21 +1,30 @@
-<p>
-  Lesson Exercise N°<%= @exercise.position_in_lesson %>
-</p>
+<br><br><br>
+<div class="container center">
+  <p class='exercise_title'>
+    Exercise N°<%= @exercise.position_in_lesson %>
+  </p>
 
-<p>
-  <%= @exercise.question_en %>
-</p>
+  <p>
+    <%= @exercise.question_en %>
+  </p>
+  <br>
 
-<%= simple_form_for [:course, :chapter, :lesson, @exercise, @attempt] do |f| %>
-  <% if [:false, :true].include?(@exercise.answer.to_sym) %>
-    <%= f.input :attempted_answer,
-      as: :radio_buttons,
-      collection: [:true, :false]
-    %>
-  <% else %>
-    <%= f.input :attempted_answer %>
+  <%= simple_form_for [:course, :chapter, :lesson, @exercise, @attempt] do |f| %>
+    <% if [:false, :true].include?(@exercise.answer.to_sym) %>
+
+      <%= f.input :attempted_answer,
+        as: :radio_buttons,
+        collection: [:true, :false]
+      %>
+    <% else %>
+
+      <%= f.input :attempted_answer %>
+    <% end %>
+
+    <%= f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id } %>
+    <br><br>
+
+    <%= f.button :submit %>
   <% end %>
-
-  <%= f.input :exercise_id, as: :hidden, input_html: { value: @exercise.id } %>
-  <%= f.button :submit %>
-<% end %>
+</div>
+<br><br><br>
