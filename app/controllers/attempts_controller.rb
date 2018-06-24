@@ -9,9 +9,15 @@ class AttemptsController < ApplicationController
   end
 
   def create
-    Attempt.create({ user_id: current_user.id }.merge(lesson_params))
+    attempt = Attempt.create({ user_id: current_user.id }.merge(lesson_params))
 
-    redirect_to_current_learning_status
+    if attempt.attempt_successful
+      flash[:success] = "Congratulations ! You made it"
+    else
+      flash[:error] = "Try again"
+    end
+
+    return redirect_to_current_learning_status
   end
 
   private
