@@ -23,6 +23,15 @@ class User < ApplicationRecord
     self.current_belts.find_by(course_id: course_id)
   end
 
+  def attempts_number_per_course(course_id)
+    self.attempts.joins(:exercise)
+      .joins('JOIN lessons ON lessons.id = exercises.lesson_id')
+      .joins('JOIN chapters ON chapters.id = lessons.chapter_id')
+      .joins('JOIN courses ON courses.id = chapters.course_id')
+      .where(courses: { id: course_id })
+      .length
+  end
+
   def create_first_belts
     Course.find_each { |course| course.create_belts_for_user(self.id) }
   end

@@ -3,7 +3,6 @@ FactoryBot.define do
     first_name 'Nikola'
     last_name 'Tesla'
     email 'nikola.tesla@gmail.com'
-    pseudo 'El Cortez'
     password 'totally-secure-password-or-not'
   end
 end

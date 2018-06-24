@@ -1,2 +1,32 @@
-<h1>Here are informations about the user <%= current_user.email %></h1>
-<%= link_to('Disconnect', destroy_user_session_path, method: :delete) %>
+<div class="container">
+  <h3> <%= current_user.email %> </h3>
+  <br><br><br>
+
+  <div class="learning_status">
+    <h4> Learning status </h4>
+    <% Course.find_each do |course| %>
+      <h4> <%= course.display_title %> </h4>
+        <% lesson = current_user.learning_statuses.find_by(course: course).lesson %>
+
+        <p>
+          <%= link_to(lesson.title_en, course_chapter_lesson_path(
+            course_id: lesson.chapter.course_id,
+            chapter_id: lesson.chapter_id,
+            id: lesson.id)
+            ) %>
+        </p>
+
+        <br>
+
+        <p>
+          Number of attempts : <%= current_user.attempts_number_per_course(course.id) %>
+        </p>
+
+    <% end %>
+  </div>
+  <br><br>
+
+  <button type="button" class="btn btn-warning">
+    <%= link_to('Disconnect', destroy_user_session_path, method: :delete) %>
+  </button>
+</div>

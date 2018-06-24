@@ -17,6 +17,19 @@ RSpec.describe User, type: :model do
 
     let!(:user) { create(:user) }
 
+    describe 'attempts_per_course' do
+      it 'can return number of attempts for one course' do
+        course_2 = create(:course)
+        create(:attempt, user: user, exercise: exercise, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_2, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_3, attempted_answer: 'wrong answer')
+        create(:attempt, user: user, exercise: exercise_4, attempted_answer: 'wrong answer')
+
+        expect(user.attempts_number_per_course(course.id)).to eql(4)
+        expect(user.attempts_number_per_course(course_2.id)).to eql(0)
+      end
+    end
+
     describe 'current_belts, current_belt_for_course, create_first_belts' do
       it 'create_first_belts' do
         expect(user.belts.count).to eql(1)
