@@ -21,7 +21,7 @@ class Exercise < ApplicationRecord
   }, through: :lesson, source: :exercises
 
   def unique_exercise_position_in_lesson
-    return unless self.lesson.exercises.pluck(:position_in_lesson).include?(self.position_in_lesson)
+    return unless self.lesson.exercises.where.not(id: self.id).pluck(:position_in_lesson).include?(self.position_in_lesson)
     errors.add(:position_in_lesson, 'already taken')
   end
 
