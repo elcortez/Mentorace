@@ -714,12 +714,3 @@ Exercise.create(
     "Does { a ; c } ⊂ (A ⋂ Bᶜ) ?\n\n",
   answer: 'true'
 )
-
-
-###############################################################################
-user = User.create(
-  first_name: "Pierre",
-  last_name: "Hersant",
-  email: 'pierre.hersant@gmail.com',
-  password: 'azertyuiopmlkjhgffdsq'
-)
